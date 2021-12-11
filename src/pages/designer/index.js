@@ -15,8 +15,13 @@ import { pathToParam, loadScript } from "~utils";
 function DataProvider(props) {
   useDocumentTitle("DataV Pro - 数据大屏");
   const [state, setState] = useSet({
+    // 设置器tabKey
     configTabsKey: "base",
+    // 面板tabKey
+    panelTabsKey: '',
+    // 编辑区所有组件列表
     components: [],
+    // 页面属性
     page: {
       name: "",
       remark: "",
@@ -31,14 +36,20 @@ function DataProvider(props) {
       width: 1920,
       height: 1080
     },
+    // 撤销列表
     undo: [],
+    // 重复列表
     redo: []
   });
 
   const [view, setView] = useSet({
+    // 侧边面板显隐控制
     layerCollapsed: false,
+    // 右侧设置面板显隐控制
     settingCollapsed: false,
+    // 调试面板显隐控制
     visible: false,
+    //
     rulerWidth: 0,
     rulerHeight: 0,
     width: 1366,

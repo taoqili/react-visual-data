@@ -21,10 +21,12 @@ const initState = {
 
 export default handleActions(
   {
+    //编辑器状态：开发和预览
     "component/mode": (state, action) => ({
       ...state,
       mode: ["development", "preview"].includes(action.data) ? action.data : "preview"
     }),
+    //当前选中的元素
     "component/selected": (state, action) => ({ ...state, selected: action.data }),
     "component/fieldType": (state, action) => ({ ...state, fieldType: action.data }),
     "component/querys": (state, action) => ({ ...state, querys: action.data }),

@@ -67,6 +67,10 @@ function Wrapper(props, ref) {
     return width ? Math.floor((width / view.width) * 100) / 100 : 1;
   }, [width, view.width]);
 
+  const handleClick = () => {
+    props.dispatch({ type: "component/selected", data: "-" });
+  }
+
   const handleDragOver = (event) => {
     event.preventDefault();
   };
@@ -160,7 +164,7 @@ function Wrapper(props, ref) {
           }}
         >
           <div className="canvas-container design-panel" style={containerStyle} tabIndex="-1">
-            <div className="design-body">
+            <div className="design-body" onClick={handleClick}>
               <div className="design-container" style={canvasStyle} onDragOver={handleDragOver} onDrop={handleDrop}>
                 <div
                   className="bg-container"

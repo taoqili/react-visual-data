@@ -38,7 +38,6 @@ const FieldSetConf = ({ selected }) => {
       configs: []
     };
   }, [selected, state.configTabsKey]);
-
   if (selected === "-") {
     return (
       <div className={classNames}>

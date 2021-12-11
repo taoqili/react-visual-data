@@ -147,7 +147,6 @@ function DragField({ value, tabBind, tabStore, selected, dispatch, onValueChange
   const onDragStopHandle = (e, d) => {
     e.preventDefault();
     e.stopPropagation();
-
     onValueChange(
       value.uniqueId,
       Object.assign(value.data, {
