@@ -37,7 +37,7 @@ const FieldSetConf = ({ selected }) => {
       value: {},
       configs: []
     };
-  }, [selected, state.tabsKey]);
+  }, [selected, state.configTabsKey]);
 
   if (selected === "-") {
     return (
@@ -59,14 +59,14 @@ const FieldSetConf = ({ selected }) => {
         className="setting-panel"
         size="large"
         tabPosition="right"
-        selected={state.tabsKey}
+        selected={state.configTabsKey}
         onTabClick={(key) => {
-          setState({ tabsKey: key });
+          setState({ configTabsKey: key });
         }}
       >
         {currentConf.configs.map((item) => (
           <Tabs.TabPane tab={item.name} key={item.key}>
-            {state.tabsKey === item.key && (
+            {state.configTabsKey === item.key && (
               <SchemaRender
                 cname={currentConf.cname}
                 cid={currentConf.cid}

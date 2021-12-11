@@ -174,7 +174,7 @@ const FieldMarkets = ({ selected, dispatch }) => {
   };
 
   const onSelect = (keys) => {
-    setState({ tabsKey: "base" });
+    setState({ configTabsKey: "base" });
     dispatch({ type: "component/selected", data: keys.join("") });
   };
 

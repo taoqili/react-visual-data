@@ -15,7 +15,7 @@ import { pathToParam, loadScript } from "~utils";
 function DataProvider(props) {
   useDocumentTitle("DataV Pro - 数据大屏");
   const [state, setState] = useSet({
-    tabsKey: "base",
+    configTabsKey: "base",
     components: [],
     page: {
       name: "",
