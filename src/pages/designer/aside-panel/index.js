@@ -195,7 +195,7 @@ const FieldMarkets = ({ selected, dispatch }) => {
           setState({ panelTabsKey: key });
         }}
       >
-        <Tabs.TabPane key={'outline'} tab={'大纲树'} className={'outline-panel-tab'}>
+        <Tabs.TabPane key={'outline'} tab={'大纲树'} className={'outline-pane-tab'}>
           <Tree
             defaultExpandAll
             showLine
@@ -205,7 +205,7 @@ const FieldMarkets = ({ selected, dispatch }) => {
             treeData={layer}
           />
         </Tabs.TabPane>
-        <Tabs.TabPane key={'material'} tab={'组件库'} className={'material-panel-tab'}>
+        <Tabs.TabPane key={'material'} tab={'组件库'} className={'material-pane-tab'}>
           <Select
             className="silder-select"
             showSearch={true}
@@ -225,7 +225,7 @@ const FieldMarkets = ({ selected, dispatch }) => {
           </Select>
           <FieldEnum value={cname} />
         </Tabs.TabPane>
-        <Tabs.TabPane key={'datasource'} tab={'数据源'} className={'datasource-panel-tab'}>
+        <Tabs.TabPane key={'datasource'} tab={'数据源'} className={'datasource-pane-tab'}>
           数据源
         </Tabs.TabPane>
       </Tabs>
