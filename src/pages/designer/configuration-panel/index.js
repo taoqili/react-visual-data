@@ -13,7 +13,7 @@ import "./index.less";
 
 const FieldSetConf = ({ selected }) => {
   const { state, setState } = useDesigner();
-  const { view } = useView();
+  const { view, setView } = useView();
 
   const classNames = cx("gc-design__setting", {
     "is-show": view.settingCollapsed
@@ -59,6 +59,7 @@ const FieldSetConf = ({ selected }) => {
       realValue = { ...realValue, ...realValue.customPageSize };
     }
     setState({ page: realValue });
+    setView({...realValue.customPageSize});
   };
 
   if (selected === "-") {
