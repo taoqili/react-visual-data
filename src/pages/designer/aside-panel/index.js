@@ -187,7 +187,7 @@ const FieldMarkets = ({ selected, dispatch }) => {
   return (
     <aside className={view.layerCollapsed ? "gc-design__silder is-show" : "gc-design__silder"}>
       <Tabs
-        className="tql-panel-tabs"
+        className="left-pane-tabs"
         size="large"
         tabPosition="left"
         selected={state.panelTabsKey}

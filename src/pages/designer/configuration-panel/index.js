@@ -55,7 +55,7 @@ const FieldSetConf = ({ selected }) => {
   return (
     <div className={classNames}>
       <Tabs
-        className="setting-panel"
+        className="right-pane-tabs"
         size="large"
         tabPosition="right"
         selected={state.configTabsKey}
