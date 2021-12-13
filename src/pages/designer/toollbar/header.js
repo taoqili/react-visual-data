@@ -145,8 +145,8 @@ const FieldActionsConf = ({ selected, dispatch }) => {
     <header className="gc-design__hd">
       <div className="gc-design__hd--title">
         <Typography.Title level={4} className="gc-design__hd--h1">
-          Axure v2&nbsp;
-          <Badge status="processing" text="Beta测试版" />
+          监控大屏&nbsp;
+          <Badge status="processing" text="Beta" />
         </Typography.Title>
         <div
           className="gc-design__hd--icon"

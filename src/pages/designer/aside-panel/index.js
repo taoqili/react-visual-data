@@ -1,9 +1,10 @@
 import React, { Fragment, useRef, useState, useEffect, useCallback } from "react";
-import { Collapse, Tree, Select, Card, Col, Row } from "antd";
+import { Collapse, Tree, Select, Card, Col, Row, Tabs } from "antd";
 import { connect } from "react-redux";
 import { IconFont, Scrollbar, SplitPanel } from "~components";
 import { useDesigner, useView } from "~hooks/useDesigner";
 import designerList from "./designer-market.json";
+import './index.less'
 
 /**
  * 配置项汇总
@@ -152,10 +153,11 @@ const FieldMarkets = ({ selected, dispatch }) => {
   const { view } = useView();
 
   useEffect(() => {
-    let treeList = state.components.map((m) => {
+    const treeList = state.components.map((component) => {
+      const { uniqueId, data = {} } = component;
       return {
-        key: m.uniqueId,
-        title: m.data.title || "未命名",
+        key: uniqueId,
+        title: <div>{ data.title } </div>,
         isLeaf: true
       };
     });
@@ -174,51 +176,59 @@ const FieldMarkets = ({ selected, dispatch }) => {
   };
 
   const onSelect = (keys) => {
+    if (!keys || !keys.length) {
+      return
+    }
     setState({ configTabsKey: "base" });
     dispatch({ type: "component/selected", data: keys.join("") });
   };
 
+
   return (
     <aside className={view.layerCollapsed ? "gc-design__silder is-show" : "gc-design__silder"}>
-      <SplitPanel mode="horizontal" minSize={250} maxSize={450}>
-        <div className="silder-tree">
-          <Scrollbar>
-            <Card title="大屏设计器" bordered={false}>
-              <Tree.DirectoryTree
-                defaultExpandAll
-                expandAction={false}
-                selectedKeys={[selected]}
-                onSelect={onSelect}
-                treeData={layer}
-              />
-            </Card>
-          </Scrollbar>
-        </div>
-        <div className="silder-components">
-          <Scrollbar>
-            <Card title={`组件 （当前版本：${VERSION}）`} bordered={false}>
-              <Select
-                className="silder-select"
-                showSearch={true}
-                allowClear={true}
-                placeholder="查找对应组件"
-                optionFilterProp="children"
-                onChange={onChange}
-                filterOption={(input, option) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
-              >
-                {designerTotal.map((item) => {
-                  return (
-                    <Select.Option value={item.name} key={item.name}>
-                      {item.name}
-                    </Select.Option>
-                  );
-                })}
-              </Select>
-              <FieldEnum value={cname} />
-            </Card>
-          </Scrollbar>
-        </div>
-      </SplitPanel>
+      <Tabs
+        className="panel-tabs"
+        size="large"
+        tabPosition="left"
+        selected={state.panelTabsKey}
+        onTabClick={(key) => {
+          setState({ panelTabsKey: key });
+        }}
+      >
+        <Tabs.TabPane key={'outline'} tab={'大纲树'} className={'outline-panel-tab'}>
+          <Tree
+            defaultExpandAll
+            showLine
+            blockNode
+            selectedKeys={[selected]}
+            onSelect={onSelect}
+            treeData={layer}
+          />
+        </Tabs.TabPane>
+        <Tabs.TabPane key={'material'} tab={'组件库'} className={'material-panel-tab'}>
+          <Select
+            className="silder-select"
+            showSearch={true}
+            allowClear={true}
+            placeholder="查找对应组件"
+            optionFilterProp="children"
+            onChange={onChange}
+            filterOption={(input, option) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+          >
+            {designerTotal.map((item) => {
+              return (
+                <Select.Option value={item.name} key={item.name}>
+                  {item.name}
+                </Select.Option>
+              );
+            })}
+          </Select>
+          <FieldEnum value={cname} />
+        </Tabs.TabPane>
+        <Tabs.TabPane key={'datasource'} tab={'数据源'} className={'datasource-panel-tab'}>
+          数据源
+        </Tabs.TabPane>
+      </Tabs>
     </aside>
   );
 };
