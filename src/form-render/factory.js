@@ -48,7 +48,7 @@ function FieldRender({
   const rootData = useMemo(() => schemaResolve(schema, formData), [schema, formData]);
 
   // 字段验证防抖
-  const debouncedValidate = useDebounce(onValidate, 300);
+  const debouncedValidate = useDebounce(onValidate, 300) || (() => {});
 
   useEffect(() => {
     if (isUserInput.current) {

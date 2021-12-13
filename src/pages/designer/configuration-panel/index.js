@@ -2,11 +2,14 @@ import React, { useMemo } from "react";
 import { Tabs } from "antd";
 import { connect } from "react-redux";
 import cx from "classnames";
+import { Scrollbar } from "~components";
 import SchemaRender from "@/form-render";
-import PageLayout from "./page";
+import pageSchema from './page-schema';
 import { useDesigner, useView } from "~hooks/useDesigner";
 import { getFieldConf, mergeFieldConfig, setLevelPath } from "../renderer/utils";
 import { screenToSchema } from "../configuration-schema";
+import { DIMENSION } from '../constants';
+import './index.less';
 
 const FieldSetConf = ({ selected }) => {
   const { state, setState } = useDesigner();
@@ -38,19 +41,40 @@ const FieldSetConf = ({ selected }) => {
       configs: []
     };
   }, [selected, state.configTabsKey]);
-  if (selected === "-") {
-    return (
-      <div className={classNames}>
-        <PageLayout />
-      </div>
-    );
-  }
 
-  const onValueChange = (value) => {
+  const onComponentValueChange = (value) => {
     let results = mergeFieldConfig(state.components, { parentId: selected }, value);
     setLevelPath(results, null);
     setState({ components: results });
   };
+
+  const onPageValueChange = (value) => {
+    const { pageSize } = value.page;
+    let realValue = { ...value.page };
+
+    if (DIMENSION[pageSize]) {
+      realValue = { ...realValue, ...DIMENSION[pageSize] };
+    } else {
+      realValue = { ...realValue, ...realValue.customPageSize };
+    }
+    setState({ page: realValue });
+  }
+
+  if (selected === "-") {
+    return (
+      <div className={classNames}>
+        <Scrollbar>
+          <SchemaRender
+            cname={'rootPage'}
+            cid={'root-page-schema'}
+            schema={pageSchema}
+            formData={{ page: state.page }}
+            onChange={onPageValueChange}
+          />
+        </Scrollbar>
+      </div>
+    );
+  }
 
   return (
     <div className={classNames}>
@@ -63,19 +87,25 @@ const FieldSetConf = ({ selected }) => {
           setState({ configTabsKey: key });
         }}
       >
-        {currentConf.configs.map((item) => (
-          <Tabs.TabPane tab={item.name} key={item.key}>
-            {state.configTabsKey === item.key && (
-              <SchemaRender
-                cname={currentConf.cname}
-                cid={currentConf.cid}
-                schema={item.schema}
-                formData={currentConf.value}
-                onChange={onValueChange}
-              />
-            )}
-          </Tabs.TabPane>
-        ))}
+        {
+          currentConf.configs.map((item) => {
+            return (
+              <Tabs.TabPane tab={item.name} key={item.key}>
+                {state.configTabsKey === item.key && (
+                  <Scrollbar>
+                    <SchemaRender
+                      cname={currentConf.cname}
+                      cid={currentConf.cid}
+                      schema={item.schema}
+                      formData={currentConf.value}
+                      onChange={onComponentValueChange}
+                    />
+                  </Scrollbar>
+                )}
+              </Tabs.TabPane>
+            )
+          })
+        }
       </Tabs>
     </div>
   );

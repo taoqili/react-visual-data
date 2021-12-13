@@ -9,6 +9,8 @@ import { generatorField, getFieldConf, getFieldOrderBy, orderBy } from "../rende
 import { IconFont, MonacoEditor } from "~components";
 import storage from "~utils/storage";
 
+const { VERSION = '' } = window.appConfig || {}
+
 const FieldActionsConf = ({ selected, dispatch }) => {
   const { state, setState } = useDesigner();
   const { view, setView } = useView();
@@ -146,7 +148,7 @@ const FieldActionsConf = ({ selected, dispatch }) => {
       <div className="gc-design__hd--title">
         <Typography.Title level={4} className="gc-design__hd--h1">
           监控大屏&nbsp;
-          <Badge status="processing" text="Beta" />
+          <Badge status="processing" text={`v${VERSION}`} />
         </Typography.Title>
         <div
           className="gc-design__hd--icon"

@@ -1,7 +1,7 @@
 import React, { Fragment, useRef, useState, useEffect, useCallback } from "react";
 import { Collapse, Tree, Select, Card, Col, Row, Tabs } from "antd";
 import { connect } from "react-redux";
-import { IconFont, Scrollbar, SplitPanel } from "~components";
+import { IconFont, Scrollbar } from "~components";
 import { useDesigner, useView } from "~hooks/useDesigner";
 import designerList from "./designer-market.json";
 import './index.less'
@@ -196,16 +196,19 @@ const FieldMarkets = ({ selected, dispatch }) => {
         }}
       >
         <Tabs.TabPane key={'outline'} tab={'大纲树'} className={'outline-pane-tab'}>
-          <Tree
-            defaultExpandAll
-            showLine
-            blockNode
-            selectedKeys={[selected]}
-            onSelect={onSelect}
-            treeData={layer}
-          />
+          <Scrollbar>
+            <Tree
+              defaultExpandAll
+              showLine
+              blockNode
+              selectedKeys={[selected]}
+              onSelect={onSelect}
+              treeData={layer}
+            />
+          </Scrollbar>
         </Tabs.TabPane>
         <Tabs.TabPane key={'material'} tab={'组件库'} className={'material-pane-tab'}>
+          <Scrollbar>
           <Select
             className="silder-select"
             showSearch={true}
@@ -224,9 +227,12 @@ const FieldMarkets = ({ selected, dispatch }) => {
             })}
           </Select>
           <FieldEnum value={cname} />
+          </Scrollbar>
         </Tabs.TabPane>
         <Tabs.TabPane key={'datasource'} tab={'数据源'} className={'datasource-pane-tab'}>
-          数据源
+          <Scrollbar>
+            数据源
+          </Scrollbar>
         </Tabs.TabPane>
       </Tabs>
     </aside>
