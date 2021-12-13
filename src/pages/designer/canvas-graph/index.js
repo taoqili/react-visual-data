@@ -69,6 +69,7 @@ function Wrapper(props, ref) {
 
   const handleClick = () => {
     props.dispatch({ type: "component/selected", data: "-" });
+    setView({rightPaneCollapsed: false});
   };
 
   const handleDragOver = (event) => {

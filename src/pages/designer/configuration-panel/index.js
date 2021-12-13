@@ -10,13 +10,14 @@ import { getFieldConf, mergeFieldConfig, setLevelPath } from "../renderer/utils"
 import { screenToSchema } from "../configuration-schema";
 import { DIMENSION } from "../constants";
 import "./index.less";
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 
 const FieldSetConf = ({ selected }) => {
   const { state, setState } = useDesigner();
   const { view, setView } = useView();
 
   const classNames = cx("gc-design__setting", {
-    "is-show": view.settingCollapsed
+    "is-show": view.rightPaneCollapsed
   });
 
   const currentConf = useMemo(() => {
@@ -61,6 +62,9 @@ const FieldSetConf = ({ selected }) => {
     setState({ page: realValue });
     setView({...realValue.customPageSize});
   };
+  const handleToggle = () => {
+    setView({rightPaneCollapsed: !view.rightPaneCollapsed})
+  }
 
   if (selected === "-") {
     return (
@@ -84,8 +88,14 @@ const FieldSetConf = ({ selected }) => {
         className="right-pane-tabs"
         size="large"
         tabPosition="right"
+        tabBarExtraContent={
+          <span style={{cursor: 'pointer'}} onClick={handleToggle}>
+            {view.rightPaneCollapsed ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />}
+          </span>
+        }
         selected={state.configTabsKey}
         onTabClick={(key) => {
+          setView({rightPaneCollapsed: false})
           setState({ configTabsKey: key });
         }}
       >

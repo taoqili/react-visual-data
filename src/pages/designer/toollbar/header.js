@@ -150,24 +150,6 @@ const FieldActionsConf = ({ selected, dispatch }) => {
           监控大屏&nbsp;
           <Badge status="processing" text={`v${VERSION}`} />
         </Typography.Title>
-        <div
-          className="gc-design__hd--icon"
-          onClick={() => {
-            setView({
-              layerCollapsed: !view.layerCollapsed
-            });
-          }}
-        >
-          {!view.layerCollapsed ? (
-            <Tooltip title="关闭侧边栏" key="关闭侧边栏">
-              <IconFont antd={true} type="LeftSquareOutlined" />
-            </Tooltip>
-          ) : (
-            <Tooltip title="打开侧边栏" key="打开侧边栏">
-              <IconFont antd={true} type="RightSquareOutlined" />
-            </Tooltip>
-          )}
-        </div>
       </div>
       <Space className="gc-design__hd--action">
         <Button disabled={selected === "-"} icon={<IconFont antd={true} type="CopyOutlined" />} onClick={handleCopy}>
@@ -210,24 +192,6 @@ const FieldActionsConf = ({ selected, dispatch }) => {
         </Button>
       </Space>
       <div className="gc-design__hd--setting">
-        <div
-          className="gc-design__hd--icon"
-          onClick={() => {
-            setView({
-              settingCollapsed: !view.settingCollapsed
-            });
-          }}
-        >
-          {!view.settingCollapsed ? (
-            <Tooltip title="关闭配置" key="关闭配置">
-              <IconFont antd={true} type="RightSquareOutlined" />
-            </Tooltip>
-          ) : (
-            <Tooltip title="打开配置" key="关闭配置">
-              <IconFont antd={true} type="LeftSquareOutlined" />
-            </Tooltip>
-          )}
-        </div>
         <Space className="gc-design__hd--save">
           <Link
             to={"/workspace/preview/" + uuid()}

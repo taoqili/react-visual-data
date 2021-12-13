@@ -44,9 +44,9 @@ function DataProvider(props) {
 
   const [view, setView] = useSet({
     // 侧边面板显隐控制
-    layerCollapsed: false,
+    leftPaneCollapsed: false,
     // 右侧设置面板显隐控制
-    settingCollapsed: false,
+    rightPaneCollapsed: false,
     // 调试面板显隐控制
     visible: false,
     //

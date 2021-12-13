@@ -1,5 +1,6 @@
 import React, { Fragment, useRef, useState, useEffect, useCallback } from "react";
 import { Collapse, Tree, Select, Card, Col, Row, Tabs } from "antd";
+import { AppleOutlined, MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import { connect } from "react-redux";
 import { IconFont, Scrollbar } from "~components";
 import { useDesigner, useView } from "~hooks/useDesigner";
@@ -150,7 +151,7 @@ const FieldMarkets = ({ selected, dispatch }) => {
     }
   ]);
   const { state, setState } = useDesigner();
-  const { view } = useView();
+  const { view, setView } = useView();
 
   useEffect(() => {
     const treeList = state.components.map((component) => {
@@ -183,19 +184,28 @@ const FieldMarkets = ({ selected, dispatch }) => {
     dispatch({ type: "component/selected", data: keys.join("") });
   };
 
+  const handleToggle = () => {
+    setView({leftPaneCollapsed: !view.leftPaneCollapsed})
+  }
 
   return (
-    <aside className={view.layerCollapsed ? "gc-design__silder is-show" : "gc-design__silder"}>
+    <aside className={view.leftPaneCollapsed ? "gc-design__silder is-show" : "gc-design__silder"}>
       <Tabs
         className="left-pane-tabs"
+        tabBarExtraContent={
+          <span style={{cursor: 'pointer'}} onClick={handleToggle}>
+            {!view.leftPaneCollapsed ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />}
+          </span>
+        }
         size="large"
         tabPosition="left"
         selected={state.panelTabsKey}
         onTabClick={(key) => {
+          setView({leftPaneCollapsed: false})
           setState({ panelTabsKey: key });
         }}
       >
-        <Tabs.TabPane key={"outline"} tab={"大纲树"} className={"outline-pane-tab"}>
+        <Tabs.TabPane key={"outline"} tab={<span><AppleOutlined />大纲树</span>} className={"outline-pane-tab"} >
           <Scrollbar>
             <Tree
               defaultExpandAll

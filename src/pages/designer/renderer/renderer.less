@@ -71,10 +71,9 @@
     transition: all 0.3s ease;
 
     &.is-show {
-      width: 0;
-      opacity: 0;
-      border-width: 0;
-      transform: translate3d(-100%, 0, 0);
+      width: 51px;
+      opacity: .8;
+      transition: transform 0.2s ease, width 0.3s ease-in-out;
     }
 
     .ant-tabs-tabpane {
@@ -158,11 +157,8 @@
     transition: transform 0.2s ease, width 0.3s ease-in-out;
 
     &.is-show {
-      width: 0 !important;
-      opacity: 0;
-      padding-left: 0;
-      border-width: 0;
-      transform: translate3d(100%, 0, 0);
+      width: 51px;
+      opacity: 0.8;
       transition: transform 0.2s ease, width 0.3s ease-in-out;
     }
 
