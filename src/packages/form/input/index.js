@@ -36,7 +36,8 @@ const VInput = (p) => {
         </span>
       );
     }
-  } catch (error) {}
+  } catch (error) {
+  }
   const config = {
     placeholder: "请输入",
     ...options,

@@ -82,7 +82,7 @@ export default (option, data) => {
         left: "150",
         coordinateSystem: "geo",
         data: convertData(series, geoCoordMap),
-        symbolSize: function (val) {
+        symbolSize: function(val) {
           return val[2] / 5;
         },
         showEffectOn: "render",

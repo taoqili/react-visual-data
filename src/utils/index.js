@@ -4,6 +4,7 @@
  * Created by Aaron 2019-4-30.
  * */
 import CryptoJS from "crypto-js";
+
 const aseKey = CryptoJS.enc.Utf8.parse("1234567812345678");
 
 /**
@@ -87,15 +88,15 @@ export function cloneDeep(obj) {
 /**
  * @description 绑定事件 onEvent(element, event, handler)
  */
-export const onEvent = (function () {
+export const onEvent = (function() {
   if (document.addEventListener) {
-    return function (element, event, handler) {
+    return function(element, event, handler) {
       if (element && event && handler) {
         element.addEventListener(event, handler, false);
       }
     };
   } else {
-    return function (element, event, handler) {
+    return function(element, event, handler) {
       if (element && event && handler) {
         element.attachEvent("on" + event, handler);
       }
@@ -106,15 +107,15 @@ export const onEvent = (function () {
 /**
  * @description 解绑事件 offEvent(element, event, handler)
  */
-export const offEvent = (function () {
+export const offEvent = (function() {
   if (document.removeEventListener) {
-    return function (element, event, handler) {
+    return function(element, event, handler) {
       if (element && event) {
         element.removeEventListener(event, handler, false);
       }
     };
   } else {
-    return function (element, event, handler) {
+    return function(element, event, handler) {
       if (element && event) {
         element.detachEvent("on" + event, handler);
       }
@@ -181,7 +182,7 @@ export function unixToStr(data, cFormat) {
 export function debounce(fn, wait, immediate) {
   let timeout, args, context, timestamp, result;
 
-  const later = function () {
+  const later = function() {
     // 据上一次触发时间间隔
     const last = +new Date() - timestamp;
 
@@ -198,7 +199,7 @@ export function debounce(fn, wait, immediate) {
     }
   };
 
-  return function (...args) {
+  return function(...args) {
     context = this;
     timestamp = +new Date();
     const callNow = immediate && !timeout;
@@ -218,11 +219,11 @@ export function debounce(fn, wait, immediate) {
  */
 export function throttle(fn, wait = 100) {
   let timer = null;
-  return function () {
+  return function() {
     let context = this,
       args = arguments;
     if (!timer) {
-      timer = setTimeout(function () {
+      timer = setTimeout(function() {
         fn.apply(context, args);
         timer = null;
       }, wait);
@@ -259,7 +260,7 @@ export function loadScript(url, type = "js") {
     }
 
     insertNode.appendChild(script);
-    script.onload = function () {
+    script.onload = function() {
       resolve();
     };
   });

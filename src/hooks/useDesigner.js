@@ -1,6 +1,7 @@
 import { createContext, useContext } from "react";
 
-const Ctx = createContext(() => {});
+const Ctx = createContext(() => {
+});
 
 const StoreCtx = createContext({});
 

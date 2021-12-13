@@ -47,6 +47,7 @@ export default class SketchRuler extends PureComponent {
       }
     };
   }
+
   onCornerClick = () => {
     const { handleShowReferLine } = this.props;
     handleShowReferLine();
@@ -70,10 +71,12 @@ export default class SketchRuler extends PureComponent {
   onhandlecloseMenu = () => {
     this.setState({ isShowMenu: false });
   };
+
   // 取消默认菜单事件
   preventDefault(e) {
     e.preventDefault();
   }
+
   render() {
     const {
       width,
@@ -203,8 +206,10 @@ SketchRuler.propTypes = {
 SketchRuler.defaultProps = {
   isOpenMenuFeature: false,
   isShowReferLine: true,
-  handleShowRuler: () => {},
-  handleShowReferLine: () => {},
+  handleShowRuler: () => {
+  },
+  handleShowReferLine: () => {
+  },
   thick: 20,
   horLineValue: [],
   verLineValue: [],

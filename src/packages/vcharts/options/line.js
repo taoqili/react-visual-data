@@ -109,7 +109,7 @@ export default (option, data) => {
     },
     tooltip: {
       trigger: "axis",
-      formatter: function (parma) {
+      formatter: function(parma) {
         return tooltipFormatter(parma, unit);
       }
     },
@@ -150,8 +150,8 @@ export default (option, data) => {
         step: step,
         areaStyle: stack
           ? {
-              normal: {}
-            }
+            normal: {}
+          }
           : undefined,
         data: item.data
       };

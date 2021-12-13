@@ -42,12 +42,12 @@ const GeneratorField = ({ value }) => {
     <div style={overwriteStyle} className={className}>
       {show
         ? getSubField({
-            isDevelop: false,
-            type: value.type,
-            value: value.data,
-            uniqueId: value.uniqueId,
-            options: value.data.config
-          })
+          isDevelop: false,
+          type: value.type,
+          value: value.data,
+          uniqueId: value.uniqueId,
+          options: value.data.config
+        })
         : null}
     </div>
   );

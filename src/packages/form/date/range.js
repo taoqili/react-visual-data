@@ -3,6 +3,7 @@ import { DatePicker } from "antd";
 import locale from "antd/es/date-picker/locale/zh_CN";
 import moment from "moment";
 import "moment/locale/zh-cn";
+
 moment.locale("zh-cn");
 import { getFormat } from "@/form-render/utils";
 

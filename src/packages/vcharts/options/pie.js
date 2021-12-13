@@ -33,7 +33,7 @@ export default (option, data) => {
       },
       tooltip: {
         trigger: "item",
-        formatter: function (params) {
+        formatter: function(params) {
           return [params.marker + params.name + "：" + (params.value || 0) + unit].join("");
         }
       },
@@ -110,7 +110,7 @@ export default (option, data) => {
       },
       tooltip: {
         trigger: "item",
-        formatter: function (params) {
+        formatter: function(params) {
           return [params.marker + params.name + "：" + (params.value || 0) + unit].join("");
         }
       },
@@ -218,7 +218,7 @@ export default (option, data) => {
       },
       tooltip: {
         trigger: "item",
-        formatter: function (params) {
+        formatter: function(params) {
           return [params.marker + (params.value || 0) + unit].join("");
         }
       },

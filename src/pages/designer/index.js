@@ -18,7 +18,7 @@ function DataProvider(props) {
     // 设置器tabKey
     configTabsKey: "base",
     // 面板tabKey
-    panelTabsKey: '',
+    panelTabsKey: "",
     // 编辑区所有组件列表
     components: [],
     // 页面属性
@@ -112,8 +112,8 @@ function DataProvider(props) {
           <DesignerContent {...state.page}>
             {state.components.length > 0
               ? state.components.map((prop, index) => (
-                  <Designer index={index} value={prop} key={prop.uniqueId} onValueChange={onValueChange} />
-                ))
+                <Designer index={index} value={prop} key={prop.uniqueId} onValueChange={onValueChange} />
+              ))
               : null}
           </DesignerContent>
           <DesignerField />

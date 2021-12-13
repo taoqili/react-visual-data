@@ -15,7 +15,7 @@ export default (option, data) => {
     },
     tooltip: {
       position: "top",
-      formatter: function (params) {
+      formatter: function(params) {
         return [params.marker + params.seriesName + "：" + (params.value || 0) + unit].join("");
       }
     },
@@ -43,10 +43,10 @@ export default (option, data) => {
       return {
         name: item.name,
         type: "scatter",
-        symbolSize: function (data) {
+        symbolSize: function(data) {
           return data / 4e2;
         },
-        animationDelay: function (idx) {
+        animationDelay: function(idx) {
           return idx * 5;
         },
         symbol: symbol,

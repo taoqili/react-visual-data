@@ -16,18 +16,18 @@ function getParams(arr, value, data) {
 
   return hasParmas
     ? arr.map((item) =>
-        Object.assign({}, item, {
-          v: data
-        })
-      )
+      Object.assign({}, item, {
+        v: data
+      })
+    )
     : [
-        ...arr,
-        {
-          k: value.data.key,
-          t: value.type,
-          v: data
-        }
-      ];
+      ...arr,
+      {
+        k: value.data.key,
+        t: value.type,
+        v: data
+      }
+    ];
 }
 
 function getValues(arr, uniqueId, data) {

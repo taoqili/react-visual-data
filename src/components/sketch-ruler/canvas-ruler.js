@@ -10,12 +10,14 @@ export default class CanvasRuler extends PureComponent {
     this.updateCanvasContext();
     this.drawRuler();
   }
+
   componentDidUpdate(prevProps) {
     if (prevProps.width !== this.props.width || prevProps.height !== this.props.height) {
       this.updateCanvasContext();
     }
     this.drawRuler();
   }
+
   updateCanvasContext() {
     const { width, height, canvasConfigs } = this.props;
     const { ratio } = canvasConfigs;
@@ -31,6 +33,7 @@ export default class CanvasRuler extends PureComponent {
     ctx.lineWidth = 1;
     ctx.textBaseline = "middle";
   }
+
   drawRuler() {
     const { start, scale, width, height, selectStart, selectLength, canvasConfigs } = this.props;
     const options = { scale, width, height, canvasConfigs };
@@ -40,6 +43,7 @@ export default class CanvasRuler extends PureComponent {
       drawHorizontalRuler(this.canvasContext, start, { x: selectStart, width: selectLength }, options);
     }
   }
+
   setCanvasRef = (ref) => {
     this.$canvas = ref;
     this.canvasContext = ref && ref.getContext("2d");
@@ -70,6 +74,7 @@ export default class CanvasRuler extends PureComponent {
       onhandleShowRightMenu(clickLeft, clickTop);
     }
   };
+
   render() {
     return (
       <canvas

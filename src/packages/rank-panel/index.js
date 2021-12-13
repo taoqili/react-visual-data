@@ -61,11 +61,11 @@ function interceptor(gen) {
 
 function calcRows({ data, rowNum, sort }) {
   sort &&
-    data.sort(({ value: a }, { value: b }) => {
-      if (a > b) return -1;
-      if (a < b) return 1;
-      if (a === b) return 0;
-    });
+  data.sort(({ value: a }, { value: b }) => {
+    if (a > b) return -1;
+    if (a < b) return 1;
+    if (a === b) return 0;
+  });
 
   const value = data.map(({ value }) => value);
 

@@ -85,7 +85,7 @@ export default (option, data) => {
         type: "effectScatter",
         coordinateSystem: "geo",
         data: convertData(series, GEOCOORDMAP),
-        symbolSize: function (val) {
+        symbolSize: function(val) {
           return val[2] / 20;
         },
         showEffectOn: "render",

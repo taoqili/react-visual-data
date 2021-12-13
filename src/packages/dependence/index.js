@@ -25,13 +25,13 @@ function SelectComponent({ name, value, onChange, selected }) {
       onChange={onDependenceChange}
     >
       {options.length > 0 &&
-        options.map((item, index) => {
-          return (
-            <Select.Option key={index} value={item.uniqueId}>
-              {item.name}
-            </Select.Option>
-          );
-        })}
+      options.map((item, index) => {
+        return (
+          <Select.Option key={index} value={item.uniqueId}>
+            {item.name}
+          </Select.Option>
+        );
+      })}
     </Select>
   );
 }

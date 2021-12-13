@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { IconFont, Scrollbar } from "~components";
 import { useDesigner, useView } from "~hooks/useDesigner";
 import designerList from "./designer-market.json";
-import './index.less'
+import "./index.less";
 
 /**
  * 配置项汇总
@@ -157,7 +157,7 @@ const FieldMarkets = ({ selected, dispatch }) => {
       const { uniqueId, data = {} } = component;
       return {
         key: uniqueId,
-        title: <div>{ data.title } </div>,
+        title: <div>{data.title} </div>,
         isLeaf: true
       };
     });
@@ -177,7 +177,7 @@ const FieldMarkets = ({ selected, dispatch }) => {
 
   const onSelect = (keys) => {
     if (!keys || !keys.length) {
-      return
+      return;
     }
     setState({ configTabsKey: "base" });
     dispatch({ type: "component/selected", data: keys.join("") });
@@ -195,7 +195,7 @@ const FieldMarkets = ({ selected, dispatch }) => {
           setState({ panelTabsKey: key });
         }}
       >
-        <Tabs.TabPane key={'outline'} tab={'大纲树'} className={'outline-pane-tab'}>
+        <Tabs.TabPane key={"outline"} tab={"大纲树"} className={"outline-pane-tab"}>
           <Scrollbar>
             <Tree
               defaultExpandAll
@@ -207,29 +207,29 @@ const FieldMarkets = ({ selected, dispatch }) => {
             />
           </Scrollbar>
         </Tabs.TabPane>
-        <Tabs.TabPane key={'material'} tab={'组件库'} className={'material-pane-tab'}>
+        <Tabs.TabPane key={"material"} tab={"组件库"} className={"material-pane-tab"}>
           <Scrollbar>
-          <Select
-            className="silder-select"
-            showSearch={true}
-            allowClear={true}
-            placeholder="查找对应组件"
-            optionFilterProp="children"
-            onChange={onChange}
-            filterOption={(input, option) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
-          >
-            {designerTotal.map((item) => {
-              return (
-                <Select.Option value={item.name} key={item.name}>
-                  {item.name}
-                </Select.Option>
-              );
-            })}
-          </Select>
-          <FieldEnum value={cname} />
+            <Select
+              className="silder-select"
+              showSearch={true}
+              allowClear={true}
+              placeholder="查找对应组件"
+              optionFilterProp="children"
+              onChange={onChange}
+              filterOption={(input, option) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+            >
+              {designerTotal.map((item) => {
+                return (
+                  <Select.Option value={item.name} key={item.name}>
+                    {item.name}
+                  </Select.Option>
+                );
+              })}
+            </Select>
+            <FieldEnum value={cname} />
           </Scrollbar>
         </Tabs.TabPane>
-        <Tabs.TabPane key={'datasource'} tab={'数据源'} className={'datasource-pane-tab'}>
+        <Tabs.TabPane key={"datasource"} tab={"数据源"} className={"datasource-pane-tab"}>
           <Scrollbar>
             数据源
           </Scrollbar>

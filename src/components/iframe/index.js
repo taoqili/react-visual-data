@@ -16,7 +16,8 @@ function CustomIframe(props, ref) {
     src = "",
     data,
     events,
-    onAction = () => {}
+    onAction = () => {
+    }
   } = props;
   const iframeRef = useRef();
   const [loading, setLoading] = useState(true);

@@ -153,6 +153,7 @@ export function converLayout(value, defaultValue = "100%") {
     if (typeof str !== "string") return false;
     return str.match(/^([0-9])*(%|px|rem|em)$/i);
   }
+
   return isLooselyNumber(value) ? Number(value) : isCssLength(value) ? value : defaultValue;
 }
 
@@ -184,7 +185,7 @@ export function compressImage({ data, type = "image/jpeg", quality = 0.8 }) {
   return new Promise((resolve, reject) => {
     const canvas = document.createElement("canvas");
     const img = new Image();
-    img.onload = function () {
+    img.onload = function() {
       img.width *= quality;
       img.height *= quality;
       const ctx = canvas.getContext("2d");
@@ -227,11 +228,11 @@ export function getImageSizeByBase64(imageBase64Data) {
  * @returns {Promise}
  */
 export function compressImageToSize({
-  data,
-  type = "image/jpeg",
-  size = 300 * 1000, // 默认 300K左右
-  qualityStep = 0.9 // 每次压缩比
-}) {
+                                      data,
+                                      type = "image/jpeg",
+                                      size = 300 * 1000, // 默认 300K左右
+                                      qualityStep = 0.9 // 每次压缩比
+                                    }) {
   if (getImageSizeByBase64(data) < size) {
     return Promise.resolve(data);
   }

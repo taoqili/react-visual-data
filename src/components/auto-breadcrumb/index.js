@@ -28,6 +28,7 @@ const getPath = (menuList, pathname) => {
         temppath.pop();
       }
     }
+
     for (let i = 0; i < menuList.length; i++) {
       getNodePath(menuList[i]);
     }
@@ -54,24 +55,24 @@ const AutoBreadcrumb = (props) => {
   return (
     <Breadcrumb className="gc-breadcrumb">
       {curPath &&
-        curPath.map((item, index) =>
-          item.path === "/dashboard" ? (
-            <Breadcrumb.Item
-              key={item.path}
-              onClick={() => {
-                dispatch({ type: "app/routerPath", data: item.path });
-              }}
-            >
-              <a href={`/#${item.path}`}>{item.title}</a>
-            </Breadcrumb.Item>
-          ) : index == curPath.length - 1 ? (
-            <Breadcrumb.Item key={item.path}>{item.title}</Breadcrumb.Item>
-          ) : (
-            <Breadcrumb.Item key={item.path} href={item.path}>
-              {item.title}
-            </Breadcrumb.Item>
-          )
-        )}
+      curPath.map((item, index) =>
+        item.path === "/dashboard" ? (
+          <Breadcrumb.Item
+            key={item.path}
+            onClick={() => {
+              dispatch({ type: "app/routerPath", data: item.path });
+            }}
+          >
+            <a href={`/#${item.path}`}>{item.title}</a>
+          </Breadcrumb.Item>
+        ) : index == curPath.length - 1 ? (
+          <Breadcrumb.Item key={item.path}>{item.title}</Breadcrumb.Item>
+        ) : (
+          <Breadcrumb.Item key={item.path} href={item.path}>
+            {item.title}
+          </Breadcrumb.Item>
+        )
+      )}
     </Breadcrumb>
   );
 };

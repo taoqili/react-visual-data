@@ -8,7 +8,7 @@ export default (option, data) => {
     color: DEFAULT_COLORS,
     tooltip: {
       trigger: "item",
-      formatter: function (params) {
+      formatter: function(params) {
         return [params.marker + params.name + " " + (params.value || 0) + unit + "(" + params.percent + "%" + ")"].join(
           ""
         );
@@ -33,7 +33,7 @@ export default (option, data) => {
         roseType: true,
         label: {
           normal: {
-            formatter: function (params) {
+            formatter: function(params) {
               return params.name + ": " + params.value;
             },
             position: "center"

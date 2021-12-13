@@ -69,7 +69,7 @@ function Wrapper(props, ref) {
 
   const handleClick = () => {
     props.dispatch({ type: "component/selected", data: "-" });
-  }
+  };
 
   const handleDragOver = (event) => {
     event.preventDefault();

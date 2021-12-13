@@ -65,7 +65,7 @@ function attachResizeEvent(element, resized) {
 
   let lastWidth, lastHeight;
 
-  const reset = function () {
+  const reset = function() {
     expandChild.style.width = expand.offsetWidth + 10 + "px";
     expandChild.style.height = expand.offsetHeight + 10 + "px";
     expand.scrollLeft = expand.scrollWidth;
@@ -78,13 +78,13 @@ function attachResizeEvent(element, resized) {
 
   reset();
 
-  let changed = function () {
+  let changed = function() {
     if (element.resizedAttached) {
       element.resizedAttached.call();
     }
   };
 
-  let addEvent = function (el, name, cb) {
+  let addEvent = function(el, name, cb) {
     if (el.attachEvent) {
       el.attachEvent("on" + name, cb);
     } else {
@@ -92,7 +92,7 @@ function attachResizeEvent(element, resized) {
     }
   };
 
-  let onScroll = function (e) {
+  let onScroll = function(e) {
     if (element.offsetWidth != lastWidth || element.offsetHeight != lastHeight) {
       changed();
     }
@@ -113,7 +113,8 @@ function detach(element) {
     }
     try {
       element.removeChild(element.resizeSensor);
-    } catch (e) {}
+    } catch (e) {
+    }
     delete element.resizeSensor;
     delete element.resizedAttached;
     delete element.hasInlineStyle;
@@ -124,7 +125,7 @@ function detach(element) {
 export function resizeSensor(element, callback, once = false) {
   if (once) {
     let _this = this;
-    attachResizeEvent(element, function () {
+    attachResizeEvent(element, function() {
       callback.apply(_this, arguments);
       detach(element);
     });
@@ -134,7 +135,7 @@ export function resizeSensor(element, callback, once = false) {
   attachResizeEvent(element, callback);
   let detached = false;
 
-  return function () {
+  return function() {
     if (detached) return;
     detached = true;
     detach(element);

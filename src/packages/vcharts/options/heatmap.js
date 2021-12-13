@@ -30,7 +30,7 @@ export default (option, data) => {
     max = Math.max(...newData);
     min = Math.min(...newData);
     max = formatInt(max);
-    seriesData = series.data.map(function (item) {
+    seriesData = series.data.map(function(item) {
       return [item[1], item[0], item[2] || "-"];
     });
   }

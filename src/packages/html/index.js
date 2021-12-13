@@ -7,7 +7,8 @@ const VHtml = ({ value, defaultValue }) => {
     if (typeof __html !== "string") {
       __html = "";
     }
-  } catch (error) {}
+  } catch (error) {
+  }
   return <div dangerouslySetInnerHTML={{ __html }} />;
 };
 

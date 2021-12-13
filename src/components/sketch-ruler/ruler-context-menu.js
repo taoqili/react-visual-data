@@ -19,16 +19,19 @@ export default class RulerContextMenu extends PureComponent {
     super(props);
     this.el = document.createElement("div");
   }
+
   componentDidMount() {
     document.body.appendChild(this.el);
     document.addEventListener("click", this.closeMenu);
     document.addEventListener("mousedown", this.closeMenuMouse);
   }
+
   componentWillUnmount() {
     document.removeEventListener("mousedown", this.closeMenuMouse);
     document.removeEventListener("click", this.closeMenu);
     document.body.removeChild(this.el);
   }
+
   // click事件只响应左键，menu里的每部分的点击事件使用的是click，
   // 所以mousedown只能响应右键，否则内部点击事件失效
   closeMenu = () => {
@@ -51,6 +54,7 @@ export default class RulerContextMenu extends PureComponent {
     handleLine(newLines);
     this.closeMenu();
   };
+
   render() {
     const { isShowReferLine, vertical, verLineArr, horLineArr, lang, menuConfigs } = this.props;
     const { left, top } = this.props.menuPosition;

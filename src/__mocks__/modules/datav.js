@@ -70,7 +70,7 @@ export default [
               "drillDownLevel": 0
             },
             "uniqueId": "8caf81be-581f-49d2-9c19-85700f6fe"
-          },
+          }
           // {
           //   name: "边框5",
           //

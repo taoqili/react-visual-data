@@ -2,36 +2,44 @@
   position: relative;
   width: 100%;
   height: 100%;
+
   .right-top {
     right: 0px;
     transform: rotateY(180deg);
   }
+
   .left-bottom {
     bottom: 0px;
     transform: rotateX(180deg);
   }
+
   .right-bottom {
     right: 0px;
     bottom: 0px;
     transform: rotateX(180deg) rotateY(180deg);
   }
+
   .svg-reverse {
     transform: rotate(180deg);
   }
+
   .svg-container {
     position: absolute;
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
+
     polyline {
       fill: none;
     }
   }
+
   .sw3 {
     stroke-width: 3px;
     stroke-linecap: round;
   }
+
   .dv-bb4-line-1,
   .dv-bb4-line-2,
   .dv-bb4-line-5,
@@ -39,6 +47,7 @@
   .dv-bb4-line-7 {
     stroke-width: 1;
   }
+
   .dv-bb4-line-3,
   .dv-bb4-line-8,
   .dv-bb4-line-4,
@@ -46,21 +55,26 @@
     stroke-width: 3px;
     stroke-linecap: round;
   }
+
   .dv-bb4-line-9 {
     stroke-dasharray: 100 250;
   }
+
   .dv-bb4-line-10 {
     stroke-width: 1;
     stroke-dasharray: 80 270;
   }
+
   .dv-bb5-line-1,
   .dv-bb5-line-2 {
     stroke-width: 1;
   }
+
   .dv-bb5-line-3,
   .dv-bb5-line-6 {
     stroke-width: 5;
   }
+
   .dv-bb5-line-4,
   .dv-bb5-line-5 {
     stroke-width: 2;
@@ -108,6 +122,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
   svg {
     position: absolute;
     left: 0;
@@ -118,6 +133,7 @@
 
 .gc-scroll-board {
   color: #fff;
+
   .text {
     padding: 0 10px;
     box-sizing: border-box;
@@ -125,25 +141,31 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
   .header {
     display: flex;
     flex-direction: row;
     font-size: 15px;
+
     .header-item {
       .text;
       transition: all 0.3s;
     }
   }
+
   .rows {
     overflow: hidden;
+
     .row-item {
       display: flex;
       font-size: 14px;
       transition: all 0.3s;
     }
+
     .ceil {
       .text;
     }
+
     .index {
       border-radius: 3px;
       padding: 0px 3px;
@@ -158,6 +180,7 @@
   height: 100%;
   color: #fff;
   overflow: hidden;
+
   .row-item {
     transition: all 0.3s;
     display: flex;
@@ -165,21 +188,26 @@
     justify-content: center;
     overflow: hidden;
   }
+
   .ranking-info {
     display: flex;
     width: 100%;
     font-size: 13px;
+
     .rank {
       width: 40px;
       color: @color;
     }
+
     .info-name {
       flex: 1;
     }
   }
+
   .ranking-column {
     border-bottom: 2px solid fade(@color, 50);
     margin-top: 5px;
+
     .inside-column {
       position: relative;
       height: 6px;
@@ -188,6 +216,7 @@
       border-radius: 1px;
       overflow: hidden;
     }
+
     .shine {
       position: absolute;
       left: 0%;

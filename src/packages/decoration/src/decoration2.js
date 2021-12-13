@@ -47,26 +47,26 @@ const Decoration = forwardRef(({ style }, ref) => {
         {points.reduce((prev, point, i) => {
           return Math.random() > 0.6
             ? [
-                ...prev,
-                <rect
-                  key={i}
-                  fill={defaultColor[0]}
-                  x={point[0] - halfPointSideLength}
-                  y={point[1] - halfPointSideLength}
-                  width={pointSideLength}
-                  height={pointSideLength}
-                >
-                  {Math.random() > 0.6 && (
-                    <animate
-                      attributeName="fill"
-                      values={`${defaultColor[0]};transparent`}
-                      dur="1s"
-                      begin={Math.random() * 2}
-                      repeatCount="indefinite"
-                    />
-                  )}
-                </rect>
-              ]
+              ...prev,
+              <rect
+                key={i}
+                fill={defaultColor[0]}
+                x={point[0] - halfPointSideLength}
+                y={point[1] - halfPointSideLength}
+                width={pointSideLength}
+                height={pointSideLength}
+              >
+                {Math.random() > 0.6 && (
+                  <animate
+                    attributeName="fill"
+                    values={`${defaultColor[0]};transparent`}
+                    dur="1s"
+                    begin={Math.random() * 2}
+                    repeatCount="indefinite"
+                  />
+                )}
+              </rect>
+            ]
             : prev;
         }, [])}
         {!!rects[0] && (

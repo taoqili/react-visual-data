@@ -27,6 +27,7 @@
     padding: 0;
     display: flex;
     align-items: center;
+
     .gc-breadcrumb {
       flex: 1;
     }
@@ -86,6 +87,7 @@
   padding: 12px 15px 0;
   width: 100%;
   height: 100%;
+
   .dashboard-banner {
     position: absolute;
     top: 15px;
@@ -95,10 +97,12 @@
     background-color: #23242d;
     -webkit-filter: brightness(0.8);
     filter: brightness(0.8);
+
     video {
       object-fit: cover;
     }
   }
+
   .dashboard-typography {
     position: relative;
     padding: 25px 30px;
@@ -116,9 +120,11 @@
   height: 100%;
   overflow: hidden;
   transition: all linear 500ms;
+
   &__bd {
     position: relative;
     height: calc(100vh - 64px - 59px - 32px);
+
     .design-body {
       position: absolute;
       left: 20px;
@@ -129,14 +135,16 @@
       transform-origin: left top;
       box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.19);
     }
+
     .design-body-container {
       position: relative;
       background-image: linear-gradient(45deg, #404040 25%, transparent 0, transparent 75%, #404040 0),
-        linear-gradient(45deg, #404040 25%, transparent 0, transparent 75%, #404040 0);
+      linear-gradient(45deg, #404040 25%, transparent 0, transparent 75%, #404040 0);
       background-color: #4a4a4a;
       background-size: 10px 10px;
       background-position: 0 0, 5px 5px;
     }
+
     .design-size {
       position: absolute;
       right: 0;
@@ -146,6 +154,7 @@
       white-space: nowrap;
     }
   }
+
   &__ft {
     position: absolute;
     left: 0;

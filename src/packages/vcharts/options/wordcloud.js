@@ -4,7 +4,7 @@ export default function getOptions(option, data) {
 
   return {
     tooltip: {
-      formatter: function (params) {
+      formatter: function(params) {
         return [params.marker + params.data.name + "：" + (params.data.value || 0) + unit].join("");
       }
     },
@@ -26,7 +26,7 @@ export default function getOptions(option, data) {
         drawOutOfBound: false,
         textStyle: {
           normal: {
-            color: function () {
+            color: function() {
               return (
                 "rgb(" +
                 [

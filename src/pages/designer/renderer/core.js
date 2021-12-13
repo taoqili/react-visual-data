@@ -89,7 +89,7 @@ function DragField({ value, tabBind, tabStore, selected, dispatch, onValueChange
   }, [isHidden]);
 
   useEffect(() => {
-    setLocations({left, top});
+    setLocations({ left, top });
   }, [left, top]);
 
   const handleClick = (ev) => {

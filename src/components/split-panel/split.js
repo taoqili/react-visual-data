@@ -10,7 +10,8 @@ function unFocus(document, window) {
     try {
       window.getSelection().removeAllRanges();
       // eslint-disable-next-line no-empty
-    } catch (e) {}
+    } catch (e) {
+    }
   }
 }
 

@@ -9,7 +9,8 @@ class TypingCore {
       dom: this.output,
       val: []
     };
-    if (!(typeof this.opts.done === "function")) this.opts.done = function () {};
+    if (!(typeof this.opts.done === "function")) this.opts.done = function() {
+    };
   }
 
   init() {
@@ -37,7 +38,7 @@ class TypingCore {
   }
 
   print(dom, val, callback) {
-    setTimeout(function () {
+    setTimeout(function() {
       dom.appendChild(document.createTextNode(val));
       callback();
     }, this.delay);

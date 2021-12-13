@@ -18,12 +18,14 @@
 .gc-design {
   height: 100vh;
   min-width: 800px;
+
   &__hd {
     display: flex;
     align-items: center;
     width: 100%;
     height: 58px;
     border-bottom: 1px solid var(--datav-border-color);
+
     &--title,
     &--setting {
       padding: 0 10px;
@@ -32,25 +34,31 @@
       justify-content: space-between;
       height: 100%;
     }
+
     &--title {
       width: 240px;
     }
+
     &--setting {
       width: 365px;
     }
+
     &--h1 {
       flex: 1;
     }
+
     &--icon {
       font-size: 16px;
       cursor: pointer;
     }
+
     &--action,
     &--save {
       flex: 1;
       justify-content: flex-end;
     }
   }
+
   &__silder {
     display: flex;
     flex-direction: column;
@@ -61,25 +69,30 @@
     transform: translate3d(0, 0, 0);
     transform-origin: center;
     transition: all 0.3s ease;
+
     &.is-show {
       width: 0;
       opacity: 0;
       border-width: 0;
       transform: translate3d(-100%, 0, 0);
     }
+
     .ant-tabs-tabpane {
       padding: 10px !important;
     }
+
     .silder-tab {
       position: relative;
       flex-grow: 1;
       width: 100%;
       overflow: auto;
     }
+
     .silder-select {
       width: 100%;
       margin: 0 0 10px;
     }
+
     .silder-item {
       position: relative;
       width: 100%;
@@ -87,19 +100,23 @@
       margin-bottom: 10px;
       text-align: center;
     }
+
     .ant-card-cover {
       display: flex;
       align-items: center;
       justify-content: center;
       height: 64px;
+
       img {
         max-width: calc(100% - 2px);
       }
     }
+
     .silder-tree {
       padding: 0 0 5px;
       width: 100%;
     }
+
     .silder-components {
       position: relative;
       width: 100%;
@@ -107,12 +124,14 @@
       z-index: 9;
     }
   }
+
   &__bd {
     position: relative;
     flex-grow: 1;
     display: flex;
     height: calc(100vh - 70px);
     overflow: hidden;
+
     .widget-echart {
       position: absolute;
       top: 0;
@@ -120,12 +139,14 @@
       color: #fff;
     }
   }
+
   &__wrapper {
     position: relative;
     flex-grow: 1;
     background: var(--datav-gui-color);
     overflow: auto;
   }
+
   &__setting {
     position: relative;
     width: 360px;
@@ -135,6 +156,7 @@
     transform-origin: center;
     border-left: 1px solid var(--datav-border-color);
     transition: transform 0.2s ease, width 0.3s ease-in-out;
+
     &.is-show {
       width: 0 !important;
       opacity: 0;
@@ -143,18 +165,21 @@
       transform: translate3d(100%, 0, 0);
       transition: transform 0.2s ease, width 0.3s ease-in-out;
     }
+
     .right-pane-tabs {
       position: relative;
       width: 100%;
       height: 100%;
       overflow: auto;
     }
+
     ::-webkit-scrollbar {
       width: 0;
       height: 0;
       color: transparent;
     }
   }
+
   &__empty {
     width: 100%;
     height: 100%;
@@ -256,6 +281,7 @@
   height: 100%;
   position: absolute;
   z-index: -1;
+
   &__bd {
     position: relative;
     text-align: center;
@@ -264,13 +290,16 @@
     line-height: 160px;
     border: var(--datav-ft-border);
     overflow: hidden;
+
     &:hover {
       cursor: pointer;
       border-color: var(--datav-cp-border-color);
+
       .bg-container__bd--tips {
         display: inline;
       }
     }
+
     &--tips {
       display: none;
     }
@@ -290,6 +319,7 @@
   border: var(--datav-ft-border);
   background-color: var(--datav-ruler-bg);
   overflow: hidden;
+
   &:hover,
   &.is-active {
     cursor: pointer;
@@ -304,13 +334,16 @@
   justify-content: center;
   width: 100%;
   height: 100%;
+
   &-item {
     padding: 10px 0;
     width: 100%;
   }
+
   &-size {
     flex: 1;
   }
+
   &-middle {
     padding: 0 8px;
   }
@@ -318,9 +351,11 @@
 
 .grid-line {
   display: none;
+
   &.is-active {
     display: block;
   }
+
   &-top {
     position: absolute;
     border-left: 2px dashed var(--datav-main-hover-color);
@@ -329,6 +364,7 @@
     left: 0;
     transform: translateY(-100%);
   }
+
   &-left {
     position: absolute;
     border-top: 2px dashed var(--datav-main-hover-color);
@@ -337,6 +373,7 @@
     top: 0;
     transform: translateX(-100%);
   }
+
   &-label {
     position: absolute;
     padding: 5px;

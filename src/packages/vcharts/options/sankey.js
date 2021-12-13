@@ -8,7 +8,7 @@ export default (option, data) => {
     color: DEFAULT_COLORS,
     tooltip: {
       trigger: "item",
-      formatter: function (params) {
+      formatter: function(params) {
         if (params.data.name) {
           return [params.marker + "节点：" + params.data.name + "(" + (params.data.value || 0) + unit + ")"].join("");
         } else {

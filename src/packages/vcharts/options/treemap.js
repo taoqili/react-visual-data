@@ -22,7 +22,7 @@ export default (option, data) => {
       containLabel: true
     },
     tooltip: {
-      formatter: function (params) {
+      formatter: function(params) {
         return [params.marker + params.data.name + "：" + (params.data.value || 0) + unit].join("");
       }
     },

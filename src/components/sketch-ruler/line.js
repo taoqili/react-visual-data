@@ -8,6 +8,7 @@ export default class Line extends PureComponent {
       value: props.value
     };
   }
+
   handleDown = (e) => {
     const { vertical, index, scale, onMouseDown, onRelease } = this.props;
     const { value: startValue } = this.state;

@@ -61,7 +61,7 @@ const FullScreenContainer = ({ className, config, zoom = "cover", children }) =>
   };
 
   const initPageInfo = (config) => {
-    document.querySelector('meta[name="viewport"]').setAttribute("content", `width=${config.width}`);
+    document.querySelector("meta[name=\"viewport\"]").setAttribute("content", `width=${config.width}`);
 
     Object.assign(domRef.current.style, {
       width: `${config.width}px`,

@@ -107,16 +107,16 @@ export const asField = ({ FieldUI, Widget }) => {
  * @param required 是否必填项
  */
 export const DefaultFieldUI = ({
-  children,
-  labelColor,
-  className,
-  schema,
-  displayType,
-  isComplex,
-  showLabel,
-  labelWidth,
-  tooltip
-}) => {
+                                 children,
+                                 labelColor,
+                                 className,
+                                 schema,
+                                 displayType,
+                                 isComplex,
+                                 showLabel,
+                                 labelWidth,
+                                 tooltip
+                               }) => {
   // field 整体 label 标签 content 内容
   const { title, description = "", options, required = false } = schema;
   const [collapsed, setCollapsed] = useState(true);
@@ -166,20 +166,20 @@ export const DefaultFieldUI = ({
                     {title}
                   </span>
                   {description &&
-                    (tooltip ? (
-                      <Tooltip title={description}>
-                        <IconFont
-                          antd={true}
-                          type="QuestionCircleOutlined"
-                          style={{
-                            marginLeft: 3,
-                            color: "#177ddc"
-                          }}
-                        />
-                      </Tooltip>
-                    ) : (
-                      <span className="field-flex__desc">(&nbsp;{description}&nbsp;)</span>
-                    ))}
+                  (tooltip ? (
+                    <Tooltip title={description}>
+                      <IconFont
+                        antd={true}
+                        type="QuestionCircleOutlined"
+                        style={{
+                          marginLeft: 3,
+                          color: "#177ddc"
+                        }}
+                      />
+                    </Tooltip>
+                  ) : (
+                    <span className="field-flex__desc">(&nbsp;{description}&nbsp;)</span>
+                  ))}
                 </label>
               </div>
             ) : null
@@ -208,20 +208,20 @@ export const DefaultFieldUI = ({
               {title}
             </span>
             {description &&
-              (tooltip ? (
-                <Tooltip title={description}>
-                  <IconFont
-                    antd={true}
-                    type="QuestionCircleOutlined"
-                    style={{
-                      marginLeft: 3,
-                      color: "#177ddc"
-                    }}
-                  />
-                </Tooltip>
-              ) : (
-                <span className="field-flex__desc">(&nbsp;{description}&nbsp;)</span>
-              ))}
+            (tooltip ? (
+              <Tooltip title={description}>
+                <IconFont
+                  antd={true}
+                  type="QuestionCircleOutlined"
+                  style={{
+                    marginLeft: 3,
+                    color: "#177ddc"
+                  }}
+                />
+              </Tooltip>
+            ) : (
+              <span className="field-flex__desc">(&nbsp;{description}&nbsp;)</span>
+            ))}
           </label>
         </div>
       ) : null}

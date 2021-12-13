@@ -19,6 +19,7 @@ export default class VEchartsCore extends Component {
   componentDidMount() {
     this.rerender();
   }
+
   // update
   componentDidUpdate(prevProps) {
     // set the echart refresh
@@ -34,9 +35,11 @@ export default class VEchartsCore extends Component {
     if (!isEqual(prevProps.style, this.props.style) || !isEqual(prevProps.className, this.props.className)) {
       try {
         echartObj.resize();
-      } catch (e) {}
+      } catch (e) {
+      }
     }
   }
+
   // remove
   componentWillUnmount() {
     this.dispose();
@@ -164,7 +167,8 @@ VEchartsCore.defaultProps = {
   style: {},
   className: "",
   theme: undefined,
-  onChartReady: () => {},
+  onChartReady: () => {
+  },
   onEvents: {},
   opts: {}
 };

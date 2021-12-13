@@ -21,26 +21,28 @@ function RenderField({ fields, onChange, ...settings }) {
  * @param mapping 字段 type 与 widgetName 的映射关系
  */
 function FieldRender({
-  className = "",
-  name = "$Field",
-  cname = null,
-  cid = "-1",
-  schema = {},
-  formData = {},
-  widgets = {},
-  FieldUI = DefaultFieldUI,
-  fields = {},
-  mapping = {},
-  displayType = "row",
-  tooltip = true,
-  labelWidth = 85,
-  disabled = false,
-  verify = false,
-  labelColor = "#bcc9d4",
-  onValidate = () => {},
-  onChange = () => {},
-  forwardedRef
-}) {
+                       className = "",
+                       name = "$Field",
+                       cname = null,
+                       cid = "-1",
+                       schema = {},
+                       formData = {},
+                       widgets = {},
+                       FieldUI = DefaultFieldUI,
+                       fields = {},
+                       mapping = {},
+                       displayType = "row",
+                       tooltip = true,
+                       labelWidth = 85,
+                       disabled = false,
+                       verify = false,
+                       labelColor = "#bcc9d4",
+                       onValidate = () => {
+                       },
+                       onChange = () => {
+                       },
+                       forwardedRef
+                     }) {
   const isUserInput = useRef(false); // 状态改变是否来自于用户操作
   const originWidgets = useRef();
   const generatedFields = useRef({});
@@ -48,7 +50,8 @@ function FieldRender({
   const rootData = useMemo(() => schemaResolve(schema, formData), [schema, formData]);
 
   // 字段验证防抖
-  const debouncedValidate = useDebounce(onValidate, 300) || (() => {});
+  const debouncedValidate = useDebounce(onValidate, 300) || (() => {
+  });
 
   useEffect(() => {
     if (isUserInput.current) {

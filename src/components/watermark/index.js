@@ -21,10 +21,11 @@ let config = {
 
 // 将base64转换为文件
 export function drawToImage(file, option = {}) {
-  return new Promise(function (resolve, reject) {
+  return new Promise(function(resolve, reject) {
     const { text, fontFamily, color, fontSize, opacity, bottom, right, ratio } = option;
     initParams();
     fileToBase64(file, initImg);
+
     // 参数初始化
     function initParams() {
       config.text = text || config.text;
@@ -36,11 +37,12 @@ export function drawToImage(file, option = {}) {
       config.right = right || config.right;
       config.ratio = ratio || config.ratio;
     }
+
     // 加载图片
     function initImg(data) {
       var img = new Image();
       img.src = data;
-      img.onload = function () {
+      img.onload = function() {
         var width = img.width;
         var height = img.height;
         cretedCanvas(width, height);
@@ -49,6 +51,7 @@ export function drawToImage(file, option = {}) {
         resolve(dataURLtoFile(document.getElementById("canvas").toDataURL(file.type, config.ratio), file.name));
       };
     }
+
     // 创建画板
     function cretedCanvas(width, height) {
       canvas = document.getElementById("canvas");
@@ -62,6 +65,7 @@ export function drawToImage(file, option = {}) {
       canvas.width = width;
       canvas.height = height;
     }
+
     // 添加水印
     function setText(width, height) {
       var txt = config.text;
@@ -71,6 +75,7 @@ export function drawToImage(file, option = {}) {
       ctx.globalAlpha = config.opacity / 100;
       ctx.fillText(txt, param.x, param.y);
     }
+
     // 计算比例
     function calcParam(txt, width, height) {
       var x, y;
@@ -106,11 +111,12 @@ export function drawToImage(file, option = {}) {
         fontSize: fontSize
       };
     }
+
     // file转base64
     function fileToBase64(file, callback) {
       var reader = new FileReader();
       reader.readAsDataURL(file);
-      reader.onload = function (e) {
+      reader.onload = function(e) {
         callback(e.target.result);
       };
     }

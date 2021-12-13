@@ -85,10 +85,10 @@ fetch.interceptors.response.use(
   (response) => {
     // 根据自身业务定制化提示语
     response.data.code === 1 &&
-      notification.error({
-        message: "系统提示",
-        description: response.data.msg
-      });
+    notification.error({
+      message: "系统提示",
+      description: response.data.msg
+    });
 
     if (
       response.config.responseType === "blob" ||

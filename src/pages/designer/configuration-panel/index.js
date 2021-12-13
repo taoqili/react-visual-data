@@ -4,12 +4,12 @@ import { connect } from "react-redux";
 import cx from "classnames";
 import { Scrollbar } from "~components";
 import SchemaRender from "@/form-render";
-import pageSchema from './page-schema';
+import pageSchema from "./page-schema";
 import { useDesigner, useView } from "~hooks/useDesigner";
 import { getFieldConf, mergeFieldConfig, setLevelPath } from "../renderer/utils";
 import { screenToSchema } from "../configuration-schema";
-import { DIMENSION } from '../constants';
-import './index.less';
+import { DIMENSION } from "../constants";
+import "./index.less";
 
 const FieldSetConf = ({ selected }) => {
   const { state, setState } = useDesigner();
@@ -31,7 +31,8 @@ const FieldSetConf = ({ selected }) => {
           value: currentField.data,
           configs: screenToSchema.find((o) => o.materials === currentField.type).fields
         };
-      } catch (error) {}
+      } catch (error) {
+      }
     }
 
     return {
@@ -58,15 +59,15 @@ const FieldSetConf = ({ selected }) => {
       realValue = { ...realValue, ...realValue.customPageSize };
     }
     setState({ page: realValue });
-  }
+  };
 
   if (selected === "-") {
     return (
       <div className={classNames}>
         <Scrollbar>
           <SchemaRender
-            cname={'rootPage'}
-            cid={'root-page-schema'}
+            cname={"rootPage"}
+            cid={"root-page-schema"}
             schema={pageSchema}
             formData={{ page: state.page }}
             onChange={onPageValueChange}
@@ -103,7 +104,7 @@ const FieldSetConf = ({ selected }) => {
                   </Scrollbar>
                 )}
               </Tabs.TabPane>
-            )
+            );
           })
         }
       </Tabs>

@@ -24,14 +24,14 @@ export default (option, data) => {
         type: "radar",
         areaStyle: stack
           ? {
-              normal: {
-                shadowBlur: 13,
-                shadowColor: "rgba(0,0,0,.2)",
-                shadowOffsetX: 0,
-                shadowOffsetY: 10,
-                opacity: 1
-              }
+            normal: {
+              shadowBlur: 13,
+              shadowColor: "rgba(0,0,0,.2)",
+              shadowOffsetX: 0,
+              shadowOffsetY: 10,
+              opacity: 1
             }
+          }
           : undefined,
         data: series
       }

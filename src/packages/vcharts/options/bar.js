@@ -68,7 +68,7 @@ export default (option, data) => {
       show: showX,
       fontSize: labelFontSizeX,
       color: labelColor,
-      formatter: function (parma) {
+      formatter: function(parma) {
         if (chartContrast && parma < 0) {
           return parma * -1;
         }
@@ -101,7 +101,7 @@ export default (option, data) => {
       show: showY,
       fontSize: labelFontSizeX,
       color: labelColor || "#fff",
-      formatter: function (parma) {
+      formatter: function(parma) {
         if (chartContrast && parma < 0) {
           return parma * -1;
         }
@@ -150,7 +150,7 @@ export default (option, data) => {
           color: "#57617B"
         }
       },
-      formatter: function (parma) {
+      formatter: function(parma) {
         if (chartContrast) {
           parma[0].value = parma[0].value * -1;
         }

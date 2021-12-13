@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from "react";
+import React, { useEffect, useRef } from "react";
 import { Modal, Space, Button, Typography, Badge, message, Tooltip } from "antd";
 import { Link } from "react-router-dom";
 import copyTOClipboard from "copy-text-to-clipboard";
@@ -9,12 +9,12 @@ import { generatorField, getFieldConf, getFieldOrderBy, orderBy } from "../rende
 import { IconFont, MonacoEditor } from "~components";
 import storage from "~utils/storage";
 
-const { VERSION = '' } = window.appConfig || {}
+const { VERSION = "" } = window.appConfig || {};
 
 const FieldActionsConf = ({ selected, dispatch }) => {
   const { state, setState } = useDesigner();
   const { view, setView } = useView();
-  const editorRef = useRef(null)
+  const editorRef = useRef(null);
 
   const onKeyDown = (e) => {
     canUndo(e.ctrlKey || e.metaKey) && 90 === e.keyCode && (e.shiftKey ? this.redo() : this.undo());
@@ -125,10 +125,10 @@ const FieldActionsConf = ({ selected, dispatch }) => {
   const toggleModal = () => setView({ visible: !view.visible });
 
   const handleModifySchema = () => {
-    const value = editorRef.current?.getValue()
-    setView({visible: false})
-    setState({components: value.components})
-  }
+    const value = editorRef.current?.getValue();
+    setView({ visible: false });
+    setState({ components: value.components });
+  };
 
   const handleCopySchema = () => {
     let displaySchemaString = JSON.stringify(
@@ -250,7 +250,7 @@ const FieldActionsConf = ({ selected, dispatch }) => {
       <Modal
         visible={view.visible}
         title="调试"
-        style={{top: 20}}
+        style={{ top: 20 }}
         width={960}
         // okText="复制配置"
         okText="应用修改"

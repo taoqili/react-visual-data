@@ -46,12 +46,12 @@ function VTabs({ uniqueId, options, tabStore, dispatch }) {
 
     let _tabToChart = (tabToChart || []).map((t) => t.id);
     _tabToChart.length > 0 &&
-      (slideTimer = setInterval(() => {
-        let t = _tabToChart.indexOf(current || _tabToChart[0]) || 0,
-          _index = (t + 1) % _tabToChart.length;
+    (slideTimer = setInterval(() => {
+      let t = _tabToChart.indexOf(current || _tabToChart[0]) || 0,
+        _index = (t + 1) % _tabToChart.length;
 
-        onClickHandle(_tabToChart[_index]);
-      }, slideInterval || 2e3));
+      onClickHandle(_tabToChart[_index]);
+    }, slideInterval || 2e3));
   };
 
   const onClickHandle = (rowId) => {
