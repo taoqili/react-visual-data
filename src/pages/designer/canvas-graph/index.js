@@ -1,5 +1,6 @@
 import React, { useEffect, forwardRef, useRef, useMemo, useLayoutEffect, useCallback } from "react";
 import { Space, Button, Tooltip, message } from "antd";
+import { FullscreenOutlined, FullscreenExitOutlined } from '@ant-design/icons';
 import { connect } from "react-redux";
 import { IconFont, Scrollbar, SketchRuler } from "~components";
 import { cloneDeep } from "~utils";
@@ -221,13 +222,24 @@ function Wrapper(props, ref) {
               }}
             />
           </Tooltip>
-          <Tooltip title="自适应">
+          <Tooltip title="最大化|最小化">
             <Button
               shape="circle"
               size="small"
-              icon={<IconFont antd={true} type="ExpandOutlined" />}
+              icon={view.leftPaneCollapsed && view.rightPaneCollapsed ? <FullscreenExitOutlined /> :  <FullscreenOutlined />}
               onClick={() => {
-                setView({ scale: round(scaleSize, 2) });
+                const { leftPaneCollapsed, rightPaneCollapsed } = view
+                const { selected } = props;
+                const hasSelected = selected !== '-';
+                const allCollapsed = leftPaneCollapsed && (rightPaneCollapsed || !hasSelected)
+                setView({
+                  leftPaneCollapsed: !allCollapsed ,
+                })
+                if (hasSelected) {
+                  setView({
+                    rightPaneCollapsed: !allCollapsed
+                  })
+                }
               }}
             />
           </Tooltip>
