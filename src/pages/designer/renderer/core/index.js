@@ -9,7 +9,7 @@ import { getField } from "~packages";
 import { useDesigner, useView } from "~hooks/useDesigner";
 import { throttle } from "~utils";
 import { round, converLayout } from "~utils/helper";
-import generator from "./generator";
+import generator from "../generator";
 
 function AlignLine() {
   return (
@@ -107,7 +107,6 @@ function DragField({ value, tabBind, tabStore, selected, dispatch, onValueChange
   //   ev.preventDefault();
   //   ev.stopPropagation();
   //   if (hasSelected) return;
-
   //   dispatch({ type: "component/selected", data: value.uniqueId });
   // };
 
