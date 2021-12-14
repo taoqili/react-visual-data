@@ -57,6 +57,7 @@ function DataProvider(props) {
     scale: 1,
     startX: 0,
     startY: 0,
+    // 参考线
     lines: {
       h: [],
       v: []

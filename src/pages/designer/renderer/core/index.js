@@ -123,13 +123,10 @@ function DragField({ value, tabBind, tabStore, selected, dispatch, onValueChange
       : rest.shadowWidth
   };
 
-  const getSubField = useCallback(
-    (m) => {
-      const prop = getField(value.type);
-      return generator(prop)(m);
-    },
-    [value.type]
-  );
+  const getSubField = useCallback((m) => {
+    const prop = getField(value.type);
+    return generator(prop)(m);
+  }, [value.type]);
 
   const onDragHandle = (e, d) => {
     e.preventDefault();
@@ -179,18 +176,15 @@ function DragField({ value, tabBind, tabStore, selected, dispatch, onValueChange
     return;
   };
 
-  const propsValue = useMemo(
-    () => ({
-      value: value.data,
-      uniqueId: value.uniqueId,
-      type: value.type,
-      options: value.data.config || {},
-      onChange: (val, level = 1) => {
-        onValueChange && onValueChange(value.uniqueId, val, level);
-      }
-    }),
-    [onValueChange]
-  );
+  const propsValue = useMemo(() => ({
+    value: value.data,
+    uniqueId: value.uniqueId,
+    type: value.type,
+    options: value.data.config || {},
+    onChange: (val, level = 1) => {
+      onValueChange && onValueChange(value.uniqueId, val, level);
+    }
+  }), [onValueChange]);
 
   return (
     <Rnd
