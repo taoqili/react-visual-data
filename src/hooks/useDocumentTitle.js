@@ -6,7 +6,6 @@ export function useDocumentTitle(title) {
   useEffect(() => {
     document.title = title;
     return () => {
-      // eslint-disable-next-line
       document.title = prevTitleRef.current;
     };
   }, [title]);

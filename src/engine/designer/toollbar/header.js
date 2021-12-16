@@ -9,16 +9,14 @@ import { generatorField, getFieldConf, getFieldOrderBy, orderBy } from "../rende
 import { IconFont, MonacoEditor } from "~components";
 import storage from "~utils/storage";
 
-const { VERSION = "" } = window.appConfig || {};
-
 const FieldActionsConf = ({ selected, dispatch }) => {
   const { state, setState } = useDesigner();
   const { view, setView } = useView();
   const editorRef = useRef(null);
 
-  const onKeyDown = (e) => {
-    canUndo(e.ctrlKey || e.metaKey) && 90 === e.keyCode && (e.shiftKey ? this.redo() : this.undo());
-  };
+  // const onKeyDown = (e) => {
+  //   canUndo(e.ctrlKey || e.metaKey) && 90 === e.keyCode && (e.shiftKey ? this.redo() : this.undo());
+  // };
 
   // TODO: 清空
   const handleClear = () => {
@@ -147,8 +145,9 @@ const FieldActionsConf = ({ selected, dispatch }) => {
     <header className="gc-design__hd">
       <div className="gc-design__hd--title">
         <Typography.Title level={4} className="gc-design__hd--h1">
+          <img src="" alt="" />
           监控大屏&nbsp;
-          <Badge status="processing" text={`v${VERSION}`} />
+          <Badge status="processing" text={`v1.21.1`} />
         </Typography.Title>
       </div>
       <Space className="gc-design__hd--action">

@@ -9,15 +9,14 @@ import DesignerAside from "./aside-panel";
 import DesignerHeader from "./toollbar/header";
 import DesignerContent from "./canvas-graph";
 import DesignerField from "./configuration-panel";
-import { dataVScreen, dataVApiList } from "@/api";
 import { pathToParam, loadScript } from "~utils";
 
-function DataProvider(props) {
-  const { name } = props;
-  useDocumentTitle(name);
+function App(props) {
+  const { appConfig, onAppInit } = props;
+  useDocumentTitle(appConfig.siteName);
   const [state, setState] = useSet({
     // 设置器tabKey
-    configTabsKey: "base",
+    configTabsKey: "",
     // 面板tabKey
     panelTabsKey: "",
     // 编辑区所有组件列表
@@ -66,37 +65,19 @@ function DataProvider(props) {
     isShowReferLine: true
   });
 
-  // 异步多接口请求
-  const storageData = async () => {
-    try {
-      const results = await Promise.all([dataVApiList()]).then((res) => {
-        return res;
-      });
-      props.dispatch({ type: "component/api", data: results[0].data.data });
-    } catch (err) {
-      console.warn(err);
-    }
-  };
-
-  const fetchData = async () => {
-    try {
-      const {
-        data: { page, components }
-      } = await dataVScreen();
-      setState({ page: page, components: components });
-      props.dispatch({ type: "component/selected", data: "-" });
-    } catch (error) {
-      console.warn(error);
-    }
-  };
-
   useEffect(() => {
     // 初始化数据
     props.dispatch({ type: "component/mode", data: "development" });
     props.dispatch({ type: "component/querys", data: pathToParam() });
     loadScript("https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css", "css");
-    fetchData();
-    storageData();
+    onAppInit((schema = {}) => {
+      const {
+        page = state.page,
+        components = []
+      } = schema;
+      setState({ page, components });
+      props.dispatch({ type: "component/selected", data: "-" });
+    })
   }, []);
 
   const onValueChange = (uniqueId, value, level = 0) => {
@@ -112,11 +93,12 @@ function DataProvider(props) {
         <section className="gc-design__bd" id="designer">
           <DesignerAside />
           <DesignerContent {...state.page}>
-            {state.components.length > 0
-              ? state.components.map((prop, index) => (
-                <Designer index={index} value={prop} key={prop.uniqueId} onValueChange={onValueChange} />
-              ))
-              : null}
+            {
+              state.components.length > 0
+                ? state.components.map((prop, index) => (
+                  <Designer index={index} value={prop} key={prop.uniqueId} onValueChange={onValueChange} />
+                )) : null
+            }
           </DesignerContent>
           <DesignerField />
         </section>
@@ -125,4 +107,4 @@ function DataProvider(props) {
   );
 }
 
-export default connect((state) => state.component)(DataProvider);
+export default connect((state) => state.component)(App);

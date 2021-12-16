@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo } from "react";
 import { connect } from "react-redux";
 import { AutonContainer, Scrollbar } from "~components";
-import { DesignerParser } from "./renderer";
+import { DesignerParser as Renderer } from "./renderer";
 import { useDocumentTitle } from "~hooks/useDocumentTitle";
 import storage from "~utils/storage";
 
@@ -49,7 +49,7 @@ function PanelPreview(props) {
     <Scrollbar>
       <AutonContainer config={{ width, height }} zoom={zoom}>
         <div className="bg-container" style={containerStyles} />
-        <DesignerParser widgets={schemaConfig.components} />
+        <Renderer widgets={schemaConfig.components} />
       </AutonContainer>
     </Scrollbar>
   );
