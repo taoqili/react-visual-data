@@ -21,6 +21,8 @@ function App(props) {
     panelTabsKey: "",
     // 编辑区所有组件列表
     components: [],
+    // 外部导入的app配置
+    appConfig: {},
     // 页面属性
     page: {
       name: "",
@@ -70,13 +72,18 @@ function App(props) {
     props.dispatch({ type: "component/mode", data: "development" });
     props.dispatch({ type: "component/querys", data: pathToParam() });
     loadScript("https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css", "css");
-    onAppInit((schema = {}) => {
-      const {
-        page = state.page,
-        components = []
-      } = schema;
-      setState({ page, components });
-      props.dispatch({ type: "component/selected", data: "-" });
+    onAppInit({
+      setSchema: (schema = {}) => {
+        const {
+          page = state.page,
+          components = []
+        } = schema;
+        setState({ page, components });
+        props.dispatch({ type: "component/selected", data: "-" });
+      },
+      mixAppConfig: (appConfig) => {
+        setState({appConfig})
+      }
     })
   }, []);
 

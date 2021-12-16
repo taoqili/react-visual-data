@@ -6,11 +6,12 @@ import tools from './tools'
 import actions from './actions'
 
 // 应用数据初始化
-const appInit = async (setScheme) => {
+const appInit = async ({setSchema, mixAppConfig}) => {
   const { fetchSchema } = appConfig;
   const res = await fetchSchema();
   if (res && res.code === 0 && res.data) {
-    setScheme(res.data)
+    setSchema(res.data)
+    mixAppConfig(appConfig)
   } else {
     console.log('Schema 获取失败!')
   }

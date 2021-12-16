@@ -14,10 +14,6 @@ const FieldActionsConf = ({ selected, dispatch }) => {
   const { view, setView } = useView();
   const editorRef = useRef(null);
 
-  // const onKeyDown = (e) => {
-  //   canUndo(e.ctrlKey || e.metaKey) && 90 === e.keyCode && (e.shiftKey ? this.redo() : this.undo());
-  // };
-
   // TODO: 清空
   const handleClear = () => {
     setView({
@@ -141,13 +137,13 @@ const FieldActionsConf = ({ selected, dispatch }) => {
     message.info("复制成功");
   };
 
+  const { siteLogo, siteName } = state.appConfig || {}
   return (
     <header className="gc-design__hd">
       <div className="gc-design__hd--title">
         <Typography.Title level={4} className="gc-design__hd--h1">
-          <img src="" alt="" />
-          监控大屏&nbsp;
-          <Badge status="processing" text={`v1.21.1`} />
+          <img src={siteLogo} width={22} alt="" />&nbsp;&nbsp;
+          {siteName}
         </Typography.Title>
       </div>
       <Space className="gc-design__hd--action">
@@ -209,7 +205,6 @@ const FieldActionsConf = ({ selected, dispatch }) => {
           </Button>
         </Space>
       </div>
-      {/* 模态框 */}
       <Modal
         visible={view.visible}
         title="调试"
