@@ -1,21 +1,21 @@
 import React, { lazy } from "react";
 
 import Error from '@/pages/404';
-import Demo from '@/pages/demo';
+import Designer from '@/pages/designer';
 import Preview from '@/pages/preview';
 
 export default [
   {
     path: '/',
     exact: true,
-    component: Demo
+    component: Designer
   },
   {
     path: '/preview/:id',
     component: Preview
   },
   {
-    path: "/error/404",
+    path: "*",
     component: Error
   }
 ];

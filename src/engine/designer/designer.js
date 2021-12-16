@@ -13,7 +13,8 @@ import { dataVScreen, dataVApiList } from "@/api";
 import { pathToParam, loadScript } from "~utils";
 
 function DataProvider(props) {
-  useDocumentTitle("DataV Pro - 数据大屏");
+  const { name } = props;
+  useDocumentTitle(name);
   const [state, setState] = useSet({
     // 设置器tabKey
     configTabsKey: "base",
