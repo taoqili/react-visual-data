@@ -70,6 +70,7 @@ module.exports = {
     // 配置路径别名
     addWebpackAlias({
       "@": resolve("src"),
+      "~engine": resolve("src/engine"),
       "~components": resolve("src/components"),
       "~packages": resolve("src/packages"),
       "~hooks": resolve("src/hooks"),

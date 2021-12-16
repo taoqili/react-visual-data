@@ -11,7 +11,6 @@ import "./index.less";
  * 配置项汇总
  */
 // const { collection } = designerList;
-const { VERSION } = window.appConfig;
 
 const designerTotal = Object.values(designerList).flat(1);
 

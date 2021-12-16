@@ -194,7 +194,7 @@ const FieldActionsConf = ({ selected, dispatch }) => {
       <div className="gc-design__hd--setting">
         <Space className="gc-design__hd--save">
           <Link
-            to={"/workspace/preview/" + uuid()}
+            to={"/preview/" + uuid()}
             target="_blank"
             onClick={() => {
               storage.setLocal("schema_screen_config", {
