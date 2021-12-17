@@ -13,6 +13,7 @@ export default {
       data
     });
   },
+  // 保存schema
   saveSchema: {
     url: '/datav/screen/save',
     method: 'post'

@@ -1,0 +1,30 @@
+.lcp-design-dock {
+  &-wrapper {
+
+  }
+  &-icon {
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    cursor: pointer;
+    &:hover {
+      color: #409fff;
+    }
+    &.selected {
+      color: dodgerblue;
+    }
+  }
+  &-pane-title {
+    display: flex;
+    > div {
+      &:first-child{
+        flex: 1;
+      }
+      &:last-child {
+        width: 20px;
+        cursor: pointer;
+      }
+    }
+  }
+}

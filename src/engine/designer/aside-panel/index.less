@@ -1,17 +1,30 @@
-.left-pane-tabs {
+.lcp-design-aside {
+  display: flex;
+  flex-direction: column;
+  width: 50px;
   height: 100%;
+  opacity: 1;
+  border-right: 1px solid var(--datav-border-color);
+  transform: translate3d(0, 0, 0);
+  transform-origin: center;
+  transition: all 0.3s ease;
 
-  .ant-tabs-nav-list {
-    width: 50px;
-    white-space: normal;
-    .ant-tabs-tab {
-      .anticon {
-        margin-right: 0;
+  .left-pane-tabs {
+    height: 100%;
+
+    .ant-tabs-nav-list {
+      width: 50px;
+      white-space: normal;
+
+      .ant-tabs-tab {
+        .anticon {
+          margin-right: 0;
+        }
       }
     }
-  }
 
-  .ant-tabs-content {
-    height: 100%;
+    .ant-tabs-content {
+      height: 100%;
+    }
   }
 }
