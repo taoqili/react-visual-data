@@ -4,7 +4,7 @@ import { useDesigner } from "~hooks/useDesigner";
 
 const clsPrefix = 'lcp-design-pane';
 
-export default ({ selected }) => {
+export default ({ selected, dispatch }) => {
   const [layer, setLayer] = useState([
     {
       title: "图层",

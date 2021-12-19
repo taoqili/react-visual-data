@@ -6,12 +6,12 @@ import './index.less';
 
 const clsPrefix = 'lcp-design-pane';
 
-export default () => {
-  const [cname, setcname] = useState("");
+export default ({selected, dispatch}) => {
+  const [cname, setCname] = useState("");
   const designerTotal = Object.values(designerList).flat(1);
 
   const onChange = (value) => {
-    setcname(value);
+    setCname(value);
   };
   return (
     <div className={`${clsPrefix}-material`}>
