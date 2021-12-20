@@ -103,17 +103,17 @@ const FieldSetConf = ({ selected }) => {
           currentConf.configs.map((item) => {
             return (
               <Tabs.TabPane tab={item.name} key={item.key}>
-                {state.settingTabsKey === item.key && (
-                  <Scrollbar>
-                    <SchemaRender
-                      cname={currentConf.cname}
-                      cid={currentConf.cid}
-                      schema={item.schema}
-                      formData={currentConf.value}
-                      onChange={onComponentValueChange}
-                    />
-                  </Scrollbar>
-                )}
+                {/*{state.settingTabsKey === item.key && (*/}
+                <Scrollbar>
+                  <SchemaRender
+                    cname={currentConf.cname}
+                    cid={currentConf.cid}
+                    schema={item.schema}
+                    formData={currentConf.value}
+                    onChange={onComponentValueChange}
+                  />
+                </Scrollbar>
+                {/*)}*/}
               </Tabs.TabPane>
             );
           })

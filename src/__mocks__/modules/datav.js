@@ -23,20 +23,85 @@ export default [
         },
         components: [
           {
-            "name": "边框3",
-            "type": "border3",
+            "name": "横向柱图",
+            "icon": "bar-series",
+            "type": "bar-series",
             "data": {
-              "title": "边框3",
+              "title": "横向柱图",
               "width": 400,
               "height": 250,
-              "left": 220,
-              "top": 77,
+              "left": 421,
+              "top": 71,
               "background": "",
               "isLock": false,
               "isHidden": false,
+              "remark": "",
+              "isCustomStyle": false,
+              "borderRadius": "",
+              "borderColor": "",
+              "borderWidth": "",
+              "borderStyle": "solid",
+              "shadowOffset": 0,
+              "shadowColor": "",
+              "shadowWidth": 0,
+              "animateType": "",
+              "animateTime": "",
+              "animateSpeed": "",
+              "animateRepeat": "",
+              "drillDownOpen": false,
+              "drillDown": [],
+              "dependenceOpen": false,
+              "dependence": [],
+              "isRefresh": false,
+              "refreshTime": 1800,
+              "config": {
+                "unit": "",
+                "direction": "vertical",
+                "stack": false,
+                "barWidth": 20,
+                "labelColor": "#cccccc",
+                "axisLineColor": "#cccccc",
+                "labelFontSizeX": 12,
+                "splitLineType": "dashed",
+                "splitLineShow": true,
+                "barBorderRadius": 0,
+                "barTextShow": false,
+                "barTextFont": 12,
+                "inverse": false
+              },
+              "dataConfig": {
+                "dataType": "json",
+                "dataSqlId": "",
+                "dataModals": {},
+                "dataApiId": "",
+                "data": {
+                  "categories": [
+                    "苹果",
+                    "三星",
+                    "华为",
+                    "oppo",
+                    "vivo",
+                    "小米"
+                  ],
+                  "series": [
+                    {
+                      "name": "旺季",
+                      "data": [
+                        12102,
+                        20981,
+                        19080,
+                        17008,
+                        24325,
+                        18215,
+                        18852
+                      ]
+                    }
+                  ]
+                }
+              },
               "drillDownLevel": 0
             },
-            "uniqueId": "0f32bc37-fb34-4bc8-bd71-9abb1dc658"
+            "uniqueId": "glbtwnlmw1"
           },
           {
             "name": "正负柱图",

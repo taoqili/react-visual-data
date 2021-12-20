@@ -10,6 +10,8 @@ import DesignerHeader from "./workspace/header";
 import DesignerBody from "./workspace/body";
 import DesignerSetting from "./workspace/setting";
 import { pathToParam, loadScript } from "~utils";
+import { dataVApiList } from "@/api";
+
 
 function App(props) {
   const { appConfig, onAppInit } = props;
@@ -68,6 +70,17 @@ function App(props) {
     props.dispatch({ type: "component/mode", data: "development" });
     props.dispatch({ type: "component/querys", data: pathToParam() });
     loadScript("https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css", "css");
+    const storageData = async () => {
+      try {
+        const results = await Promise.all([dataVApiList()]).then((res) => {
+          return res;
+        });
+        props.dispatch({ type: "component/api", data: results[0].data.data });
+      } catch (err) {
+        console.warn(err);
+      }
+    };
+    storageData()
     onAppInit({
       setSchema: (schema = {}) => {
         const {

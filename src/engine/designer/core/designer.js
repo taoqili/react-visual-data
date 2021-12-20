@@ -39,7 +39,7 @@ function DragField({ value, tabBind, tabStore, selected, dispatch, onValueChange
   const { width, height, background, left, top, isHidden, isLock, ...rest } = value.data;
   const [locations, setLocations] = useState({ left: left, top: top });
   const [show, setShow] = useState(true);
-  const { setState } = useDesigner();
+  const {setState } = useDesigner();
   const { view } = useView();
 
   const classNames = cx("drag-shape-wrap animate__animated", {
