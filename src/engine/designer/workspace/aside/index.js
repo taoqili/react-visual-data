@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import Dock from '../components/Dock'
+import Dock from '../Dock'
 import docks from './docks'
 import "./index.less";
 

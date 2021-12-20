@@ -5,10 +5,10 @@ import { useDocumentTitle } from "~hooks/useDocumentTitle";
 import { useSet } from "~hooks/useSet";
 import { Designer } from "./core";
 import { mergeFieldConfig, setLevelPath } from "./core/utils";
-import DesignerAside from "./aside-panel";
-import DesignerHeader from "./toollbar/header";
-import DesignerContent from "./canvas-graph";
-import DesignerField from "./configuration-panel";
+import DesignerAside from "./workspace/aside";
+import DesignerHeader from "./workspace/header";
+import DesignerBody from "./workspace/body";
+import DesignerSetting from "./workspace/setting";
 import { pathToParam, loadScript } from "~utils";
 
 function App(props) {
@@ -43,8 +43,6 @@ function App(props) {
   });
 
   const [view, setView] = useSet({
-    // 侧边面板显隐控制
-    leftPaneCollapsed: false,
     // 右侧设置面板显隐控制
     rightPaneCollapsed: false,
     // 调试面板显隐控制
@@ -97,15 +95,15 @@ function App(props) {
         <DesignerHeader />
         <section className="gc-design__bd" id="designer">
           <DesignerAside />
-          <DesignerContent {...state.page}>
+          <DesignerBody {...state.page}>
             {
               state.components.length > 0
                 ? state.components.map((prop, index) => (
                   <Designer index={index} value={prop} key={prop.uniqueId} onValueChange={onValueChange} />
                 )) : null
             }
-          </DesignerContent>
-          <DesignerField />
+          </DesignerBody>
+          <DesignerSetting />
         </section>
       </StoreCtx.Provider>
     </Ctx.Provider>

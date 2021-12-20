@@ -33,7 +33,7 @@ function PanelPreview(props) {
     }
 
     if (backgroundMode === "define") {
-      return `url(./static/templet/${backgroundDefine}) 0% 0% / 100% 100%`;
+      return `url(./static/template/${backgroundDefine}) 0% 0% / 100% 100%`;
     }
 
     return backgroundColor ? backgroundColor : null;

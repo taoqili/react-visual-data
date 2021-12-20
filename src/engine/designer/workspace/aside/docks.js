@@ -1,7 +1,7 @@
 import React from "react";
 import { AlignRightOutlined, AppstoreOutlined, DatabaseOutlined } from "@ant-design/icons";
-import OutlinePane from '../components/OutlinePane'
-import MaterialPane from '../components/MaterialPane'
+import OutlinePane from '../../panes/OutlinePane'
+import MaterialPane from '../../panes/MaterialPane'
 
 export default [
   {

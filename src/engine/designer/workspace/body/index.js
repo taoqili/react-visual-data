@@ -1,15 +1,13 @@
 import React, { useEffect, forwardRef, useRef, useMemo, useLayoutEffect, useCallback } from "react";
-import { Space, Button, Tooltip, message } from "antd";
-import { FullscreenOutlined, FullscreenExitOutlined } from '@ant-design/icons';
 import { connect } from "react-redux";
-import { IconFont, Scrollbar, SketchRuler } from "~components";
+import { Scrollbar, SketchRuler } from "~components";
 import { cloneDeep } from "~utils";
-import { generatorField } from "../core/utils";
+import { generatorField } from "../../core/utils";
 import { useAutoResize } from "~hooks/useAutoResize";
 import { useView, useDesigner } from "~hooks/useDesigner";
-import { THICK, DIMENSION } from "../constants";
-import { round } from "~utils/helper";
-import { componentMarket } from "../configuration-value";
+import { THICK, DIMENSION } from "../../constants";
+import { componentMarket } from "../../configuration-value";
+import Footer from '../footer'
 
 /**
  * 设计器容器大小
@@ -126,21 +124,13 @@ function Wrapper(props, ref) {
     }
 
     if (backgroundMode === "define") {
-      return `url(./static/templet/${backgroundDefine}) 0% 0% / 100% 100%`;
+      return `url(./static/template/${backgroundDefine}) 0% 0% / 100% 100%`;
     }
 
     return backgroundColor ? backgroundColor : null;
   }, [backgroundMode, backgroundImage, backgroundDefine, backgroundColor]);
 
-  const handleSetting = () => {
-    setView({
-      isShowReferLine: false,
-      lines: {
-        h: [],
-        v: []
-      }
-    });
-  };
+
 
   return (
     <div className="gc-design__wrapper">
@@ -182,69 +172,7 @@ function Wrapper(props, ref) {
           </div>
         </Scrollbar>
       </div>
-      <div className="ruler-tool">
-        <Tooltip title="清空所有参考线">
-          <Button
-            shape="circle"
-            size="small"
-            icon={<IconFont antd={true} type="SettingOutlined" />}
-            onClick={handleSetting}
-          />
-        </Tooltip>
-        <Space>
-          <Tooltip title="滚动">
-            <Button
-              shape="circle"
-              size="small"
-              icon={<IconFont antd={true} type="ColumnHeightOutlined" />}
-              onClick={() => {
-                containerRef.current.scrollTo(1000, 1000);
-              }}
-            />
-          </Tooltip>
-          <Tooltip title="缩小">
-            <Button
-              shape="circle"
-              size="small"
-              icon={<IconFont antd={true} type="ZoomOutOutlined" />}
-              onClick={() => {
-                setView({ scale: round(Math.max(0.2, scale - 0.1), 2) });
-              }}
-            />
-          </Tooltip>
-          <Tooltip title="放大">
-            <Button
-              shape="circle"
-              size="small"
-              icon={<IconFont antd={true} type="ZoomInOutlined" />}
-              onClick={() => {
-                setView({ scale: round(Math.min(2, scale + 0.1), 2) });
-              }}
-            />
-          </Tooltip>
-          <Tooltip title="最大化|最小化">
-            <Button
-              shape="circle"
-              size="small"
-              icon={view.leftPaneCollapsed && view.rightPaneCollapsed ? <FullscreenExitOutlined /> :  <FullscreenOutlined />}
-              onClick={() => {
-                const { leftPaneCollapsed, rightPaneCollapsed } = view
-                const { selected } = props;
-                const hasSelected = selected !== '-';
-                const allCollapsed = leftPaneCollapsed && (rightPaneCollapsed || !hasSelected)
-                setView({
-                  leftPaneCollapsed: !allCollapsed ,
-                })
-                if (hasSelected) {
-                  setView({
-                    rightPaneCollapsed: !allCollapsed
-                  })
-                }
-              }}
-            />
-          </Tooltip>
-        </Space>
-      </div>
+      <Footer selected={props.selected} />
     </div>
   );
 }

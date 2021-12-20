@@ -138,7 +138,6 @@ export default [
                 },
                 provinces: {
                   title: "省份",
-                  type: "string",
                   type: "select",
                   enum: PROVONCESCITY,
                   enumNames: PROVONCESCITYNAME,

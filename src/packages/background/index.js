@@ -94,7 +94,7 @@ export default ({ name, value, onChange }) => {
                       style={{
                         height: 230,
                         width: "100%",
-                        background: `url(./static/templet/${o}) no-repeat center/contain`
+                        background: `url(./static/template/${o}) no-repeat center/contain`
                       }}
                     ></div>
                   </div>
@@ -107,7 +107,7 @@ export default ({ name, value, onChange }) => {
       <div
         className="bg-container__bd"
         style={{
-          background: `url(./static/templet/${image}) no-repeat center/contain`
+          background: `url(./static/template/${image}) no-repeat center/contain`
         }}
         onClick={() => setVisible(true)}
       >
