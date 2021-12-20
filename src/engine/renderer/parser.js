@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import cx from "classnames";
+import { fieldGenerator } from "../helper";
 import { getField } from "~packages";
-import { fieldGenerator } from "../../helper";
 
 const GeneratorField = ({ value }) => {
   const [show, setShow] = useState(true);

@@ -1,5 +1,5 @@
 import React from "react";
-import { Designer } from '~engine/designer';
+import { Designer } from '~engine';
 import appConfig from './app-config';
 import panes from './panes'
 import tools from './tools'

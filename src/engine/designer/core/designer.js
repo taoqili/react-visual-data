@@ -9,7 +9,7 @@ import { getField } from "~packages";
 import { useDesigner, useView } from "~hooks/useDesigner";
 import { throttle } from "~utils";
 import { round, converLayout } from "~utils/helper";
-import generator from "./generator";
+import { fieldGenerator } from "../../helper";
 
 function AlignLine() {
   return (
@@ -125,7 +125,7 @@ function DragField({ value, tabBind, tabStore, selected, dispatch, onValueChange
 
   const getSubField = useCallback((m) => {
     const prop = getField(value.type);
-    return generator(prop)(m);
+    return fieldGenerator(prop)(m);
   }, [value.type]);
 
   const onDragHandle = (e, d) => {
