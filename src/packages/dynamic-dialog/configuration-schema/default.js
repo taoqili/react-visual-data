@@ -155,7 +155,6 @@ export const BASE_CONF_SCHEMA = {
   },
   borderStyle: {
     title: "边框样式",
-    type: "string",
     type: "select",
     hidden: "{{rootValue.isCustomStyle === false}}",
     enum: ["solid", "dotted", "double", "dashed"],
