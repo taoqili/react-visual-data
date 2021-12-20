@@ -18,7 +18,7 @@ function App(props) {
   useDocumentTitle(appConfig.siteName);
   const [state, setState] = useSet({
     // 设置器tabKey
-    settingTabsKey: "",
+    settingTabsKey: "base",
     // 编辑区所有组件列表
     components: [],
     // 外部导入的app配置
