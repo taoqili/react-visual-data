@@ -91,7 +91,7 @@ function Wrapper(props, ref) {
           configs.data.top = event.nativeEvent.offsetY - configs.data.height / 2;
 
           const { components, fieldId } = generatorField(state.components, "field", configs);
-          setState({ configTabsKey: "base", components: components });
+          setState({ settingTabsKey: "base", components: components });
           props.dispatch({ type: "component/selected", data: fieldId });
         }
       } catch (error) {

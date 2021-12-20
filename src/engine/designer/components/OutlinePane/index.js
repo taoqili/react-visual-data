@@ -18,7 +18,7 @@ export default ({ selected, dispatch }) => {
     if (!keys || !keys.length) {
       return;
     }
-    setState({ configTabsKey: "base" });
+    setState({ settingTabsKey: "base" });
     dispatch({ type: "component/selected", data: keys.join("") });
   };
   useEffect(() => {

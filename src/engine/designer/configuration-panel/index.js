@@ -42,7 +42,7 @@ const FieldSetConf = ({ selected }) => {
       value: {},
       configs: []
     };
-  }, [selected, state.configTabsKey]);
+  }, [selected, state.settingTabsKey]);
 
   const onComponentValueChange = (value) => {
     let results = mergeFieldConfig(state.components, { parentId: selected }, value);
@@ -93,17 +93,17 @@ const FieldSetConf = ({ selected }) => {
             {view.rightPaneCollapsed ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />}
           </span>
         }
-        selected={state.configTabsKey}
+        selected={state.settingTabsKey}
         onTabClick={(key) => {
           setView({rightPaneCollapsed: false})
-          setState({ configTabsKey: key });
+          setState({ settingTabsKey: key });
         }}
       >
         {
           currentConf.configs.map((item) => {
             return (
               <Tabs.TabPane tab={item.name} key={item.key}>
-                {state.configTabsKey === item.key && (
+                {state.settingTabsKey === item.key && (
                   <Scrollbar>
                     <SchemaRender
                       cname={currentConf.cname}

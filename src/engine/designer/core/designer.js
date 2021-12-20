@@ -97,7 +97,7 @@ function DragField({ value, tabBind, tabStore, selected, dispatch, onValueChange
     ev.stopPropagation();
     if (hasSelected) return;
 
-    setState({ configTabsKey: "base" });
+    setState({ settingTabsKey: "base" });
     // TODO: 获取当前用户点击的key
     dispatch({ type: "component/selected", data: value.uniqueId });
   };
