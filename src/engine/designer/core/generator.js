@@ -1,8 +1,7 @@
 import React from "react";
 import { Empty } from "antd";
 
-import "./datav.less";
-import "./renderer.less";
+
 
 const FieldGenerator = ({ fieldCanRedefine: can, Field: SourceField = null, props = {} }) =>
   (args) => {

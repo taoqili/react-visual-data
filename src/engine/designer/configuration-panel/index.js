@@ -6,7 +6,7 @@ import { Scrollbar } from "~components";
 import SchemaRender from "@/form-render";
 import pageSchema from "./page-schema";
 import { useDesigner, useView } from "~hooks/useDesigner";
-import { getFieldConf, mergeFieldConfig, setLevelPath } from "../renderer/utils";
+import { getFieldConf, mergeFieldConfig, setLevelPath } from "../core/utils";
 import { screenToSchema } from "../configuration-schema";
 import { DIMENSION } from "../constants";
 import "./index.less";
