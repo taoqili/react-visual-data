@@ -9,7 +9,7 @@ import { getField } from "~packages";
 import { useDesigner, useView } from "~hooks/useDesigner";
 import { throttle } from "~utils";
 import { round, converLayout } from "~utils/helper";
-import generator from "../generator";
+import generator from "./generator";
 
 function AlignLine() {
   return (
