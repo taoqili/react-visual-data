@@ -56,7 +56,7 @@ export default (props = {}) => {
       }}
       {...popupProps}
     >
-      <Component />
+      <Component {...{view, setView, state, setState}} />
     </Drawer>
   )
 }
