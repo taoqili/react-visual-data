@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { connect } from "react-redux";
 import { Vcharts } from "~components";
 import { DynamicDialog, DynamicContent } from "../../dynamic-dialog";
 import vchartsOption from "../options";

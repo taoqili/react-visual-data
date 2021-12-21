@@ -4,7 +4,6 @@
  */
 import axios from "axios";
 import { notification } from "antd";
-import store from "@/store";
 import { isEmpty } from "~utils/helper";
 
 const codeMessage = {
@@ -66,13 +65,6 @@ fetch.interceptors.request.use(
       Authorization: "Basic bmVpemhlbjpuZWl6aGVu",
       ContentType: "application/json;charset=UTF-8"
     };
-
-    const { accessToken } = store.getState().app;
-    if (!isEmpty(accessToken)) {
-      // 让每个请求携带token -- ['AUTH_TOKEN']为自定义key
-      config.headers["Authorization"] = `Bearer ${accessToken}`;
-    }
-
     return config;
   },
   (error) => {

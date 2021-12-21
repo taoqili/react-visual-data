@@ -1,4 +1,4 @@
-import React, { lazy } from "react";
+import React from "react";
 
 import Error from '@/pages/404';
 import Designer from '@/pages/designer';

@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect } from "react";
-import { connect } from "react-redux";
 import { notification } from "antd";
 import { onEvent, offEvent } from "~utils";
 import "./style.less";
