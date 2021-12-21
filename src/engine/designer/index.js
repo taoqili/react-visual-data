@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
 import { Ctx, StoreCtx } from "~hooks/useDesigner";
 import { useDocumentTitle } from "~hooks/useDocumentTitle";
 import { useSet } from "~hooks/useSet";
@@ -17,6 +16,14 @@ function App(props) {
   const { appConfig, onAppInit } = props;
   useDocumentTitle(appConfig.siteName);
   const [state, setState] = useSet({
+    // 当前选中的元素
+    currentNode: '-',
+    mode: "development",
+    fieldType: "component",
+    dependencies: [],
+    drilldown: [],
+    api: [],
+    querys: {},
     // 设置器tabKey
     settingTabsKey: "base",
     // 编辑区所有组件列表
@@ -67,15 +74,14 @@ function App(props) {
 
   useEffect(() => {
     // 初始化数据
-    props.dispatch({ type: "component/mode", data: "development" });
-    props.dispatch({ type: "component/querys", data: pathToParam() });
+    setState({querys: pathToParam()})
     loadScript("https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css", "css");
     const storageData = async () => {
       try {
         const results = await Promise.all([dataVApiList()]).then((res) => {
           return res;
         });
-        props.dispatch({ type: "component/api", data: results[0].data.data });
+        setState({api: results[0].data.data})
       } catch (err) {
         console.warn(err);
       }
@@ -87,8 +93,7 @@ function App(props) {
           page = state.page,
           components = []
         } = schema;
-        setState({ page, components });
-        props.dispatch({ type: "component/selected", data: "-" });
+        setState({ page, components, currentNode: '-' });
       },
       mixAppConfig: (appConfig) => {
         setState({appConfig})
@@ -123,4 +128,4 @@ function App(props) {
   );
 }
 
-export default connect((state) => state.component)(App);
+export default App;

@@ -4,11 +4,11 @@ import { Select } from "antd";
 import fetcher from "~packages/hoc";
 import { useDesigner } from "~hooks/useDesigner";
 
-function SelectComponent({ name, value, onChange, selected }) {
+function SelectComponent({ name, value, onChange }) {
   const { state } = useDesigner();
   const options = useMemo(() => {
-    return state.components.filter((v) => v.uniqueId !== selected && v.data.dependence);
-  }, [selected]);
+    return state.components.filter((v) => v.uniqueId !== state.currentNode && v.data.dependence);
+  }, [state.currentNode]);
 
   // TODO: 联动参数处理
   const onDependenceChange = (value) => {
@@ -36,6 +36,4 @@ function SelectComponent({ name, value, onChange, selected }) {
   );
 }
 
-export default connect((state) => ({
-  selected: state.component.selected
-}))(fetcher(SelectComponent));
+export default fetcher(SelectComponent);

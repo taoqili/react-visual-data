@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo } from "react";
-import { connect } from "react-redux";
 import { AutonContainer, Scrollbar } from "~components";
 import Renderer from "./parser";
 import { useDocumentTitle } from "~hooks/useDocumentTitle";
 import storage from "~utils/storage";
+import { useDesigner } from "../../hooks/useDesigner";
 
 function PanelPreview(props) {
   let schemaConfig = storage.getLocal("schema_screen_config") || {};
@@ -18,10 +18,12 @@ function PanelPreview(props) {
     width,
     height
   } = schemaConfig.page;
+  const {state, setState } = useDesigner();
+
   useDocumentTitle(`DataV Pro - ${schemaConfig.page.name || "未命名"}`);
 
   useEffect(() => {
-    props.dispatch({ type: "component/mode", data: "preview" });
+    setState({mode: 'preview'})
     return () => {
       storage.clear();
     };
@@ -55,4 +57,4 @@ function PanelPreview(props) {
   );
 }
 
-export default connect((state) => state.component)(PanelPreview);
+export default PanelPreview;

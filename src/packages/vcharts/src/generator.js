@@ -5,6 +5,7 @@ import { DynamicDialog, DynamicContent } from "../../dynamic-dialog";
 import vchartsOption from "../options";
 import { echartBarAPI } from "@/api";
 import { isEmpty } from "~utils/helper";
+import { useDesigner } from "../../../hooks/useDesigner";
 
 // TODO: 当前type配置项是否有效
 function resoleOption(type) {
@@ -25,8 +26,8 @@ function GeneratorVCharts({ uniqueId, type, value, options, onChange, ...rest })
   if (isEmpty(value.dataConfig.data)) return null;
   const [dataSource, setDataSource] = useState({});
   const [stauts, setStauts] = useState(false);
+  const { state, setState } = useDesigner();
   const { dataConfig, isRefresh, refreshTime } = value;
-  const { mode, dependencies, drilldowns, dispatch } = rest;
 
   const getOption = useMemo(() => resoleOption(type), [type]);
 
@@ -40,7 +41,7 @@ function GeneratorVCharts({ uniqueId, type, value, options, onChange, ...rest })
 
   useEffect(() => {
     let recordTimeInterval;
-    if (mode === "preview" && isRefresh) {
+    if (state.mode === "preview" && isRefresh) {
       recordTimeInterval = setInterval(() => {
         echartBarAPI().then((res) => {
           setDataSource(res.data);
@@ -51,20 +52,20 @@ function GeneratorVCharts({ uniqueId, type, value, options, onChange, ...rest })
     return () => {
       clearInterval(recordTimeInterval);
     };
-  }, [mode]);
+  }, [state.mode]);
 
   useEffect(() => {
     // TODO：刷新清空联动集合ids
-    if (dependencies.includes(uniqueId)) {
+    if (state.dependencies.includes(uniqueId)) {
       echartBarAPI().then((res) => {
         setDataSource(res.data);
         setStauts(true);
-        dispatch({ type: "component/dependencies", data: [] });
+        setState({dependencies: []})
       });
     } else {
       setStauts(false);
     }
-  }, [dependencies]);
+  }, [state.dependencies]);
 
   if (!getOption.canRedefine) return null;
 
@@ -78,10 +79,7 @@ function GeneratorVCharts({ uniqueId, type, value, options, onChange, ...rest })
         onEvents={{
           click: () => {
             if (value.dependence.length === 0) return;
-            dispatch({
-              type: "component/dependencies",
-              data: dependencies.concat(value.dependence)
-            });
+            setState({dependencies: state.dependencies.concat(value.dependencies)})
           }
         }}
       />
@@ -97,9 +95,8 @@ function GeneratorVCharts({ uniqueId, type, value, options, onChange, ...rest })
         theme="dark"
         onEvents={{
           click: (param) => {
-            dispatch({
-              type: "component/drilldown",
-              data: drilldowns.concat([
+            setState({
+              drilldowns: state.drilldowns.concat([
                 {
                   name: param.name,
                   value: param.value,
@@ -107,8 +104,7 @@ function GeneratorVCharts({ uniqueId, type, value, options, onChange, ...rest })
                   _default: param.name
                 }
               ])
-            });
-
+            })
             DynamicDialog({
               container: "#designer",
               title: value.title,
@@ -123,8 +119,4 @@ function GeneratorVCharts({ uniqueId, type, value, options, onChange, ...rest })
   return <Vcharts refresh={stauts} options={getOption.callback(options, dataSource)} theme="dark" />;
 }
 
-export default connect((state) => ({
-  mode: state.component.mode,
-  dependencies: state.component.dependencies,
-  drilldowns: state.component.drilldown
-}))(GeneratorVCharts);
+export default GeneratorVCharts;

@@ -1,5 +1,4 @@
 import React, { useEffect, forwardRef, useRef, useMemo, useLayoutEffect, useCallback } from "react";
-import { connect } from "react-redux";
 import { Scrollbar, SketchRuler } from "~components";
 import { cloneDeep } from "~utils";
 import { generatorField } from "../../core/utils";
@@ -67,7 +66,7 @@ function Wrapper(props, ref) {
   }, [width, view.width]);
 
   const handleClick = () => {
-    props.dispatch({ type: "component/selected", data: "-" });
+    setState({currentNode: '-'})
     setView({rightPaneCollapsed: false});
   };
 
@@ -89,8 +88,7 @@ function Wrapper(props, ref) {
           configs.data.top = event.nativeEvent.offsetY - configs.data.height / 2;
 
           const { components, fieldId } = generatorField(state.components, "field", configs);
-          setState({ settingTabsKey: "base", components: components });
-          props.dispatch({ type: "component/selected", data: fieldId });
+          setState({ settingTabsKey: "base", components: components, currentNode: fieldId });
         }
       } catch (error) {
         console.log(`组件创建失败，${error}`);
@@ -172,11 +170,9 @@ function Wrapper(props, ref) {
           </div>
         </Scrollbar>
       </div>
-      <Footer selected={props.selected} />
+      <Footer />
     </div>
   );
 }
 
-export default connect((state) => ({
-  selected: state.component.selected
-}))(forwardRef(Wrapper));
+export default forwardRef(Wrapper);

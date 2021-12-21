@@ -4,7 +4,7 @@ import { useDesigner } from "~hooks/useDesigner";
 
 const clsPrefix = 'lcp-design-pane';
 
-export default ({ selected, dispatch }) => {
+export default () => {
   const [layer, setLayer] = useState([
     {
       title: "图层",
@@ -18,8 +18,7 @@ export default ({ selected, dispatch }) => {
     if (!keys || !keys.length) {
       return;
     }
-    setState({ settingTabsKey: "base" });
-    dispatch({ type: "component/selected", data: keys.join("") });
+    setState({ settingTabsKey: "base", currentNode: keys.join("") });
   };
   useEffect(() => {
     const treeList = state.components.map((component) => {
@@ -37,7 +36,7 @@ export default ({ selected, dispatch }) => {
         children: treeList
       }
     ]);
-  }, [selected, state.components]);
+  }, [state.currentNode, state.components]);
 
   return (
     <div className={`${clsPrefix}-outline`}>
@@ -45,7 +44,7 @@ export default ({ selected, dispatch }) => {
         defaultExpandAll
         showLine
         blockNode
-        selectedKeys={[selected]}
+        selectedKeys={[state.currentNode]}
         onSelect={onSelect}
         treeData={layer}
       />

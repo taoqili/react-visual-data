@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { notification } from "antd";
 import { onEvent, offEvent } from "~utils";
 import "./style.less";
+import { useDesigner } from "../../hooks/useDesigner";
 
 const CustomIframe = ({ uniqueId, value, onChange, ...rest }) => {
   const {
@@ -11,7 +12,7 @@ const CustomIframe = ({ uniqueId, value, onChange, ...rest }) => {
   const iframeRef = useRef();
   const [dataSource, setDataSource] = useState([]);
   const [path, setPath] = useState(`./demo.html?t=${count}`);
-  const { selected, dependencies, dispatch } = rest;
+  const { state, setState } = useDesigner();
 
   // TODO: 通知子iframe框架数据
   const onNotice = () => {
@@ -27,12 +28,12 @@ const CustomIframe = ({ uniqueId, value, onChange, ...rest }) => {
   // TODO：联动处理
   const handleDependence = (param) => {
     if (value.dependence.length === 0) return;
-    dispatch({ type: "component/dependencies", data: dependencies.concat(param) });
+    setState({dependencies: state.dependencies.concat(param)})
   };
 
   const onMessage = (event) => {
-    if (event.data.isDD && selected !== uniqueId) {
-      dispatch({ type: "component/selected", data: uniqueId });
+    if (event.data.isDD && state.currentNode !== uniqueId) {
+      setState({currentNode: uniqueId});
     }
 
     if (!event.data.path || event.data.path.indexOf(path) < 0) {
@@ -77,12 +78,12 @@ const CustomIframe = ({ uniqueId, value, onChange, ...rest }) => {
 
   // TODO：刷新清空联动集合ids
   useEffect(() => {
-    if (dependencies.includes(uniqueId)) {
+    if (state.dependencies.includes(uniqueId)) {
       setDataSource(data);
-      dispatch({ type: "component/dependencies", data: [] });
+      setState({dependencies: []})
       onNotice();
     }
-  }, [dependencies]);
+  }, [state.dependencies]);
 
   return (
     <iframe
@@ -98,7 +99,4 @@ const CustomIframe = ({ uniqueId, value, onChange, ...rest }) => {
   );
 };
 
-export default connect((state) => ({
-  selected: state.component.selected,
-  dependencies: state.component.dependencies
-}))(CustomIframe);
+export default CustomIframe;

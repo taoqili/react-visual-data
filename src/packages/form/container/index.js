@@ -8,6 +8,7 @@ import SchemaRender from "@/form-render";
 import { useSet } from "~hooks/useSet ";
 import { isEmpty } from "~utils/helper";
 import "./style.less";
+import { useDesigner } from "../../../hooks/useDesigner";
 
 const Compose = createContext({});
 
@@ -46,16 +47,12 @@ const DragHandle = SortableHandle(() => (
   </div>
 ));
 
-const SortableItem = connect((state) => ({
-  mode: state.component.mode,
-  parmas: state.form.parmas,
-  selected: state.component.selected
-}))(
-  SortableElement(({ value, labelColor, onClickItem, mode, parmas, selected, dispatch }) => {
+const SortableItem = SortableElement(({ value, labelColor, onClickItem, dispatch }) => {
     const [formData, setFormData] = useState(null);
     const { formState, dispathFormState } = useContext(Compose);
+    const { state, setState } = useDesigner()
     const classNames = cx("form-item form-item__border", {
-      "is-active": selected === value.uniqueId && mode === "development"
+      "is-active": state.currentNode === value.uniqueId && state.mode === "development"
     });
 
     const onValueChange = (data) => {
@@ -65,15 +62,15 @@ const SortableItem = connect((state) => ({
       dispathFormState({ values: getValues(formState.items, value.uniqueId, data) });
       // TODO: 处理筛选条件值
       if (data) {
-        newParmas = getParams(parmas, value, data);
+        newParmas = getParams(state.params, value, data);
       } else {
-        newParmas = parmas.filter((item) => item.k !== value.data.key);
+        newParmas = state.parmas.filter((item) => item.k !== value.data.key);
       }
-      dispatch({ type: "form/parmas", data: newParmas });
+      // dispatch({ type: "form/parmas", data: newParmas });
     };
 
     const onItemClick = ($event) => {
-      dispatch({ type: "component/fieldType", data: "form" });
+      setState({fieldType: 'form'})
       onClickItem($event, value.uniqueId);
     };
 
@@ -87,7 +84,7 @@ const SortableItem = connect((state) => ({
 
     return (
       <Col span={value.data.halfWidth ? 12 : 24} className={classNames} onClick={onItemClick}>
-        {selected === value.uniqueId && mode === "development" && <DragHandle />}
+        {state.currentNode === value.uniqueId && mode === "development" && <DragHandle />}
         <SchemaRender
           cname={value.type}
           schema={currentSchema}
@@ -98,11 +95,12 @@ const SortableItem = connect((state) => ({
         />
       </Col>
     );
-  })
+  }
 );
 
-const SortableList = SortableContainer(({ labelColor, mode, dependencies, conditions, onClickItem, dispatch }) => {
+const SortableList = SortableContainer(({ labelColor, dependencies, conditions, onClickItem }) => {
   const { formState, dispathFormState } = useContext(Compose);
+  const { state, setState } = useDesigner();
   // 筛选查询
   const onSumbitClick = (event) => {
     event.stopPropagation();
@@ -125,11 +123,11 @@ const SortableList = SortableContainer(({ labelColor, mode, dependencies, condit
           });
         });
       } else {
-        dispatch({ type: "component/dependencies", data: dependencies });
+        setState({dependencies})
       }
     } else {
       dispathFormState({ verify: false });
-      dispatch({ type: "component/dependencies", data: dependencies });
+      setState({dependencies})
     }
   };
 
@@ -146,7 +144,7 @@ const SortableList = SortableContainer(({ labelColor, mode, dependencies, condit
             index={index}
             labelColor={labelColor}
             value={item}
-            disabled={mode === "preview" ? true : false}
+            disabled={state.mode === "preview" ? true : false}
             onClickItem={onClickItem}
           />
         ))}
@@ -186,13 +184,13 @@ function SortableComponent({ value, mode, dependencies, conditions, dispatch }) 
     });
 
     dispathFormState({ items: newItems });
-    dispatch({ type: "form/conditions", data: newItems });
+    // dispatch({ type: "form/conditions", data: newItems });
   };
 
   const onItemClick = (event, key) => {
     event.stopPropagation();
     if (mode === "preview") return;
-    dispatch({ type: "component/selected", data: key });
+    setState({currentNode: key})
   };
 
   useEffect(() => {

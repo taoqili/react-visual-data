@@ -4,7 +4,7 @@ import { useView } from "~hooks/useDesigner";
 import { IconFont } from "~components";
 import { round } from "~utils/helper";
 
-export default ({selected}) => {
+export default () => {
   const { view, setView } = useView();
   const { scale } = view;
 

@@ -16,10 +16,9 @@ function LayoutHeader(props) {
   };
 
   const handleSignOut = () => {
-    dispatch({ type: "app/resetState" });
-    dispatch({ type: "component/resetState" });
-    dispatch({ type: "form/resetState" });
-    history.replace({ pathname: "/account" });
+    // setState({
+    //
+    // })
   };
 
   const content = (

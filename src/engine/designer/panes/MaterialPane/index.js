@@ -6,7 +6,7 @@ import './index.less';
 
 const clsPrefix = 'lcp-design-pane';
 
-export default ({selected, dispatch}) => {
+export default () => {
   const [cname, setCname] = useState("");
   const designerTotal = Object.values(designerList).flat(1);
 

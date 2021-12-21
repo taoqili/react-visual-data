@@ -8,9 +8,7 @@ export default (props = {}) => {
   const {
     onChange,
     defaultActive,
-    docks = [],
-    selected,
-    dispatch
+    docks = []
   } = props;
   const [visible, setVisible] = useState(defaultActive)
   const [selectedName, setSelectedName] = useState({lasted: '', current: defaultActive})
@@ -74,7 +72,7 @@ export default (props = {}) => {
               width: 250
             }}
           >
-            <Component selected={selected} dispatch={dispatch} />
+            <Component />
           </Drawer>: null
       }
     </div>

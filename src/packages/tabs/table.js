@@ -23,13 +23,13 @@ const EditableCell = ({ children, ...restProps }) => {
   return <td {...restProps}>{children}</td>;
 };
 
-const VTabToTable = ({ name, cid, value, onChange, selected, tabStore, dispatch }) => {
+const VTabToTable = ({ name, cid, value, onChange, tabStore, dispatch }) => {
   const [tableData, setTableData] = useState([]);
   const { state } = useDesigner();
 
   // TODO：过滤联动、当前项、tabs组件
   const tabItems = state.components
-    .filter((v) => !(v.type === "tabs" || v.uniqueId === selected || v.data.dependenceOpen))
+    .filter((v) => !(v.type === "tabs" || v.uniqueId === state.currentNode || v.data.dependenceOpen))
     .map((o) => ({
       uniqueId: o.uniqueId,
       name: o.name
@@ -37,7 +37,7 @@ const VTabToTable = ({ name, cid, value, onChange, selected, tabStore, dispatch 
 
   useEffect(() => {
     setTableData(value);
-  }, [selected]);
+  }, [state.currentNode]);
 
   const handleValue = (data) => {
     setTableData(data);
@@ -180,6 +180,5 @@ const VTabToTable = ({ name, cid, value, onChange, selected, tabStore, dispatch 
 };
 
 export default connect((state) => ({
-  selected: state.component.selected,
   tabStore: state.tab.tabStore
 }))(VTabToTable);

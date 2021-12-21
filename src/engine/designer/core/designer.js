@@ -4,7 +4,6 @@
 import React, { useMemo, useState, useEffect, useCallback } from "react";
 import cx from "classnames";
 import { Rnd } from "react-rnd";
-import { connect } from "react-redux";
 import { getField } from "~packages";
 import { useDesigner, useView } from "~hooks/useDesigner";
 import { throttle } from "~utils";
@@ -35,11 +34,11 @@ function AlignLine() {
 }
 
 // TODO：ui和组件拔插模式
-function DragField({ value, tabBind, tabStore, selected, dispatch, onValueChange }) {
+function DragField({ value, tabBind, tabStore, onValueChange }) {
   const { width, height, background, left, top, isHidden, isLock, ...rest } = value.data;
   const [locations, setLocations] = useState({ left: left, top: top });
   const [show, setShow] = useState(true);
-  const {setState } = useDesigner();
+  const {state, setState } = useDesigner();
   const { view } = useView();
 
   const classNames = cx("drag-shape-wrap animate__animated", {
@@ -51,38 +50,38 @@ function DragField({ value, tabBind, tabStore, selected, dispatch, onValueChange
   });
 
   const hasSelected = useMemo(() => {
-    return selected === value.uniqueId;
-  }, [selected]);
+    return state.currentNode === value.uniqueId;
+  }, [state.currentNode]);
 
   const hasEditing = useMemo(() => {
     return !hasSelected || isLock || isHidden;
   }, [hasSelected, isLock, isHidden]);
 
   // TODO: tabs控件控制器
-  useEffect(() => {
-    if (tabStore.length === 0) return;
-
-    let canTabStore = tabStore.reduce((arr, item) => {
-      if (item.pid === tabBind[0].pid) {
-        item.tabBindChart.forEach((m) => {
-          if (m.bindChart.length > 0) {
-            arr.push(...m.bindChart);
-          }
-        });
-      }
-
-      return arr;
-    }, []);
-
-    // 汇总关联组件去重
-    canTabStore = Array.from(new Set(canTabStore)).find((item) => item === value.uniqueId);
-
-    if (canTabStore && value.type !== "tabs") {
-      const ret = tabStoreIds.some((el) => el.bindChart.includes(value.uniqueId));
-
-      setShow(ret);
-    }
-  }, [tabBind]);
+  // useEffect(() => {
+  //   if (tabStore.length === 0) return;
+  //
+  //   let canTabStore = tabStore.reduce((arr, item) => {
+  //     if (item.pid === tabBind[0].pid) {
+  //       item.tabBindChart.forEach((m) => {
+  //         if (m.bindChart.length > 0) {
+  //           arr.push(...m.bindChart);
+  //         }
+  //       });
+  //     }
+  //
+  //     return arr;
+  //   }, []);
+  //
+  //   // 汇总关联组件去重
+  //   canTabStore = Array.from(new Set(canTabStore)).find((item) => item === value.uniqueId);
+  //
+  //   if (canTabStore && value.type !== "tabs") {
+  //     const ret = tabStoreIds.some((el) => el.bindChart.includes(value.uniqueId));
+  //
+  //     setShow(ret);
+  //   }
+  // }, [tabBind]);
 
   useEffect(() => {
     setShow(!isHidden);
@@ -97,9 +96,7 @@ function DragField({ value, tabBind, tabStore, selected, dispatch, onValueChange
     ev.stopPropagation();
     if (hasSelected) return;
 
-    setState({ settingTabsKey: "base" });
-    // TODO: 获取当前用户点击的key
-    dispatch({ type: "component/selected", data: value.uniqueId });
+    setState({ settingTabsKey: "base", currentNode: value.uniqueId });
   };
 
   // todo: 鼠标移上根据实际情况使用
@@ -107,7 +104,7 @@ function DragField({ value, tabBind, tabStore, selected, dispatch, onValueChange
   //   ev.preventDefault();
   //   ev.stopPropagation();
   //   if (hasSelected) return;
-  //   dispatch({ type: "component/selected", data: value.uniqueId });
+  //   setState({currentNode: value.uniqueId});
   // };
 
   const overwriteStyle = {
@@ -219,8 +216,4 @@ function DragField({ value, tabBind, tabStore, selected, dispatch, onValueChange
   );
 }
 
-export default connect((state) => ({
-  selected: state.component.selected,
-  tabBind: state.tab.tabBind,
-  tabStore: state.tab.tabStore
-}))(DragField);
+export default DragField;

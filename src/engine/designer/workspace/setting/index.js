@@ -1,6 +1,5 @@
 import React, { useMemo } from "react";
 import { Tabs } from "antd";
-import { connect } from "react-redux";
 import cx from "classnames";
 import { Scrollbar } from "~components";
 import SchemaRender from "@/form-render";
@@ -12,7 +11,7 @@ import { DIMENSION } from "../../constants";
 import "./index.less";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 
-const FieldSetConf = ({ selected }) => {
+const FieldSetConf = () => {
   const { state, setState } = useDesigner();
   const { view, setView } = useView();
 
@@ -21,10 +20,10 @@ const FieldSetConf = ({ selected }) => {
   });
 
   const currentConf = useMemo(() => {
-    if (state.components.length > 0 && selected !== "-") {
+    if (state.components.length > 0 && state.currentNode !== "-") {
       try {
         // TODO: 获取物料组件配置项
-        const currentField = getFieldConf(state.components, selected);
+        const currentField = getFieldConf(state.components, state.currentNode);
 
         return {
           cname: currentField.type,
@@ -42,10 +41,10 @@ const FieldSetConf = ({ selected }) => {
       value: {},
       configs: []
     };
-  }, [selected, state.settingTabsKey]);
+  }, [state.currentNode, state.settingTabsKey]);
 
   const onComponentValueChange = (value) => {
-    let results = mergeFieldConfig(state.components, { parentId: selected }, value);
+    let results = mergeFieldConfig(state.components, { parentId: state.currentNode }, value);
     setLevelPath(results, null);
     setState({ components: results });
   };
@@ -66,7 +65,7 @@ const FieldSetConf = ({ selected }) => {
     setView({rightPaneCollapsed: !view.rightPaneCollapsed})
   }
 
-  if (selected === "-") {
+  if (state.currentNode === "-") {
     return (
       <div className={classNames}>
         <Scrollbar>
@@ -121,6 +120,4 @@ const FieldSetConf = ({ selected }) => {
   );
 };
 
-export default connect((state) => ({
-  selected: state.component.selected
-}))(FieldSetConf);
+export default FieldSetConf;

@@ -2,14 +2,13 @@ import React, { useEffect, useRef } from "react";
 import { Modal, Space, Button, Typography, Badge, message, Tooltip } from "antd";
 import { Link } from "react-router-dom";
 import copyTOClipboard from "copy-text-to-clipboard";
-import { connect } from "react-redux";
 import { useDesigner, useView } from "~hooks/useDesigner";
 import { uuid } from "~utils";
 import { generatorField, getFieldConf, getFieldOrderBy, orderBy } from "../../core/utils";
 import { IconFont, MonacoEditor } from "~components";
 import storage from "~utils/storage";
 
-const FieldActionsConf = ({ selected, dispatch }) => {
+const FieldActionsConf = () => {
   const { state, setState } = useDesigner();
   const { view, setView } = useView();
   const editorRef = useRef(null);
@@ -24,26 +23,23 @@ const FieldActionsConf = ({ selected, dispatch }) => {
       }
     });
     setState({
+      currentNode: '-',
       components: [],
       undo: [],
       redo: []
     });
-
-    dispatch({ type: "component/selected", data: "-" });
   };
 
   // TODO: 复制
   const handleCopy = () => {
-    const curFieldConf = getFieldConf(state.components, selected);
+    const curFieldConf = getFieldConf(state.components, state.currentNode);
     const { components, fieldId } = generatorField(state.components, "field", curFieldConf);
-    setState({ components: components });
-
-    dispatch({ type: "component/selected", data: fieldId });
+    setState({ components: components, currentNode: fieldId });
   };
 
   // TODO: 删除
   const handleDelete = () => {
-    const { index, components } = getFieldOrderBy(state.components, selected);
+    const { index, components } = getFieldOrderBy(state.components, state.currentNode);
     let fieldId;
     if (components.length === 1) {
       fieldId = "-";
@@ -53,14 +49,12 @@ const FieldActionsConf = ({ selected, dispatch }) => {
       fieldId = components[index + 1].uniqueId;
     }
     components.splice(index, 1);
-    setState({ components: components });
-
-    dispatch({ type: "component/selected", data: fieldId });
+    setState({ components: components, currentNode: fieldId });
   };
 
   // TODO: 上移，与前一个元素交换顺序
   const handleUp = () => {
-    const { index, components } = getFieldOrderBy(state.components, selected);
+    const { index, components } = getFieldOrderBy(state.components, state.currentNode);
 
     if (index - 1 >= 0) {
       const results = orderBy(components, index, index - 1);
@@ -73,7 +67,7 @@ const FieldActionsConf = ({ selected, dispatch }) => {
 
   // TODO: 下移，与后一个元素交换顺序
   const handleDown = () => {
-    const { index, components } = getFieldOrderBy(state.components, selected);
+    const { index, components } = getFieldOrderBy(state.components, state.currentNode);
 
     if (index + 1 < components.length) {
       const results = orderBy(components, index, index + 1);
@@ -86,7 +80,7 @@ const FieldActionsConf = ({ selected, dispatch }) => {
 
   // TODO: 置顶
   const handleTop = () => {
-    const { index, components } = getFieldOrderBy(state.components, selected);
+    const { index, components } = getFieldOrderBy(state.components, state.currentNode);
 
     if (index - 1 >= 0) {
       // 将要置顶的元素存储后删除
@@ -102,7 +96,7 @@ const FieldActionsConf = ({ selected, dispatch }) => {
 
   // TODO: 置底
   const handleBottom = () => {
-    const { index, components } = getFieldOrderBy(state.components, selected);
+    const { index, components } = getFieldOrderBy(state.components, state.currentNode);
 
     if (index + 1 < components.length) {
       // 将要置底的元素存储后删除
@@ -147,12 +141,12 @@ const FieldActionsConf = ({ selected, dispatch }) => {
         </Typography.Title>
       </div>
       <Space className="gc-design__hd--action">
-        <Button disabled={selected === "-"} icon={<IconFont antd={true} type="CopyOutlined" />} onClick={handleCopy}>
+        <Button disabled={state.currentNode === "-"} icon={<IconFont antd={true} type="CopyOutlined" />} onClick={handleCopy}>
           复制
         </Button>
 
         <Button
-          disabled={selected === "-"}
+          disabled={state.currentNode === "-"}
           icon={<IconFont antd={true} type="DeleteOutlined" />}
           onClick={handleDelete}
         >
@@ -161,25 +155,25 @@ const FieldActionsConf = ({ selected, dispatch }) => {
         <Button icon={<IconFont antd={true} type="ClearOutlined" />} onClick={handleClear}>
           清空
         </Button>
-        <Button disabled={selected === "-"} icon={<IconFont antd={true} type="SwapLeftOutlined" />} onClick={handleUp}>
+        <Button disabled={state.currentNode === "-"} icon={<IconFont antd={true} type="SwapLeftOutlined" />} onClick={handleUp}>
           上一层
         </Button>
         <Button
-          disabled={selected === "-"}
+          disabled={state.currentNode === "-"}
           icon={<IconFont antd={true} type="SwapRightOutlined" />}
           onClick={handleDown}
         >
           下一层
         </Button>
         <Button
-          disabled={selected === "-"}
+          disabled={state.currentNode === "-"}
           icon={<IconFont antd={true} type="VerticalAlignTopOutlined" />}
           onClick={handleTop}
         >
           置顶
         </Button>
         <Button
-          disabled={selected === "-"}
+          disabled={state.currentNode === "-"}
           icon={<IconFont antd={true} type="VerticalAlignBottomOutlined" />}
           onClick={handleBottom}
         >
@@ -231,6 +225,4 @@ const FieldActionsConf = ({ selected, dispatch }) => {
   );
 };
 
-export default connect((state) => ({
-  selected: state.component.selected
-}))(FieldActionsConf);
+export default FieldActionsConf;
