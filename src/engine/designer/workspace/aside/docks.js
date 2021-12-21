@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { AlignRightOutlined, AppstoreOutlined, DatabaseOutlined } from "@ant-design/icons";
 import OutlinePane from '../../panes/OutlinePane'
 import MaterialPane from '../../panes/MaterialPane'
@@ -24,8 +24,14 @@ export default [
       footer: <span>自定义底部</span>
     },
     component: ({view, setView, state, setState}) => {
+      const [name, setName] = useState('Test')
+      useEffect(() => {
+        setTimeout(() => {
+          setName('Change')
+        }, 2000)
+      }, [])
       return (
-        <div>数据源</div>
+        <div>数据源 {name}</div>
       )
     }
   }
