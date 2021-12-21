@@ -3,6 +3,9 @@ import { Button, Space, Tooltip } from "antd";
 import { useView } from "../../../hooks/useDesigner";
 import { IconFont } from "~components";
 import { round } from "~utils/helper";
+import Dock from '../Dock'
+import docks from './docks'
+import './index.less'
 
 export default () => {
   const { view, setView } = useView();
@@ -19,37 +22,8 @@ export default () => {
   };
 
   return (
-    <div className="ruler-tool">
-      <Tooltip title="清空所有参考线">
-        <Button
-          shape="circle"
-          size="small"
-          icon={<IconFont antd={true} type="SettingOutlined" />}
-          onClick={handleSetting}
-        />
-      </Tooltip>
-      <Space>
-        <Tooltip title="缩小">
-          <Button
-            shape="circle"
-            size="small"
-            icon={<IconFont antd={true} type="ZoomOutOutlined" />}
-            onClick={() => {
-              setView({ scale: round(Math.max(0.2, scale - 0.1), 2) });
-            }}
-          />
-        </Tooltip>
-        <Tooltip title="放大">
-          <Button
-            shape="circle"
-            size="small"
-            icon={<IconFont antd={true} type="ZoomInOutlined" />}
-            onClick={() => {
-              setView({ scale: round(Math.min(2, scale + 0.1), 2) });
-            }}
-          />
-        </Tooltip>
-      </Space>
+    <div className={"lcp-design-footer"}>
+      <Dock docks={docks} horizontal />
     </div>
   )
 }

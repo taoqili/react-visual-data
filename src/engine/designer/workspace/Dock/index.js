@@ -1,19 +1,24 @@
 import React, { useState } from "react";
-import { Drawer, Tooltip } from 'antd';
+import { Drawer } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
+import Items from './Items'
+import useDocks from './useDocks'
 import './index.less';
 
-const classPrefix = 'lcp-design-dock'
+const clsPrefix = 'lcp-design-dock'
 export default (props = {}) => {
   const {
     onChange,
     defaultActive,
+    horizontal,
     docks = []
   } = props;
   const [visible, setVisible] = useState(defaultActive)
   const [selectedName, setSelectedName] = useState({lasted: '', current: defaultActive})
   const selectedDocks = docks.filter(item => item.name === selectedName.current);
   const { component: Component, title } = selectedDocks.length ? selectedDocks[0] : {};
+  const { leftDocks, centerDocks, rightDocks } = useDocks(docks, horizontal);
+
   const handleClick = (name) => {
     const lasted = selectedName.current
     const current = name
@@ -28,48 +33,63 @@ export default (props = {}) => {
     }
   }
   return (
-    <div className={`${classPrefix}-wrapper`}>
+    <div className={`${clsPrefix}-wrapper ${horizontal ? 'horizontal' : ''}`}>
       {
-        docks.map(item => {
-          const { name, title, icon, onClick, component } = item || {};
-          return (
-            <div
-              key={name}
-              className={`${
-                classPrefix}-icon ${name === selectedName.current && visible ? 'selected' : ''}`
-              }
-              onClick={() => {
-                if (component) {
-                  handleClick(name)
-                } else if ( onClick ) {
-                  onClick()
-                }
-              }}
-            >
-              <Tooltip placement="right" title={title}>
-                {icon}
-              </Tooltip>
-            </div>
-          )
-        })
+        !horizontal
+          ? <Items
+              docks={docks}
+              handleClick={handleClick}
+              clsPrefix={clsPrefix}
+              selectedName={selectedName}
+              visible={visible}
+            />
+          : <>
+              <div className={`${clsPrefix}-group`}>
+                <Items
+                  docks={leftDocks}
+                  handleClick={handleClick}
+                  clsPrefix={clsPrefix}
+                  selectedName={selectedName}
+                  visible={visible}
+                />
+              </div>
+              <div className={`${clsPrefix}-group`}>
+                <Items
+                  docks={centerDocks}
+                  handleClick={handleClick}
+                  clsPrefix={clsPrefix}
+                  selectedName={selectedName}
+                  visible={visible}
+                />
+              </div>
+              <div className={`${clsPrefix}-group`}>
+                <Items
+                  docks={rightDocks}
+                  handleClick={handleClick}
+                  clsPrefix={clsPrefix}
+                  selectedName={selectedName}
+                  visible={visible}
+                />
+              </div>
+            </>
       }
       {
         Component && visible
           ? <Drawer
             title={
-              <div className={`${classPrefix}-pane-title`}>
+              <div className={`${clsPrefix}-pane-title`}>
                 <div>{title}</div>
                 <div onClick={() => setVisible(false)}><CloseOutlined /></div>
               </div>
             }
-            placement="left"
+            placement={!horizontal ? 'left' : 'bottom'}
             closable={false}
             mask={false}
             visible={visible}
             getContainer={() => document.querySelector('.gc-design__wrapper')}
             style={{
               position: 'absolute',
-              width: 250
+              width: horizontal ? '100%' : 250
             }}
           >
             <Component />

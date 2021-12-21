@@ -1,13 +1,31 @@
 .lcp-design-dock {
   &-wrapper {
-
+    padding: 0 5px;
+    &.horizontal {
+      padding: 5px 20px 5px 40px;
+      display: flex;
+      justify-content: space-between;
+      .lcp-design-dock-icon {
+        margin: 0 10px;
+        width: unset;
+        height: inherit;
+        line-height: inherit;
+        font-size: 16px;
+        user-select: none;
+      }
+    }
+  }
+  &-group {
+    display: flex;
   }
   &-icon {
     text-align: center;
     height: 40px;
+    width: 30px;
     line-height: 40px;
     font-size: 20px;
     cursor: pointer;
+    flex: 1;
     &:hover {
       color: #409fff;
     }

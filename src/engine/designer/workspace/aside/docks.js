@@ -8,14 +8,12 @@ export default [
     name: 'outline',
     title: '大纲树',
     icon: <AlignRightOutlined />,
-    place: 'top',
     component: OutlinePane
   },
   {
     name: 'material',
     title: '组件库',
     icon: <AppstoreOutlined />,
-    place: 'top',
     component: MaterialPane
   },
   {
