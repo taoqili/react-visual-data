@@ -18,23 +18,6 @@ export default [
     }
   },
   {
-    name: 'dialog',
-    title: '弹窗',
-    icon: <MinusCircleOutlined />,
-    popupProps: {
-      onOk: ({ view, setView, state, setState }) => {
-        alert(1)
-      },
-      footer: null,
-      okText: 'OK'
-    },
-    component: ({ view, setView, state, setState }) => {
-      return (
-        <div>123123123123123</div>
-      )
-    }
-  },
-  {
     name: 'minus',
     title: '缩小',
     icon: <MinusCircleOutlined />,

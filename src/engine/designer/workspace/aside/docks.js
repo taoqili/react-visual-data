@@ -20,7 +20,10 @@ export default [
     name: 'dataSource',
     title: '数据源',
     icon: <DatabaseOutlined />,
-    component: (props) => {
+    popupProps: {
+      footer: <span>自定义底部</span>
+    },
+    component: ({view, setView, state, setState}) => {
       return (
         <div>数据源</div>
       )

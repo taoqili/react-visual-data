@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { Drawer } from 'antd';
-import { CloseOutlined } from '@ant-design/icons';
 import Items from './Items'
 import useDocks from './useDocks'
+import Pane from './Pane';
 import './index.less';
 
 const clsPrefix = 'lcp-design-dock'
@@ -16,7 +15,7 @@ export default (props = {}) => {
   const [visible, setVisible] = useState(defaultActive)
   const [selectedName, setSelectedName] = useState({lasted: '', current: defaultActive})
   const selectedDocks = docks.filter(item => item.name === selectedName.current);
-  const { component: Component, title } = selectedDocks.length ? selectedDocks[0] : {};
+  const { component: Component, title, popupProps = {} } = selectedDocks.length ? selectedDocks[0] : {};
   const { leftDocks, centerDocks, rightDocks } = useDocks(docks, horizontal);
 
   const handleClick = (name) => {
@@ -75,25 +74,16 @@ export default (props = {}) => {
       }
       {
         Component && visible
-          ? <Drawer
-            title={
-              <div className={`${clsPrefix}-pane-title`}>
-                <div>{title}</div>
-                <div onClick={() => setVisible(false)}><CloseOutlined /></div>
-              </div>
-            }
-            placement={!horizontal ? 'left' : 'bottom'}
-            closable={false}
-            mask={false}
-            visible={visible}
-            getContainer={() => document.querySelector('.gc-design__wrapper')}
-            style={{
-              position: 'absolute',
-              width: horizontal ? '100%' : 250
-            }}
-          >
-            <Component />
-          </Drawer>: null
+          ? <Pane {...{
+              clsPrefix,
+              title,
+              horizontal,
+              visible,
+              setVisible,
+              Component,
+              popupProps
+            }} />
+          : null
       }
     </div>
   )
