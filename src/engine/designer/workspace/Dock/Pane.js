@@ -45,14 +45,14 @@ export default (props = {}) => {
           <div onClick={() => setVisible(false)}><CloseOutlined /></div>
         </div>
       }
-      placement={!horizontal ? 'left' : 'bottom'}
+      placement={'left'}
       closable={false}
       mask={false}
       visible={visible}
       getContainer={() => document.querySelector('.gc-design__wrapper')}
       style={{
         position: 'absolute',
-        width: horizontal ? '100%' : 250
+        width: 250
       }}
       {...popupProps}
     >
