@@ -1,6 +1,6 @@
 import React, { useMemo, forwardRef } from "react";
 import PropTypes from "prop-types";
-import { useAutoResize } from "~hooks/useAutoResize";
+import { useAutoResize } from "../../../engine/hooks/useAutoResize";
 
 const defaultColor = ["#fff", "#0de7c2"];
 const pointSideLength = 2.5;

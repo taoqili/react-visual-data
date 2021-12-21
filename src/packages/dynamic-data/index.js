@@ -2,7 +2,7 @@ import React, { Fragment, useRef, useEffect, createContext } from "react";
 import { Modal, Drawer, Space, Button, Divider, Row, Col, Select, Form } from "antd";
 import { connect } from "react-redux";
 import { MonacoEditor } from "~components";
-import { useSet } from "~hooks/useSet";
+import { useSet } from "../../engine/hooks/useSet";
 import { echartBarAPI } from "@/api";
 
 const { Option } = Select;

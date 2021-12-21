@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { Ctx, StoreCtx } from "~hooks/useDesigner";
-import { useDocumentTitle } from "~hooks/useDocumentTitle";
-import { useSet } from "~hooks/useSet";
+import { StoreCtx, ViewCtx } from "../hooks/useDesigner";
+import { useDocumentTitle } from "../hooks/useDocumentTitle";
+import { useSet } from "../hooks/useSet";
 import { Designer } from "./core";
 import { mergeFieldConfig, setLevelPath } from "./core/utils";
 import DesignerAside from "./workspace/aside";
@@ -108,8 +108,8 @@ function App(props) {
   };
 
   return (
-    <Ctx.Provider value={{ state, setState }}>
-      <StoreCtx.Provider value={{ view, setView }}>
+    <StoreCtx.Provider value={{ state, setState }}>
+      <ViewCtx.Provider value={{ view, setView }}>
         <DesignerHeader />
         <section className="gc-design__bd" id="designer">
           <DesignerAside />
@@ -123,8 +123,8 @@ function App(props) {
           </DesignerBody>
           <DesignerSetting />
         </section>
-      </StoreCtx.Provider>
-    </Ctx.Provider>
+      </ViewCtx.Provider>
+    </StoreCtx.Provider>
   );
 }
 

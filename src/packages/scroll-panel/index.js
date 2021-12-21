@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef, forwardRef, useMemo } from "react";
 import PropTypes from "prop-types";
-import { useAutoResize } from "~hooks/useAutoResize";
+import { useAutoResize } from "../../engine/hooks/useAutoResize";
 
 const defaultConfig = {
   columns: [],

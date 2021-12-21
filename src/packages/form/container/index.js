@@ -5,10 +5,10 @@ import { SortableContainer, SortableHandle, SortableElement, arrayMove } from "r
 import cx from "classnames";
 import { Scrollbar, IconFont } from "~components";
 import SchemaRender from "@/form-render";
-import { useSet } from "~hooks/useSet ";
+import { useSet } from "../../../engine/hooks/useSet";
 import { isEmpty } from "~utils/helper";
 import "./style.less";
-import { useDesigner } from "../../../hooks/useDesigner";
+import { useStore } from "../../../engine/hooks/useDesigner";
 
 const Compose = createContext({});
 
@@ -50,7 +50,7 @@ const DragHandle = SortableHandle(() => (
 const SortableItem = SortableElement(({ value, labelColor, onClickItem, dispatch }) => {
     const [formData, setFormData] = useState(null);
     const { formState, dispathFormState } = useContext(Compose);
-    const { state, setState } = useDesigner()
+    const { state, setState } = useStore()
     const classNames = cx("form-item form-item__border", {
       "is-active": state.currentNode === value.uniqueId && state.mode === "development"
     });

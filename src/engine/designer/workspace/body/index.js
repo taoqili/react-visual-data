@@ -2,8 +2,8 @@ import React, { useEffect, forwardRef, useRef, useMemo, useLayoutEffect, useCall
 import { Scrollbar, SketchRuler } from "~components";
 import { cloneDeep } from "~utils";
 import { generatorField } from "../../core/utils";
-import { useAutoResize } from "~hooks/useAutoResize";
-import { useView, useDesigner } from "~hooks/useDesigner";
+import { useAutoResize } from "../../../hooks/useAutoResize";
+import { useView, useStore } from "../../../hooks/useDesigner";
 import { THICK, DIMENSION } from "../../constants";
 import { componentMarket } from "../../configuration-value";
 import Footer from '../footer'
@@ -21,7 +21,7 @@ function Wrapper(props, ref) {
     backgroundBlur,
     backgroundOpacity
   } = props;
-  const { state, setState } = useDesigner();
+  const { state, setState } = useStore();
   const { view, setView } = useView();
   const { width, height, domRef } = useAutoResize(ref);
   const containerRef = useRef(null);

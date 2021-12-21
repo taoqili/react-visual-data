@@ -1,11 +1,10 @@
 import React, { useMemo } from "react";
-import { connect } from "react-redux";
 import { Select } from "antd";
 import fetcher from "~packages/hoc";
-import { useDesigner } from "~hooks/useDesigner";
+import { useStore } from "../../engine/hooks/useDesigner";
 
 function SelectComponent({ name, value, onChange }) {
-  const { state } = useDesigner();
+  const { state } = useStore();
   const options = useMemo(() => {
     return state.components.filter((v) => v.uniqueId !== state.currentNode && v.data.dependence);
   }, [state.currentNode]);

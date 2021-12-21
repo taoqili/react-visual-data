@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Tree } from "antd";
-import { useDesigner } from "~hooks/useDesigner";
+import { useStore } from "../../../hooks/useDesigner";
 
 const clsPrefix = 'lcp-design-pane';
 
@@ -12,7 +12,7 @@ export default () => {
       children: []
     }
   ]);
-  const { state, setState } = useDesigner();
+  const { state, setState } = useStore();
 
   const onSelect = (keys) => {
     if (!keys || !keys.length) {

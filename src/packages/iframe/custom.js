@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { notification } from "antd";
 import { onEvent, offEvent } from "~utils";
 import "./style.less";
-import { useDesigner } from "../../hooks/useDesigner";
+import { useStore } from "../../engine/hooks/useDesigner";
 
 const CustomIframe = ({ uniqueId, value, onChange, ...rest }) => {
   const {
@@ -12,7 +12,7 @@ const CustomIframe = ({ uniqueId, value, onChange, ...rest }) => {
   const iframeRef = useRef();
   const [dataSource, setDataSource] = useState([]);
   const [path, setPath] = useState(`./demo.html?t=${count}`);
-  const { state, setState } = useDesigner();
+  const { state, setState } = useStore();
 
   // TODO: 通知子iframe框架数据
   const onNotice = () => {

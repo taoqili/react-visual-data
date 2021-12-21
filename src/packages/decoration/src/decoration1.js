@@ -1,6 +1,6 @@
 import React, { useMemo, useRef, forwardRef } from "react";
 import PropTypes from "prop-types";
-import { useAutoResize } from "~hooks/useAutoResize";
+import { useAutoResize } from "../../../engine/hooks/useAutoResize";
 import { uuid } from "~utils";
 
 const svgWH = [100, 100];

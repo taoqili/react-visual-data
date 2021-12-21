@@ -2,7 +2,7 @@ import React, { useState, useEffect, createContext } from "react";
 import { Button, Empty, Form, Table, Input, Popconfirm, Select } from "antd";
 import { IconFont } from "~components";
 import { connect } from "react-redux";
-import { useDesigner } from "~hooks/useDesigner";
+import { useStore } from "../../engine/hooks/useDesigner";
 import { uuid } from "~utils";
 
 const Compose = createContext({});
@@ -25,7 +25,7 @@ const EditableCell = ({ children, ...restProps }) => {
 
 const VTabToTable = ({ name, cid, value, onChange, tabStore, dispatch }) => {
   const [tableData, setTableData] = useState([]);
-  const { state } = useDesigner();
+  const { state } = useStore();
 
   // TODO：过滤联动、当前项、tabs组件
   const tabItems = state.components

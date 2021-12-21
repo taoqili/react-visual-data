@@ -2,14 +2,14 @@ import React, { useEffect, useRef } from "react";
 import { Modal, Space, Button, Typography, Badge, message, Tooltip } from "antd";
 import { Link } from "react-router-dom";
 import copyTOClipboard from "copy-text-to-clipboard";
-import { useDesigner, useView } from "~hooks/useDesigner";
+import { useStore, useView } from "../../../hooks/useDesigner";
 import { uuid } from "~utils";
 import { generatorField, getFieldConf, getFieldOrderBy, orderBy } from "../../core/utils";
 import { IconFont, MonacoEditor } from "~components";
 import storage from "~utils/storage";
 
 const FieldActionsConf = () => {
-  const { state, setState } = useDesigner();
+  const { state, setState } = useStore();
   const { view, setView } = useView();
   const editorRef = useRef(null);
 

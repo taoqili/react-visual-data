@@ -2,7 +2,7 @@ import React, { useRef, useMemo, useEffect, useImperativeHandle } from "react";
 import { asField, DefaultFieldUI } from "./asField";
 import schemaParser from "./parser";
 import schemaResolve from "./resolve";
-import { useDebounce } from "../hooks/useDebounce";
+import { useDebounce } from "../engine/hooks/useDebounce";
 import { getValidateList } from "./validate";
 import { combineSchema } from "./utils";
 import { isEmpty } from "~utils/helper";

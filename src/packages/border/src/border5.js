@@ -1,5 +1,5 @@
 import React, { useState, forwardRef } from "react";
-import { useAutoResize } from "~hooks/useAutoResize";
+import { useAutoResize } from "../../../engine/hooks/useAutoResize";
 import { uuid } from "~utils";
 
 export default forwardRef(({ children, style, backgroundColor = "transparent" }, ref) => {

@@ -5,7 +5,7 @@ import React, { useMemo, useState, useEffect, useCallback } from "react";
 import cx from "classnames";
 import { Rnd } from "react-rnd";
 import { getField } from "~packages";
-import { useDesigner, useView } from "~hooks/useDesigner";
+import { useStore, useView } from "../../hooks/useDesigner";
 import { throttle } from "~utils";
 import { round, converLayout } from "~utils/helper";
 import { fieldGenerator } from "../../helper";
@@ -38,7 +38,7 @@ function DragField({ value, tabBind, tabStore, onValueChange }) {
   const { width, height, background, left, top, isHidden, isLock, ...rest } = value.data;
   const [locations, setLocations] = useState({ left: left, top: top });
   const [show, setShow] = useState(true);
-  const {state, setState } = useDesigner();
+  const {state, setState } = useStore();
   const { view } = useView();
 
   const classNames = cx("drag-shape-wrap animate__animated", {

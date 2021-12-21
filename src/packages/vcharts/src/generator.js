@@ -5,7 +5,7 @@ import { DynamicDialog, DynamicContent } from "../../dynamic-dialog";
 import vchartsOption from "../options";
 import { echartBarAPI } from "@/api";
 import { isEmpty } from "~utils/helper";
-import { useDesigner } from "../../../hooks/useDesigner";
+import { useStore } from "../../../engine/hooks/useDesigner";
 
 // TODO: 当前type配置项是否有效
 function resoleOption(type) {
@@ -26,7 +26,7 @@ function GeneratorVCharts({ uniqueId, type, value, options, onChange, ...rest })
   if (isEmpty(value.dataConfig.data)) return null;
   const [dataSource, setDataSource] = useState({});
   const [stauts, setStauts] = useState(false);
-  const { state, setState } = useDesigner();
+  const { state, setState } = useStore();
   const { dataConfig, isRefresh, refreshTime } = value;
 
   const getOption = useMemo(() => resoleOption(type), [type]);

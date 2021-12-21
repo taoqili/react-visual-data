@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Space, Tooltip } from "antd";
-import { useView } from "~hooks/useDesigner";
+import { useView } from "../../../hooks/useDesigner";
 import { IconFont } from "~components";
 import { round } from "~utils/helper";
 

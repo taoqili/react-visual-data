@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
 import classnames from "classnames";
-import { useAutoResize } from "~hooks/useAutoResize";
+import { useAutoResize } from "../../../engine/hooks/useAutoResize";
 
 export default forwardRef(({ children, reverse = false, style, backgroundColor = "transparent" }, ref) => {
   const { width, height, domRef } = useAutoResize(ref);

@@ -4,7 +4,7 @@ import cx from "classnames";
 import { Scrollbar } from "~components";
 import SchemaRender from "@/form-render";
 import pageSchema from "./page-schema";
-import { useDesigner, useView } from "~hooks/useDesigner";
+import { useStore, useView } from "../../../hooks/useDesigner";
 import { getFieldConf, mergeFieldConfig, setLevelPath } from "../../core/utils";
 import { screenToSchema } from "../../configuration-schema";
 import { DIMENSION } from "../../constants";
@@ -12,7 +12,7 @@ import "./index.less";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 
 const FieldSetConf = () => {
-  const { state, setState } = useDesigner();
+  const { state, setState } = useStore();
   const { view, setView } = useView();
 
   const classNames = cx("gc-design__setting", {
