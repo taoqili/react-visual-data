@@ -1,4 +1,6 @@
 import React from "react";
+import { Button } from 'antd';
+import storage from "../../../helper/storage";
 import { MinusCircleOutlined, ClearOutlined, PlusCircleOutlined } from "@ant-design/icons";
 
 export default [
@@ -36,12 +38,26 @@ export default [
     }
   },
   {
-    name: 'plus',
-    title: '放大',
-    icon: <PlusCircleOutlined />,
+    name: 'save',
+    title: '保存',
+    icon: <Button>保存</Button>,
     place: 'right',
-    onClick:({view, setView}) => {
-      setView({ scale: Math.min(2, +view.scale + 0.1).toFixed(2) })
+    onClick: ({state, setState}) => {
+      // TODO fetchSave
+      console.log('保存成功')
+    }
+  },
+  {
+    name: 'preview',
+    title: '预览',
+    icon: <Button>预览</Button>,
+    place: 'right',
+    onClick: ({ state }) => {
+       storage.setLocal("schema_screen_config", {
+          page: state.page,
+          components: state.components
+       });
+       window.open('/preview/' + Date.now())
     }
   }
 ]

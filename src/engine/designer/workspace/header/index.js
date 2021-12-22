@@ -7,6 +7,9 @@ import { uuid } from "~utils";
 import { generatorField, getFieldConf, getFieldOrderBy, orderBy } from "../../core/utils";
 import { IconFont, MonacoEditor } from "~components";
 import storage from "~utils/storage";
+import Dock from '../Dock'
+import docks from './docks'
+import './index.less'
 
 const FieldActionsConf = () => {
   const { state, setState } = useStore();
@@ -133,94 +136,102 @@ const FieldActionsConf = () => {
 
   const { siteLogo, siteName } = state.appConfig || {}
   return (
-    <header className="gc-design__hd">
-      <div className="gc-design__hd--title">
-        <Typography.Title level={4} className="gc-design__hd--h1">
-          <img src={siteLogo} width={22} alt="" />&nbsp;&nbsp;
-          {siteName}
-        </Typography.Title>
+    <header className={"lcp-design-header"}>
+      <div className="lcp-design-header-title">
+        <img src={siteLogo} width={24} alt="" />&nbsp;&nbsp;
+        {siteName}
       </div>
-      <Space className="gc-design__hd--action">
-        <Button disabled={state.currentNode === "-"} icon={<IconFont antd={true} type="CopyOutlined" />} onClick={handleCopy}>
-          复制
-        </Button>
+      <div className={'lcp-design-header-docks'}>
+        <Dock docks={docks} horizontal />
+      </div>
 
-        <Button
-          disabled={state.currentNode === "-"}
-          icon={<IconFont antd={true} type="DeleteOutlined" />}
-          onClick={handleDelete}
-        >
-          删除
-        </Button>
-        <Button icon={<IconFont antd={true} type="ClearOutlined" />} onClick={handleClear}>
-          清空
-        </Button>
-        <Button disabled={state.currentNode === "-"} icon={<IconFont antd={true} type="SwapLeftOutlined" />} onClick={handleUp}>
-          上一层
-        </Button>
-        <Button
-          disabled={state.currentNode === "-"}
-          icon={<IconFont antd={true} type="SwapRightOutlined" />}
-          onClick={handleDown}
-        >
-          下一层
-        </Button>
-        <Button
-          disabled={state.currentNode === "-"}
-          icon={<IconFont antd={true} type="VerticalAlignTopOutlined" />}
-          onClick={handleTop}
-        >
-          置顶
-        </Button>
-        <Button
-          disabled={state.currentNode === "-"}
-          icon={<IconFont antd={true} type="VerticalAlignBottomOutlined" />}
-          onClick={handleBottom}
-        >
-          置底
-        </Button>
-      </Space>
-      <div className="gc-design__hd--setting">
-        <Space className="gc-design__hd--save">
-          <Link
-            to={"/preview/" + uuid()}
-            target="_blank"
-            onClick={() => {
-              storage.setLocal("schema_screen_config", {
-                page: state.page,
-                components: state.components
-              });
-            }}
-          >
-            <Button icon={<IconFont antd={true} type="DesktopOutlined" />}>预览</Button>
-          </Link>
-          <Button icon={<IconFont antd={true} type="CodepenOutlined" />} onClick={toggleModal}>
-            调试
-          </Button>
-        </Space>
-      </div>
-      <Modal
-        visible={view.visible}
-        title="调试"
-        style={{ top: 20 }}
-        width={960}
-        // okText="复制配置"
-        okText="应用修改"
-        cancelText="取消"
-        // onOk={handleCopySchema}
-        onOk={handleModifySchema}
-        onCancel={toggleModal}
-      >
-        <MonacoEditor
-          height={520}
-          language="json"
-          ref={editorRef}
-          value={{
-            page: state.page,
-            components: state.components
-          }}
-        />
-      </Modal>
+      {/*<div className="gc-design__hd--title">*/}
+      {/*  <Typography.Title level={4} className="gc-design__hd--h1">*/}
+      {/*    <img src={siteLogo} width={22} alt="" />&nbsp;&nbsp;*/}
+      {/*    {siteName}*/}
+      {/*  </Typography.Title>*/}
+      {/*</div>*/}
+      {/*<Space className="gc-design__hd--action">*/}
+      {/*  <Button disabled={state.currentNode === "-"} icon={<IconFont antd={true} type="CopyOutlined" />} onClick={handleCopy}>*/}
+      {/*    复制*/}
+      {/*  </Button>*/}
+
+      {/*  <Button*/}
+      {/*    disabled={state.currentNode === "-"}*/}
+      {/*    icon={<IconFont antd={true} type="DeleteOutlined" />}*/}
+      {/*    onClick={handleDelete}*/}
+      {/*  >*/}
+      {/*    删除*/}
+      {/*  </Button>*/}
+      {/*  <Button icon={<IconFont antd={true} type="ClearOutlined" />} onClick={handleClear}>*/}
+      {/*    清空*/}
+      {/*  </Button>*/}
+      {/*  <Button disabled={state.currentNode === "-"} icon={<IconFont antd={true} type="SwapLeftOutlined" />} onClick={handleUp}>*/}
+      {/*    上一层*/}
+      {/*  </Button>*/}
+      {/*  <Button*/}
+      {/*    disabled={state.currentNode === "-"}*/}
+      {/*    icon={<IconFont antd={true} type="SwapRightOutlined" />}*/}
+      {/*    onClick={handleDown}*/}
+      {/*  >*/}
+      {/*    下一层*/}
+      {/*  </Button>*/}
+      {/*  <Button*/}
+      {/*    disabled={state.currentNode === "-"}*/}
+      {/*    icon={<IconFont antd={true} type="VerticalAlignTopOutlined" />}*/}
+      {/*    onClick={handleTop}*/}
+      {/*  >*/}
+      {/*    置顶*/}
+      {/*  </Button>*/}
+      {/*  <Button*/}
+      {/*    disabled={state.currentNode === "-"}*/}
+      {/*    icon={<IconFont antd={true} type="VerticalAlignBottomOutlined" />}*/}
+      {/*    onClick={handleBottom}*/}
+      {/*  >*/}
+      {/*    置底*/}
+      {/*  </Button>*/}
+      {/*</Space>*/}
+      {/*<div className="gc-design__hd--setting">*/}
+      {/*  <Space className="gc-design__hd--save">*/}
+      {/*    <Link*/}
+      {/*      to={"/preview/" + uuid()}*/}
+      {/*      target="_blank"*/}
+      {/*      onClick={() => {*/}
+      {/*        storage.setLocal("schema_screen_config", {*/}
+      {/*          page: state.page,*/}
+      {/*          components: state.components*/}
+      {/*        });*/}
+      {/*      }}*/}
+      {/*    >*/}
+      {/*      <Button icon={<IconFont antd={true} type="DesktopOutlined" />}>预览</Button>*/}
+      {/*    </Link>*/}
+      {/*    <Button icon={<IconFont antd={true} type="CodepenOutlined" />} onClick={toggleModal}>*/}
+      {/*      调试*/}
+      {/*    </Button>*/}
+      {/*  </Space>*/}
+      {/*</div>*/}
+      {/*<Modal*/}
+      {/*  visible={view.visible}*/}
+      {/*  title="调试"*/}
+      {/*  style={{ top: 20 }}*/}
+      {/*  width={960}*/}
+      {/*  // okText="复制配置"*/}
+      {/*  okText="应用修改"*/}
+      {/*  cancelText="取消"*/}
+      {/*  // onOk={handleCopySchema}*/}
+      {/*  onOk={handleModifySchema}*/}
+      {/*  onCancel={toggleModal}*/}
+      {/*>*/}
+      {/*  <MonacoEditor*/}
+      {/*    height={520}*/}
+      {/*    language="json"*/}
+      {/*    ref={editorRef}*/}
+      {/*    value={{*/}
+      {/*      page: state.page,*/}
+      {/*      components: state.components*/}
+      {/*    }}*/}
+      {/*  />*/}
+      {/*</Modal>*/}
     </header>
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { MinusCircleOutlined, ClearOutlined, PlusCircleOutlined } from "@ant-design/icons";
+import { MinusCircleOutlined, ClearOutlined, PlusCircleOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
 
 export default [
   {
@@ -20,7 +20,7 @@ export default [
   {
     name: 'dialog',
     title: '弹窗',
-    icon: <MinusCircleOutlined />,
+    icon: <ExclamationCircleOutlined />,
     popupProps: {
       onOk: ({ view, setView, state, setState }) => {
         alert(1)
