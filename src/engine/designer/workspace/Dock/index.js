@@ -3,6 +3,7 @@ import Items from './Items'
 import useDocks from './useDocks'
 import Pane from './Pane';
 import './index.less';
+import { useView, useStore } from "../../../hooks";
 
 const clsPrefix = 'lcp-design-dock'
 export default (props = {}) => {
@@ -12,6 +13,8 @@ export default (props = {}) => {
     horizontal,
     docks = []
   } = props;
+  const { view, setView } = useView()
+  const { state, setState } = useStore()
   const [visible, setVisible] = useState(defaultActive)
   const [selectedName, setSelectedName] = useState({lasted: '', current: defaultActive})
   const selectedDocks = docks.filter(item => item.name === selectedName.current);
@@ -81,7 +84,7 @@ export default (props = {}) => {
               visible,
               setVisible,
               Component,
-              popupProps
+              popupProps: typeof popupProps === 'function' ? popupProps({view, setView, state, setState}) : popupProps
             }} />
           : null
       }

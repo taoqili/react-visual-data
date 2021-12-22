@@ -1,20 +1,19 @@
-import React from 'react';
+import React from "react";
 import { Tooltip } from "antd";
 import { useView, useStore } from "../../../hooks";
-
 export default (props = {}) => {
   const {
     docks = [],
-    handleClick = () => {},
     clsPrefix,
     selectedName,
-    visible
+    visible,
+    handleClick = () => {}
   } = props;
   const { view, setView } = useView();
   const {state, setState } = useStore();
-
   return docks.map(item => {
-    const { name, title, icon, onClick, component, place } = item || {};
+    const { name, title, icon:Icon, onClick, component, place } = item || {};
+    const realIcon = typeof Icon === "function" ? Icon({state, setState, view, setView}) : Icon
     return (
       <div
         key={name}
@@ -27,8 +26,11 @@ export default (props = {}) => {
           }
         }}
       >
-        <Tooltip placement={place in {left: 1, right: 1, center:1} ? 'top' : 'right'} title={title}>
-          {icon}
+        <Tooltip
+          title={title}
+          placement={place in { left: 1, right: 1, center: 1 } ? 'top' : 'right'}
+        >
+          {realIcon}
         </Tooltip>
       </div>
     )

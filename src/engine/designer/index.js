@@ -18,6 +18,8 @@ function App(props) {
   const [state, setState] = useSet({
     // 当前选中的元素
     currentNode: '-',
+    // 挂载到全局的一些实例
+    refs: {},
     mode: "development",
     fieldType: "component",
     dependencies: [],

@@ -21,6 +21,7 @@ export default [
     name: 'dialog',
     title: '弹窗',
     icon: <ExclamationCircleOutlined />,
+    place: 'left',
     popupProps: {
       onOk: ({ view, setView, state, setState }) => {
         alert(1)

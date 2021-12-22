@@ -1,13 +1,13 @@
 .lcp-design-dock {
   &-wrapper {
+    height: 40px;
+    line-height: 40px;
     &.horizontal {
       display: flex;
       justify-content: space-between;
       .lcp-design-dock-icon {
         margin-left: 14px;
         width: unset;
-        height: inherit;
-        line-height: inherit;
         font-size: 16px;
         user-select: none;
       }
@@ -18,9 +18,8 @@
   }
   &-icon {
     text-align: center;
-    height: 40px;
-    width: 30px;
-    line-height: 40px;
+    width: 40px;
+    word-break: keep-all;
     font-size: 20px;
     cursor: pointer;
     flex: 1;
