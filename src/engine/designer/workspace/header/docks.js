@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
-import { Divider, Modal } from 'antd';
+import { Divider } from 'antd';
 import storage from "../../../helper/storage";
-import { CopyOutlined, DeleteOutlined, RedoOutlined, UndoOutlined, HighlightOutlined, SettingOutlined } from "@ant-design/icons";
+import { CopyOutlined, DeleteOutlined, RedoOutlined, UndoOutlined, HighlightOutlined, CloseCircleOutlined } from "@ant-design/icons";
 import { generatorField, getFieldConf, getFieldOrderBy } from "../../core/utils";
 import MonacoEditor from '../MonacoEditor'
 
@@ -36,7 +36,7 @@ export default [
     name: 'delete',
     title: '删除',
     icon: ({state}) => {
-      return state.currentNode !== '-' ? <DeleteOutlined /> : <span style={{opacity: .5}}><DeleteOutlined /></span>
+      return state.currentNode !== '-' ? <CloseCircleOutlined /> : <span style={{opacity: .5}}><CloseCircleOutlined /></span>
     },
     place: 'left',
     onClick:({state, setState}) => {
@@ -55,6 +55,28 @@ export default [
       }
       components.splice(index, 1);
       setState({ components: components, currentNode: fieldId });
+    }
+  },
+  {
+    name: 'clear',
+    title: '清空',
+    icon: <DeleteOutlined />,
+    place: 'left',
+    onClick: ({setState, setView}) => {
+      setView({
+        isShowReferLine: false,
+        lines: {
+          h: [],
+          v: []
+        }
+      });
+      setState({
+        currentNode: '-',
+        settingTabsKey: 'base',
+        components: [],
+        undo: [],
+        redo: []
+      });
     }
   },
   {
