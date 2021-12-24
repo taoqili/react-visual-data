@@ -195,7 +195,7 @@ function getMaxLenSub(str) {
   }
   return ret
 }
-console.log(getMaxLenSub('abcadefab'))
+// console.log(getMaxLenSub('abcadefab'))
 
 
 
@@ -246,3 +246,26 @@ function sum(n) {
   return n === 1 ? 1 : n + sum(n-1)
 }
 // console.log(sum(5))
+
+// Promise.all
+function promiseAll(promises){
+  const ret = [];
+  return new Promise((resolve, reject) => {
+    promises.forEach((fn, index) => {
+      fn().then(data => {
+        ret[index] = data;
+        if (ret.length === promises.length) {
+          resolve(ret)
+        }
+      }, (err) => {
+        reject(err);
+      })
+    })
+  })
+}
+
+promiseAll([]).then(data => {
+  console.log(data)
+})
+
+
