@@ -3,7 +3,7 @@ import { Divider } from 'antd';
 import storage from "../../../helper/storage";
 import { CopyOutlined, DeleteOutlined, RedoOutlined, UndoOutlined, HighlightOutlined, CloseCircleOutlined } from "@ant-design/icons";
 import { generatorField, getFieldConf, getFieldOrderBy } from "../../core/utils";
-import MonacoEditor from '../MonacoEditor'
+import MonacoEditor from '../../components/MonacoEditor'
 
 const buttonStyle = {
   fontSize: 12,

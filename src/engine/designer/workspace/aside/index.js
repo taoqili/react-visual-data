@@ -1,5 +1,5 @@
 import React from "react";
-import Dock from '../Dock'
+import Dock from '../../components/Dock'
 import docks from './docks'
 import "./index.less";
 
