@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { StoreCtx, ViewCtx } from "../hooks/useDesigner";
 import { useDocumentTitle } from "../hooks/useDocumentTitle";
 import { useSet } from "../hooks/useSet";
-import { Designer } from "./core";
+import { Core } from "./core";
 import { mergeFieldConfig, setLevelPath } from "./core/utils";
 import DesignerAside from "./workspace/aside";
 import DesignerHeader from "./workspace/header";
@@ -12,7 +12,7 @@ import { pathToParam, loadScript } from "~utils";
 import { dataVApiList } from "@/api";
 
 
-function App(props) {
+function Designer(props) {
   const { appConfig, onAppInit } = props;
   useDocumentTitle(appConfig.siteName);
   const [state, setState] = useSet({
@@ -119,7 +119,7 @@ function App(props) {
             {
               state.components.length > 0
                 ? state.components.map((prop, index) => (
-                  <Designer index={index} value={prop} key={prop.uniqueId} onValueChange={onValueChange} />
+                  <Core index={index} value={prop} key={prop.uniqueId} onValueChange={onValueChange} />
                 )) : null
             }
           </DesignerBody>
@@ -130,4 +130,4 @@ function App(props) {
   );
 }
 
-export default App;
+export default Designer;
