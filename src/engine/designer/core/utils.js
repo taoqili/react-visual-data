@@ -2,30 +2,14 @@ import { guid, cloneDeep, isEmpty, deepMergeObj } from "../../utils";
 
 /**
  * 新建组件生成配置项
- * @param {*} fields 所有组件配置项
- * @param {*} type 组件类型 form/表单、field/元件、grid/布局
+ * @param {*} components 所有组件配置项
  * @param {*} opts 当前组件配置项
  */
-export function generatorField(fields, type = "field", opts = {}) {
-  let options;
-  // 唯一标识uniqueTag
+export function generatorField(components, opts = {}) {
+  const options = cloneDeep(opts);
   const uniqueId = guid();
-
-  options = cloneDeep(opts);
   options.uniqueId = uniqueId;
-
-  if (type === "form") {
-    let uniqueFieldLength = fields.filter((t) => t.type === opts.type).length;
-    if (uniqueFieldLength > 0) {
-      options.data.title += uniqueFieldLength;
-      options.data.key += uniqueFieldLength;
-    }
-  }
-
-  if (type === "grid") {
-    options.data.left = (fields.length * 3) % 12;
-  }
-  return { components: fields.concat(options), fieldId: uniqueId };
+  return { components: components.concat(options), fieldId: uniqueId };
 }
 
 /**

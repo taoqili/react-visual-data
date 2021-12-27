@@ -33,7 +33,7 @@ const FieldActionsConf = () => {
   // TODO: 复制
   const handleCopy = () => {
     const curFieldConf = getFieldConf(state.components, state.currentNode);
-    const { components, fieldId } = generatorField(state.components, "field", curFieldConf);
+    const { components, fieldId } = generatorField(state.components, curFieldConf);
     setState({ components: components, currentNode: fieldId });
   };
 

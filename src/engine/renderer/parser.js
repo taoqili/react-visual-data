@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import classnames from "classnames";
 // import { fieldGenerator } from "../utils/field";
 // import { getField } from "~packages";
-import { componentGenerator, getCompGeneratorProps } from "../utils/component";
+import { compRenderGenerator, getCompGeneratorProps } from "../utils/component";
 
 const Parser = ({ value }) => {
   const [show, setShow] = useState(true);
@@ -35,10 +35,8 @@ const Parser = ({ value }) => {
   }, [isHidden]);
 
   const createComponent = (compProps) => {
-    // const prop = getField(value.type);
-    // return fieldGenerator(prop)(compProps);
     const generatorProps = getCompGeneratorProps(value.type);
-    const generator = componentGenerator(generatorProps);
+    const generator = compRenderGenerator(generatorProps);
     return generator(compProps);
   };
 

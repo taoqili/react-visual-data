@@ -20,13 +20,13 @@ export const getCompGeneratorProps = (componentName) => {
 }
 
 /**
- * 组件生成器
+ * 组件渲染生成器
  * @param can
  * @param Component
  * @param props
  * @returns {function(*): *}
  */
-export const componentGenerator = ({ componentCanRedefine: can, Component = null, props = {} }) => {
+export const compRenderGenerator = ({ componentCanRedefine: can, Component = null, props = {} }) => {
   return (args) => {
     const { Component: RedefineComponent = null, ...rest } = args;
     const Comp = (can && RedefineComponent) || Component;

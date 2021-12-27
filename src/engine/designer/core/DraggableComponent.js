@@ -5,7 +5,7 @@ import React, { useMemo, useState, useEffect, useCallback } from "react";
 import classnames from "classnames";
 import { Rnd } from "react-rnd";
 import { useStore, useView } from "../../hooks/useDesigner";
-import { componentGenerator, getCompGeneratorProps } from "../../utils/component";
+import { compRenderGenerator, getCompGeneratorProps } from "../../utils/component";
 import { round, convertLayout, throttle } from "../../utils";
 
 function AlignLine() {
@@ -117,9 +117,9 @@ function DraggableComponent({ value, tabBind, tabStore, onValueChange }) {
       : rest.shadowWidth
   };
 
-  const createComponent = useCallback((compProps) => {
+  const renderComponent = useCallback((compProps) => {
     const generatorProps = getCompGeneratorProps(value.type);
-    const generator = componentGenerator(generatorProps);
+    const generator = compRenderGenerator(generatorProps);
     return generator(compProps);
   }, [value.type]);
 
@@ -209,7 +209,7 @@ function DraggableComponent({ value, tabBind, tabStore, onValueChange }) {
         </div>
       </div>
       {hasSelected ? <AlignLine /> : null}
-      {createComponent(propsValue)}
+      {renderComponent(propsValue)}
     </Rnd>
   );
 }

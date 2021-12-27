@@ -87,7 +87,7 @@ function Wrapper(props, ref) {
           configs.data.left = event.nativeEvent.offsetX - configs.data.width / 2;
           configs.data.top = event.nativeEvent.offsetY - configs.data.height / 2;
 
-          const { components, fieldId } = generatorField(state.components, "field", configs);
+          const { components, fieldId } = generatorField(state.components, configs);
           setState({ settingTabsKey: "base", components: components, currentNode: fieldId });
         }
       } catch (error) {
