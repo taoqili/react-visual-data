@@ -26,9 +26,7 @@ export default [
     component: ({view, setView, state, setState}) => {
       const [name, setName] = useState('Test')
       useEffect(() => {
-        setTimeout(() => {
-          setName('Change')
-        }, 2000)
+        setName('Change')
       }, [])
       return (
         <div>数据源 {name}</div>
