@@ -34,7 +34,7 @@ function AlignLine() {
 }
 
 // TODO：ui和组件拔插模式
-function DragField({ value, tabBind, tabStore, onValueChange }) {
+function DraggableComponent({ value, tabBind, tabStore, onValueChange }) {
   const { width, height, background, left, top, isHidden, isLock, ...rest } = value.data;
   const [locations, setLocations] = useState({ left: left, top: top });
   const [show, setShow] = useState(true);
@@ -216,4 +216,4 @@ function DragField({ value, tabBind, tabStore, onValueChange }) {
   );
 }
 
-export default DragField;
+export default DraggableComponent;

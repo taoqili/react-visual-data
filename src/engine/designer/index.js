@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { StoreCtx, ViewCtx } from "../hooks/useDesigner";
 import { useDocumentTitle } from "../hooks/useDocumentTitle";
 import { useSet } from "../hooks/useSet";
-import { Core } from "./core";
+import { DraggableComponent } from "./core";
 import { mergeFieldConfig, setLevelPath } from "./core/utils";
 import DesignerAside from "./workspace/aside";
 import DesignerHeader from "./workspace/header";
@@ -119,7 +119,7 @@ function Designer(props) {
             {
               state.components.length > 0
                 ? state.components.map((prop, index) => (
-                  <Core index={index} value={prop} key={prop.uniqueId} onValueChange={onValueChange} />
+                  <DraggableComponent index={index} value={prop} key={prop.uniqueId} onValueChange={onValueChange} />
                 )) : null
             }
           </DesignerBody>

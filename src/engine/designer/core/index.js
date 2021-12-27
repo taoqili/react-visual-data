@@ -1,4 +1,4 @@
 import "./datav.less";
 import "./renderer.less";
 
-export { default as Core } from "./designer";
+export { default as DraggableComponent } from "./DraggableComponent";
