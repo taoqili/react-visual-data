@@ -95,7 +95,6 @@ function Designer(props) {
           page = state.page,
           components = []
         } = schema;
-        debugger
         setState({ page, components, currentNode: '-' });
       },
       mixAppConfig: (appConfig) => {
@@ -118,10 +117,14 @@ function Designer(props) {
           <DesignerAside />
           <DesignerBody {...state.page}>
             {
-              state.components.length > 0
-                ? state.components.map((component, index) => (
-                  <DraggableComponent index={index} value={component} key={component.uniqueId} onValueChange={onValueChange} />
-                )) : null
+              state.components?.map((component, index) =>
+                <DraggableComponent
+                  key={component.uniqueId}
+                  index={index}
+                  value={component}
+                  onValueChange={onValueChange}
+                />
+              )
             }
           </DesignerBody>
           <DesignerSetting />

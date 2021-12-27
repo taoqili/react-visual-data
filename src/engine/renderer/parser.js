@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import cx from "classnames";
-import { fieldGenerator } from "../utils/field";
-import { getField } from "~packages";
+import classnames from "classnames";
+// import { fieldGenerator } from "../utils/field";
+// import { getField } from "~packages";
+import { componentGenerator, getCompGeneratorProps } from "../utils/component";
 
-const GeneratorField = ({ value }) => {
+const Parser = ({ value }) => {
   const [show, setShow] = useState(true);
-  const { width, height, background, left, top, isHidden, ...rest } = value.data;
-  const className = cx("animate__animated", {
+  const { width, height, background, left, top, isHidden, ...rest } = value.data || {};
+  const className = classnames("animate__animated", {
     [`animate__${rest.animateType}`]: rest.animateType,
     [`animate__${rest.animateSpeed}`]: rest.animateSpeed,
     [`animate__${rest.animateRepeat}`]: rest.animateRepeat,
@@ -33,30 +34,30 @@ const GeneratorField = ({ value }) => {
     setShow(!isHidden);
   }, [isHidden]);
 
-  const getSubField = (m) => {
-    const prop = getField(value.type);
-    return fieldGenerator(prop)(m);
+  const createComponent = (compProps) => {
+    // const prop = getField(value.type);
+    // return fieldGenerator(prop)(compProps);
+    const generatorProps = getCompGeneratorProps(value.type);
+    const generator = componentGenerator(generatorProps);
+    return generator(compProps);
   };
 
   return (
     <div style={overwriteStyle} className={className}>
-      {show
-        ? getSubField({
-          isDevelop: false,
-          type: value.type,
-          value: value.data,
-          uniqueId: value.uniqueId,
-          options: value.data.config
-        })
-        : null}
+      {
+        show
+          ? createComponent({
+            isDevelop: false,
+            type: value.type,
+            value: value.data,
+            uniqueId: value.uniqueId,
+            options: value.data.config
+          }) : null
+      }
     </div>
   );
 };
 
-const GeneratorWidget = ({ widgets = [] }) => {
-  if (widgets.length === 0) return null;
-
-  return widgets.map((item) => <GeneratorField value={item} key={item.uniqueId} />);
+export default ({ components = [] }) => {
+  return components.map((item) => <Parser value={item} key={item.uniqueId} />);
 };
-
-export default GeneratorWidget;

@@ -44,7 +44,14 @@ const FieldSetConf = () => {
   }, [state.currentNode, state.settingTabsKey]);
 
   const onComponentValueChange = (value) => {
-    let results = mergeFieldConfig(state.components, { parentId: state.currentNode }, value);
+    const results = mergeFieldConfig(
+      state.components,
+      { parentId: state.currentNode },
+      {
+        ...value,
+        width: value.width || 0,
+        height: value.height || 0
+      });
     setLevelPath(results, null);
     setState({ components: results });
   };

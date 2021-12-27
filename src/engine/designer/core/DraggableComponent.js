@@ -2,12 +2,11 @@
  * 基于rnd的核心拖拽方案
  */
 import React, { useMemo, useState, useEffect, useCallback } from "react";
-import cx from "classnames";
+import classnames from "classnames";
 import { Rnd } from "react-rnd";
-import { getField } from "~packages";
 import { useStore, useView } from "../../hooks/useDesigner";
+import { componentGenerator, getCompGeneratorProps } from "../../utils/component";
 import { round, convertLayout, throttle } from "../../utils";
-import { fieldGenerator } from "../../utils/field";
 
 function AlignLine() {
   return (
@@ -40,7 +39,7 @@ function DraggableComponent({ value, tabBind, tabStore, onValueChange }) {
   const { state, setState } = useStore();
   const { view } = useView();
 
-  const classNames = cx("drag-shape-wrap animate__animated", {
+  const classNames = classnames("drag-shape-wrap animate__animated", {
     [`animate__${rest.animateType}`]: rest.animateType,
     [`animate__${rest.animateSpeed}`]: rest.animateSpeed,
     [`animate__${rest.animateRepeat}`]: rest.animateRepeat,
@@ -98,12 +97,12 @@ function DraggableComponent({ value, tabBind, tabStore, onValueChange }) {
   };
 
   // todo: 鼠标移上根据实际情况使用
-  // const onMouseOver = (ev) => {
-  //   ev.preventDefault();
-  //   ev.stopPropagation();
-  //   if (hasSelected) return;
-  //   setState({currentNode: value.uniqueId});
-  // };
+  const onMouseOver = (ev) => {
+    ev.preventDefault();
+    ev.stopPropagation();
+    if (hasSelected) return;
+    setState({currentNode: value.uniqueId});
+  };
 
   const overwriteStyle = {
     width: convertLayout(width),
@@ -118,9 +117,10 @@ function DraggableComponent({ value, tabBind, tabStore, onValueChange }) {
       : rest.shadowWidth
   };
 
-  const getSubField = useCallback((m) => {
-    const prop = getField(value.type);
-    return fieldGenerator(prop)(m);
+  const createComponent = useCallback((compProps) => {
+    const generatorProps = getCompGeneratorProps(value.type);
+    const generator = componentGenerator(generatorProps);
+    return generator(compProps);
   }, [value.type]);
 
   const onDragHandle = (e, d) => {
@@ -201,7 +201,7 @@ function DraggableComponent({ value, tabBind, tabStore, onValueChange }) {
       // onMouseOver={onMouseOver}
       onClick={handleClick}
     >
-      <div className={cx("grid-line", { "is-active": hasSelected })}>
+      <div className={classnames("grid-line", { "is-active": hasSelected })}>
         <div className="grid-line-top"></div>
         <div className="grid-line-left"></div>
         <div className="grid-line-label">
@@ -209,7 +209,7 @@ function DraggableComponent({ value, tabBind, tabStore, onValueChange }) {
         </div>
       </div>
       {hasSelected ? <AlignLine /> : null}
-      {getSubField(propsValue)}
+      {createComponent(propsValue)}
     </Rnd>
   );
 }

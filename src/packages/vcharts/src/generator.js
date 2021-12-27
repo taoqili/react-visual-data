@@ -26,6 +26,7 @@ function GeneratorVCharts({ uniqueId, type, value, options, onChange, ...rest })
   const [dataSource, setDataSource] = useState({});
   const [stauts, setStauts] = useState(false);
   const { state, setState } = useStore();
+  debugger
   const { dataConfig, isRefresh, refreshTime } = value;
 
   const getOption = useMemo(() => resoleOption(type), [type]);
