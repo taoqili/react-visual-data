@@ -95,6 +95,7 @@ function Designer(props) {
           page = state.page,
           components = []
         } = schema;
+        debugger
         setState({ page, components, currentNode: '-' });
       },
       mixAppConfig: (appConfig) => {

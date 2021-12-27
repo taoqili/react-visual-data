@@ -36,9 +36,9 @@ function AlignLine() {
 // TODO：ui和组件拔插模式
 function DraggableComponent({ value, tabBind, tabStore, onValueChange }) {
   const { width, height, background, left, top, isHidden, isLock, ...rest } = value.data;
-  const [locations, setLocations] = useState({ left: left, top: top });
-  const [show, setShow] = useState(true);
-  const {state, setState } = useStore();
+  const [ locations, setLocations] = useState({ left: left, top: top });
+  const [ show, setShow] = useState(true);
+  const { state, setState } = useStore();
   const { view } = useView();
 
   const classNames = cx("drag-shape-wrap animate__animated", {
@@ -95,7 +95,6 @@ function DraggableComponent({ value, tabBind, tabStore, onValueChange }) {
     ev.preventDefault();
     ev.stopPropagation();
     if (hasSelected) return;
-
     setState({ settingTabsKey: "base", currentNode: value.uniqueId });
   };
 
