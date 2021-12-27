@@ -6,8 +6,7 @@ import cx from "classnames";
 import { Rnd } from "react-rnd";
 import { getField } from "~packages";
 import { useStore, useView } from "../../hooks/useDesigner";
-import { throttle } from "../../utils";
-import { round, convertLayout } from "../../utils";
+import { round, convertLayout, throttle } from "../../utils";
 import { fieldGenerator } from "../../utils/field";
 
 function AlignLine() {
