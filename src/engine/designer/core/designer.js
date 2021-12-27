@@ -8,7 +8,7 @@ import { getField } from "~packages";
 import { useStore, useView } from "../../hooks/useDesigner";
 import { throttle } from "~utils";
 import { round, converLayout } from "~utils/helper";
-import { fieldGenerator } from "../../helper";
+import { fieldGenerator } from "../../utils/field";
 
 function AlignLine() {
   return (

@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect, useImperativeHandle, forwardRef } from "react";
 import MonacoEditor, { monaco } from "@monaco-editor/react";
-import { convertLayout } from "../../../helper";
+import { convertLayout } from "../../../utils";
 import Loading from "../../components/AutoLoading";
 
 function CodePanel(props, ref) {
