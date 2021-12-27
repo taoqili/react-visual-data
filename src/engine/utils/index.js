@@ -1,8 +1,7 @@
 
+// 获取对象类型字符串
 export function toRawType(value) {
-  debugger
-  const _toString = Object.prototype.toString;
-  return _toString.call(value).slice(8, -1);
+  return Object.prototype.toString.call(value).slice(8, -1);
 }
 
 // 转化样式布局值

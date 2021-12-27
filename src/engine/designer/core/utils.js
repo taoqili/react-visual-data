@@ -16,10 +16,10 @@ export function generatorField(fields, type = "field", opts = {}) {
   options.uniqueId = uniqueId;
 
   if (type === "form") {
-    let uniqueFieldLenght = fields.filter((t) => t.type === opts.type).length;
-    if (uniqueFieldLenght > 0) {
-      options.data.title += uniqueFieldLenght;
-      options.data.key += uniqueFieldLenght;
+    let uniqueFieldLength = fields.filter((t) => t.type === opts.type).length;
+    if (uniqueFieldLength > 0) {
+      options.data.title += uniqueFieldLength;
+      options.data.key += uniqueFieldLength;
     }
   }
 

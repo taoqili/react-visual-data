@@ -4,7 +4,6 @@
  * */
 // 获取数据类型
 export function toRawType(value) {
-  debugger
   const _toString = Object.prototype.toString;
   return _toString.call(value).slice(8, -1);
 }
