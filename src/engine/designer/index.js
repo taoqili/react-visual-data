@@ -119,8 +119,8 @@ function Designer(props) {
           <DesignerBody {...state.page}>
             {
               state.components.length > 0
-                ? state.components.map((prop, index) => (
-                  <DraggableComponent index={index} value={prop} key={prop.uniqueId} onValueChange={onValueChange} />
+                ? state.components.map((component, index) => (
+                  <DraggableComponent index={index} value={component} key={component.uniqueId} onValueChange={onValueChange} />
                 )) : null
             }
           </DesignerBody>
