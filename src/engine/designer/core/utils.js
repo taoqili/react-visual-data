@@ -1,5 +1,4 @@
-import { guid, cloneDeep } from "~utils";
-import { isEmpty, deepMergeObj } from "~utils/helper";
+import { guid, cloneDeep, isEmpty, deepMergeObj } from "../../utils";
 
 /**
  * 新建组件生成配置项

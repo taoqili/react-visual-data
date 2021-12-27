@@ -2,7 +2,7 @@ import React, { useEffect, useMemo } from "react";
 import { AutonContainer, Scrollbar } from "~components";
 import Renderer from "./parser";
 import { useDocumentTitle } from "../hooks/useDocumentTitle";
-import storage from "~utils/storage";
+import storage from "../utils/storage";
 import { useStore } from "../hooks/useDesigner";
 
 function PanelPreview(props) {

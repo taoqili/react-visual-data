@@ -8,7 +8,7 @@ import DesignerAside from "./workspace/aside";
 import DesignerHeader from "./workspace/header";
 import DesignerBody from "./workspace/body";
 import DesignerSetting from "./workspace/setting";
-import { pathToParam, loadScript } from "~utils";
+import { pathToParam, loadScript } from "../utils";
 import { dataVApiList } from "@/api";
 
 

@@ -6,8 +6,8 @@ import cx from "classnames";
 import { Rnd } from "react-rnd";
 import { getField } from "~packages";
 import { useStore, useView } from "../../hooks/useDesigner";
-import { throttle } from "~utils";
-import { round, converLayout } from "~utils/helper";
+import { throttle } from "../../utils";
+import { round, convertLayout } from "../../utils";
 import { fieldGenerator } from "../../utils/field";
 
 function AlignLine() {
@@ -108,8 +108,8 @@ function DragField({ value, tabBind, tabStore, onValueChange }) {
   // };
 
   const overwriteStyle = {
-    width: converLayout(width),
-    height: converLayout(height),
+    width: convertLayout(width),
+    height: convertLayout(height),
     borderStyle: rest.borderStyle || "solid",
     borderColor: hasSelected ? "#2681ff" : "transparent",
     background,

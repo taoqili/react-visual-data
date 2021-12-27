@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState, useImperativeHandle } from "react";
-import { resizeSensor } from "~utils/resize-sensor";
-import { onEvent, offEvent, debounce } from "~utils";
+import { resizeSensor } from "../utils/resize-sensor";
+import { debounce } from "../utils";
 
 function observerDomResize(dom, callback) {
   const MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
@@ -50,12 +50,12 @@ export const useAutoResize = (ref) => {
       });
     }
 
-    onEvent(window, "resize", debounceSetWHHandler);
+    window.addEventListener('resize', debounceSetWHHandler, false)
 
     return () => {
       domObserver.disconnect();
       domObserver.takeRecords();
-      offEvent(window, "resize", debounceSetWHHandler);
+      window.removeEventListener('resize', debounceSetWHHandler, false)
     };
   }, []);
 

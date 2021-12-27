@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import { debounce } from "~utils";
+import { debounce } from "../utils";
 
 export const useDebounce = (action, ms = 500) => {
   const debouncedAction = useRef(null);

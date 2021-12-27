@@ -3,10 +3,7 @@ import { Modal, Space, Button, Typography, Badge, message, Tooltip } from "antd"
 import { Link } from "react-router-dom";
 import copyTOClipboard from "copy-text-to-clipboard";
 import { useStore, useView } from "../../../hooks/useDesigner";
-import { uuid } from "~utils";
 import { generatorField, getFieldConf, getFieldOrderBy, orderBy } from "../../core/utils";
-import { IconFont, MonacoEditor } from "~components";
-import storage from "~utils/storage";
 import Dock from '../../components/Dock'
 import docks from './docks'
 import './index.less'

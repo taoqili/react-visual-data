@@ -277,5 +277,7 @@ export function uuid() {
 export const guid = (() => {
   const heyStack = "0123456789abcdefghijklmnopqrstuvwxyz";
   const randomInt = () => Math.floor(Math.random() * Math.floor(heyStack.length));
-  return (length = 10) => Array.from({ length }, () => heyStack[randomInt()]).join("");
+  return (length = 10) => {
+    return Array.from({ length }, () => heyStack[randomInt()]).join("");
+  }
 })();

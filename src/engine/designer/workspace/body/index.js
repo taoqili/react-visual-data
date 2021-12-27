@@ -1,6 +1,6 @@
 import React, { useEffect, forwardRef, useRef, useMemo, useLayoutEffect, useCallback } from "react";
 import { Scrollbar, SketchRuler } from "~components";
-import { cloneDeep } from "~utils";
+import { cloneDeep } from "../../../utils";
 import { generatorField } from "../../core/utils";
 import { useAutoResize } from "../../../hooks/useAutoResize";
 import { useView, useStore } from "../../../hooks/useDesigner";
