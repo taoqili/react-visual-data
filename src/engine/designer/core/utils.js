@@ -5,7 +5,7 @@ import { guid, cloneDeep, isEmpty, deepMergeObj } from "../../utils";
  * @param {*} components 所有组件配置项
  * @param {*} opts 当前组件配置项
  */
-export function generatorField(components, opts = {}) {
+export function addComponent(components, opts = {}) {
   const options = cloneDeep(opts);
   const uniqueId = guid();
   options.uniqueId = uniqueId;
@@ -17,7 +17,7 @@ export function generatorField(components, opts = {}) {
  * @param {*} fields 所有组件配置项
  * @param {*} id 当前组件id
  */
-export function getFieldConf(fields, id) {
+export function getComponentConf(fields, id) {
   return fields.filter((o) => id === o.uniqueId)[0];
 }
 
@@ -100,7 +100,7 @@ export function orderBy(arr, next, prev) {
  * @param {*} fields 所有组件配置项
  * @param {*} id 当前组件id
  */
-export function getFieldOrderBy(fields, id) {
+export function getComponentOrder(fields, id) {
   if (isEmpty(fields)) return {};
 
   let newFiled = cloneDeep(fields);
@@ -108,21 +108,3 @@ export function getFieldOrderBy(fields, id) {
   return { index, components: newFiled };
 }
 
-export function deleteItem(uniqueId, arr) {
-  let fieldId;
-  const { index, components } = getFieldOrderBy(arr, uniqueId);
-
-  if (components.length === 1) {
-    fieldId = "-";
-  } else if (index > 0) {
-    fieldId = components[index - 1].uniqueId;
-  } else {
-    fieldId = components[index + 1].uniqueId;
-  }
-  components.splice(index, 1);
-
-  return {
-    data: components,
-    uniqueId: fieldId
-  };
-}

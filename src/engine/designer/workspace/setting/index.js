@@ -5,7 +5,7 @@ import { Scrollbar } from "~components";
 import SchemaRender from "@/form-render";
 import pageSchema from "./page-schema";
 import { useStore, useView } from "../../../hooks/useDesigner";
-import { getFieldConf, mergeFieldConfig, setLevelPath } from "../../core/utils";
+import { getComponentConf, mergeFieldConfig, setLevelPath } from "../../core/utils";
 import { screenToSchema } from "../../configuration-schema";
 import { DIMENSION } from "../../constants";
 import "./index.less";
@@ -23,7 +23,7 @@ const FieldSetConf = () => {
     if (state.components.length > 0 && state.currentNode !== "-") {
       try {
         // TODO: 获取物料组件配置项
-        const currentField = getFieldConf(state.components, state.currentNode);
+        const currentField = getComponentConf(state.components, state.currentNode);
 
         return {
           cname: currentField.type,

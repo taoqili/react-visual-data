@@ -1,7 +1,7 @@
 import React, { useEffect, forwardRef, useRef, useMemo, useLayoutEffect, useCallback } from "react";
 import { Scrollbar, SketchRuler } from "~components";
 import { cloneDeep } from "../../../utils";
-import { generatorField } from "../../core/utils";
+import { addComponent } from "../../core/utils";
 import { useAutoResize } from "../../../hooks/useAutoResize";
 import { useView, useStore } from "../../../hooks/useDesigner";
 import { THICK, DIMENSION } from "../../constants";
@@ -87,7 +87,7 @@ function Wrapper(props, ref) {
           configs.data.left = event.nativeEvent.offsetX - configs.data.width / 2;
           configs.data.top = event.nativeEvent.offsetY - configs.data.height / 2;
 
-          const { components, fieldId } = generatorField(state.components, configs);
+          const { components, fieldId } = addComponent(state.components, configs);
           setState({ settingTabsKey: "base", components: components, currentNode: fieldId });
         }
       } catch (error) {

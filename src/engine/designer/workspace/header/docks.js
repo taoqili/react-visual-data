@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { Divider } from 'antd';
 import storage from "../../../utils/storage";
 import { CopyOutlined, DeleteOutlined, RedoOutlined, UndoOutlined, HighlightOutlined, CloseCircleOutlined } from "@ant-design/icons";
-import { generatorField, getFieldConf, getFieldOrderBy } from "../../core/utils";
+import { addComponent, getComponentConf, getComponentOrder } from "../../core/utils";
 import MonacoEditor from '../../components/MonacoEditor'
 
 const buttonStyle = {
@@ -27,8 +27,8 @@ export default [
         return
       }
       // TODO 这两个方法需要暴露出来，不能让用户直接调用用
-      const curFieldConf = getFieldConf(state.components, state.currentNode);
-      const { components, fieldId } = generatorField(state.components, curFieldConf);
+      const curFieldConf = getComponentConf(state.components, state.currentNode);
+      const { components, fieldId } = addComponent(state.components, curFieldConf);
       setState({ components: components, currentNode: fieldId });
     }
   },
@@ -44,7 +44,7 @@ export default [
       if (currentNode === '-') {
         return
       }
-      const { index, components } = getFieldOrderBy(state.components, currentNode);
+      const { index, components } = getComponentOrder(state.components, currentNode);
       let fieldId;
       if (components.length === 1) {
         fieldId = "-";

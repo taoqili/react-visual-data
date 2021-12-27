@@ -3,7 +3,7 @@ import { Modal, Space, Button, Typography, Badge, message, Tooltip } from "antd"
 import { Link } from "react-router-dom";
 import copyTOClipboard from "copy-text-to-clipboard";
 import { useStore, useView } from "../../../hooks/useDesigner";
-import { generatorField, getFieldConf, getFieldOrderBy, orderBy } from "../../core/utils";
+import { addComponent, getComponentConf, getComponentOrder, orderBy } from "../../core/utils";
 import Dock from '../../components/Dock'
 import docks from './docks'
 import './index.less'
@@ -32,14 +32,14 @@ const FieldActionsConf = () => {
 
   // TODO: 复制
   const handleCopy = () => {
-    const curFieldConf = getFieldConf(state.components, state.currentNode);
-    const { components, fieldId } = generatorField(state.components, curFieldConf);
+    const curFieldConf = getComponentConf(state.components, state.currentNode);
+    const { components, fieldId } = addComponent(state.components, curFieldConf);
     setState({ components: components, currentNode: fieldId });
   };
 
   // TODO: 删除
   const handleDelete = () => {
-    const { index, components } = getFieldOrderBy(state.components, state.currentNode);
+    const { index, components } = getComponentOrder(state.components, state.currentNode);
     let fieldId;
     if (components.length === 1) {
       fieldId = "-";
@@ -54,7 +54,7 @@ const FieldActionsConf = () => {
 
   // TODO: 上移，与前一个元素交换顺序
   const handleUp = () => {
-    const { index, components } = getFieldOrderBy(state.components, state.currentNode);
+    const { index, components } = getComponentOrder(state.components, state.currentNode);
 
     if (index - 1 >= 0) {
       const results = orderBy(components, index, index - 1);
@@ -67,7 +67,7 @@ const FieldActionsConf = () => {
 
   // TODO: 下移，与后一个元素交换顺序
   const handleDown = () => {
-    const { index, components } = getFieldOrderBy(state.components, state.currentNode);
+    const { index, components } = getComponentOrder(state.components, state.currentNode);
 
     if (index + 1 < components.length) {
       const results = orderBy(components, index, index + 1);
@@ -80,7 +80,7 @@ const FieldActionsConf = () => {
 
   // TODO: 置顶
   const handleTop = () => {
-    const { index, components } = getFieldOrderBy(state.components, state.currentNode);
+    const { index, components } = getComponentOrder(state.components, state.currentNode);
 
     if (index - 1 >= 0) {
       // 将要置顶的元素存储后删除
@@ -96,7 +96,7 @@ const FieldActionsConf = () => {
 
   // TODO: 置底
   const handleBottom = () => {
-    const { index, components } = getFieldOrderBy(state.components, state.currentNode);
+    const { index, components } = getComponentOrder(state.components, state.currentNode);
 
     if (index + 1 < components.length) {
       // 将要置底的元素存储后删除
